@@ -1,0 +1,7 @@
+#!/bin/bash
+#By Hamed Ap
+sudo sed -i  "s@$1:$2@$1:$3@g" /var/www/html/p/tarikh
+sudo passwd $1 <<!
+$3
+$3
+!
