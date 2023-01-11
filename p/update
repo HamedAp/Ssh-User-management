@@ -2,6 +2,6 @@
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 
 sudo wget -O /var/www/html/update.zip $link
-sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
+sudo unzip -o /var/www/html/update.zip -d "/var/www/html/" &
 wait
 rm -fr /var/www/html/update.zip
