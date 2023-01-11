@@ -2,7 +2,7 @@
 
 if command -v apt-get >/dev/null; then
   apt update -y
-  apt install apache2 php zip -y
+  apt install apache2 php zip net-tools -y
   systemctl restart httpd
 sudo wget -O /var/www/html/update https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/p/update -4 &
 wait
@@ -25,7 +25,7 @@ wait
 chown www-data:www-data /var/www/html/p/*
 elif command -v yum >/dev/null; then
 yum update -y
-yum install httpd php zip -y
+yum install httpd php zip net-tools -y
 systemctl restart httpd
 sudo wget -O /var/www/html/update https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/p/update -4 &
 wait
