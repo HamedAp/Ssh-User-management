@@ -2,7 +2,7 @@
 
 if command -v apt-get >/dev/null; then
   apt update -y
-  apt install httpd php zip -y
+  apt install apache2 php zip -y
 elif command -v yum >/dev/null; then
   yum update -y
   yum install httpd php zip -y
