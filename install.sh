@@ -24,5 +24,3 @@ wait
 
 chown apache:apache /var/www/html/p/*
 
-clear
-echo " Finished ! :) Have Fun"
