@@ -1,5 +1,4 @@
 #!/bin/bash
-touch /var/www/html/p/tarikh
 adminusername=admin
 echo -e "\nPlease input Panel admin user."
 printf "Default user name is \e[33m${adminusername}\e[0m, let it blank to use this user name: "
@@ -117,3 +116,4 @@ printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
 else
   echo "Wait For New Update !!"
 fi
+touch /var/www/html/p/tarikh
