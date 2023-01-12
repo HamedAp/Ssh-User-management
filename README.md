@@ -1,5 +1,6 @@
 # Ssh-User-management In Persian Language :)
-Hit the ⭐ Star ⭐ button
+Hit the ⭐ Star ⭐ button .
+
 I Will Add English Soon :)
 
 # Single Command Install & upgrade
