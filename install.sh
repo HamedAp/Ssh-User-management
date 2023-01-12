@@ -28,6 +28,21 @@ po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 sudo sed -i "/^5829:$port/d" /var/www/html/p/online
 
+echo '<VirtualHost *:80>
+<Directory "/var/www/html/p">
+        AuthType Basic
+        AuthName "Restricted Content"
+        AuthUserFile /etc/apache2/.htpasswd
+        Require valid-user
+    </Directory>
+</VirtualHost>' >> /etc/apache2/sites-enabled/000-default.conf
+
+echo '<Directory /var/www/html/p/>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>' >> /etc/apache2/apache2.conf
+
 elif command -v yum >/dev/null; then
 yum update -y
 yum install httpd php zip net-tools -y
@@ -55,6 +70,21 @@ chown apache:apache /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 sudo sed -i "/^5829:$port/d" /var/www/html/p/online
+
+echo '<VirtualHost *:80>
+<Directory "/var/www/html/p">
+        AuthType Basic
+        AuthName "Restricted Content"
+        AuthUserFile /etc/apache2/.htpasswd
+        Require valid-user
+    </Directory>
+</VirtualHost>' >> /etc/httpd/conf/httpd.conf
+
+echo '<Directory /var/www/html/p/>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>' >> /etc/httpd/conf/httpd.conf
 
 else
   echo "Centos And Ubunto Supported For Now !!"
