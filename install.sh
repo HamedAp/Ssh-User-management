@@ -40,6 +40,10 @@ chown www-data:www-data /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 sudo sed -i "/^5829:$port/d" /var/www/html/p/online
+echo 'AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /etc/apache2/.htpasswd
+Require valid-user' >> /var/www/html/p/.htaccess
 echo '<VirtualHost *:80>
 <Directory "/var/www/html/p">
         AuthType Basic
@@ -85,6 +89,10 @@ chown apache:apache /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 sudo sed -i "/^5829:$port/d" /var/www/html/p/online
+echo 'AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /etc/httpd/.htpasswd
+Require valid-user' >> /var/www/html/p/.htaccess
 echo '<VirtualHost *:80>
 <Directory "/var/www/html/p">
         AuthType Basic
