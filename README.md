@@ -14,7 +14,7 @@ Comming Soon ! :)
 
 # Preview
 ![](screenshot/Capture.PNG)
-
+![](screenshot/22.PNG)
 
 
 # Donations 💰
