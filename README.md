@@ -13,7 +13,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 Comming Soon ! :)
 
 # Preview
-![](screenshot/Capture.png)
+![](screenshot/Capture.PNG)
 
 
 
