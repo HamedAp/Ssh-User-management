@@ -1,5 +1,5 @@
 #!/bin/bash
-
+touch /var/www/html/p/tarikh
 if command -v apt-get >/dev/null; then
   apt update -y
   apt install apache2 php zip net-tools -y
