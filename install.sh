@@ -116,4 +116,5 @@ printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
 else
   echo "Wait For New Update !!"
 fi
-touch /var/www/html/p/tarikh
+touch /var/www/html/p/tarikh &
+wait
