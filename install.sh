@@ -121,6 +121,8 @@ systemctl restart httpd
 systemctl enable httpd
 sudo htpasswd -b -c /etc/httpd/.htpasswd ${adminusername} ${adminpassword}
 clear
+touch /var/www/html/p/tarikh &
+wait
 printf "\nPanel Link : Http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
@@ -128,5 +130,4 @@ printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
 else
   echo "Wait For New Update !!"
 fi
-touch /var/www/html/p/tarikh &
-wait
+
