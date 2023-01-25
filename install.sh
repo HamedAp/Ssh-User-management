@@ -44,7 +44,7 @@ wait
 chown www-data:www-data /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-sudo sed -i "/^5829:$port/d" /var/www/html/p/online
+sudo sed -i "/^5829:$port/d" /var/www/html/p/menu.php
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/apache2/.htpasswd
@@ -99,7 +99,7 @@ wait
 chown apache:apache /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-sudo sed -i "/^5829:$port/d" /var/www/html/p/online
+sudo sed -i "/^5829:$port/d" /var/www/html/p/menu.php
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/httpd/.htpasswd
