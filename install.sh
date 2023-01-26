@@ -41,6 +41,8 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/killall' | sudo EDITOR='tee -a' v
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/netstat' | sudo EDITOR='tee -a' visudo &
 wait
+touch /var/www/html/p/tarikh &
+wait
 chown www-data:www-data /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
@@ -96,6 +98,8 @@ echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/killall' | sudo EDITOR='tee -a' vis
 wait
 echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/netstat' | sudo EDITOR='tee -a' visudo &
 wait
+touch /var/www/html/p/tarikh &
+wait
 chown apache:apache /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
@@ -121,8 +125,6 @@ systemctl restart httpd
 systemctl enable httpd
 sudo htpasswd -b -c /etc/httpd/.htpasswd ${adminusername} ${adminpassword}
 clear
-touch /var/www/html/p/tarikh &
-wait
 printf "\nPanel Link : Http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
