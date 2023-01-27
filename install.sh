@@ -16,7 +16,7 @@ fi
 ipv4=$(curl -s4m8 ip.gs)
 if command -v apt-get >/dev/null; then
   apt update -y
-  apt install apache2 php zip net-tools curl -y
+  apt install apache2 php zip unzip net-tools curl -y
 sudo wget -O /var/www/html/update https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/p/update -4 &
 wait
 sudo bash /var/www/html/update &
@@ -72,7 +72,7 @@ printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
 elif command -v yum >/dev/null; then
 yum update -y
-yum install httpd php zip net-tools curl -y
+yum install httpd php zip unzip net-tools curl -y
 systemctl restart httpd
 sudo wget -O /var/www/html/update https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/p/update -4 &
 wait
