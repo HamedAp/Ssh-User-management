@@ -1,5 +1,6 @@
 # Ssh-User-management In Persian Language :)
 Hit the ⭐ Star ⭐ button .
+برای حمایت از ما به پروژه ستاره بدین . 
 
 I Will Add English Soon :)
 
