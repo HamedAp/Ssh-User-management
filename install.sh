@@ -103,7 +103,7 @@ wait
 chown apache:apache /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-sudo sed -i "/^5829:$port/d" /var/www/html/p/menu.php
+sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/httpd/.htpasswd
