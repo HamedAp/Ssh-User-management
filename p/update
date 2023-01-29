@@ -5,3 +5,7 @@ sudo wget -O /var/www/html/update.zip $link
 sudo unzip -d /var/www/html/ -o /var/www/html/update.zip  &
 wait
 rm -fr /var/www/html/update.zip
+
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+port=$(echo "$po" | sed "s/Port //g")
+sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php
