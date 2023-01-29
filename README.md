@@ -10,7 +10,7 @@ I Will Add English Soon :)
 ````
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4)
 ````
-# Will Added On Next Update 
+# Will Be Added On Next Update 
 -Restore Backups
 
 -Remove Old Backups
