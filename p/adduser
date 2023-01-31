@@ -15,5 +15,3 @@ $2
 
 date=$(date '+%Y-%m-%d')
 echo "$1:$2:$date:$3" >> /var/www/html/p/tarikh
-
-chown apache:apache /var/www/html/p/*
