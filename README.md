@@ -11,7 +11,6 @@ I Will Add English Soon :)
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4)
 ````
 # Will Be Added On Next Update 
--Restore Backups
 
 -Remove Old Backups
 
@@ -20,10 +19,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 -Enable/Disable Users 
 
 -Custom Expire Date 
-
--Change SSH Port
-
--Change Panel Admin User/Password 
 
 -Add Telegram Bot
 
