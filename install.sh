@@ -52,7 +52,6 @@ wait
 chown www-data:www-data /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/apache2/.htpasswd
@@ -76,6 +75,9 @@ clear
 printf "\nPanel Link : Http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
+sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php &
+wait
+
 elif command -v yum >/dev/null; then
 yum update -y
 yum install httpd php zip unzip net-tools curl -y
@@ -115,7 +117,6 @@ wait
 chown apache:apache /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/httpd/.htpasswd
@@ -140,6 +141,9 @@ clear
 printf "\nPanel Link : Http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
+
+sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php &
+wait
 
 else
   echo "Wait For New Update !!"
