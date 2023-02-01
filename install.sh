@@ -133,13 +133,10 @@ systemctl restart httpd
 systemctl enable httpd
 sudo htpasswd -b -c /etc/httpd/.htpasswd ${adminusername} ${adminpassword}
 clear
-printf "\nPanel Link : Http://${ipv4}/p/index.php"
-printf "\nUserName : \e[31m${adminusername}\e[0m "
-printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
-else
-  echo "Wait For New Update !!"
-fi
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php
+printf "\nPanel Link : Http://${ipv4}/p/index.php"
+printf "\nUserName : \e[31m${adminusername}\e[0m "
+printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
 printf "\nPort : \e[31m${port}\e[0m \n"
