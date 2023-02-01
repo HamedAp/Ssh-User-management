@@ -14,9 +14,6 @@ if [[ -n "${passwordtmp}" ]]; then
     adminpassword=${passwordtmp}
 fi
 ipv4=$(curl -s4m8 ip.gs)
-po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
-
 if command -v apt-get >/dev/null; then
   apt update -y
   apt install apache2 php zip unzip net-tools curl -y
@@ -144,5 +141,8 @@ else
   echo "Wait For New Update !!"
 fi
 
-sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php &
-wait
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+port=$(echo "$po" | sed "s/Port //g")
+sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php
+
+printf "\nPort : \e[31m${port}\e[0m \n"
