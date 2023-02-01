@@ -144,5 +144,5 @@ else
   echo "Wait For New Update !!"
 fi
 
-sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php &
+sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php &
 wait
