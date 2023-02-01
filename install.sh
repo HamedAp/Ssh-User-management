@@ -17,11 +17,11 @@ if [[ -n "${passwordtmp}" ]]; then
 fi
 ipv4=$(curl -s4m8 ip.gs)
 if command -v apt-get >/dev/null; then
-  apt update -y
-  apt install apache2 php zip unzip net-tools curl -y
-sudo wget -O /var/www/html/update https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/p/update -4 &
-wait
-sudo bash /var/www/html/update &
+apt update -y
+apt install apache2 php zip unzip net-tools curl -y
+link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
+sudo wget -O /var/www/html/update.zip $link
+sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
 wait
@@ -51,7 +51,6 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/rm' | sudo EDITOR='tee -a' visudo
 wait
 touch /var/www/html/p/tarikh &
 wait
-chown www-data:www-data /var/www/html/p/*
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/apache2/.htpasswd
@@ -112,7 +111,6 @@ echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/rm' | sudo EDITOR='tee -a' visudo &
 wait
 touch /var/www/html/p/tarikh &
 wait
-chown apache:apache /var/www/html/p/*
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 echo 'AuthType Basic
