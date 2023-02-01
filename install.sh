@@ -70,9 +70,12 @@ echo '<Directory /var/www/html/p/>
 sudo service apache2 restart
 sudo htpasswd -b -c /etc/apache2/.htpasswd ${adminusername} ${adminpassword}
 clear
-printf "\nPanel Link : Http://${ipv4}/p/index.php"
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+port=$(echo "$po" | sed "s/Port //g")
+printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
+printf "\nPort : \e[31m${port}\e[0m \n"
 elif command -v yum >/dev/null; then
 yum update -y
 yum install httpd php zip unzip net-tools curl -y
@@ -136,7 +139,7 @@ clear
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php
-printf "\nPanel Link : Http://${ipv4}/p/index.php"
+printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
 printf "\nPort : \e[31m${port}\e[0m \n"
