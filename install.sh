@@ -140,3 +140,6 @@ printf "\nPanel Link : Http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
 printf "\nPort : \e[31m${port}\e[0m \n"
+else
+  echo "Wait For New Update !!"
+fi
