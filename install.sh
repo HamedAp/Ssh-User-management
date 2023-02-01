@@ -70,6 +70,8 @@ echo '<Directory /var/www/html/p/>
 </Directory>' >> /etc/apache2/apache2.conf
 sudo service apache2 restart
 sudo htpasswd -b -c /etc/apache2/.htpasswd ${adminusername} ${adminpassword}
+chown www-data:www-data /var/www/html/p/* &
+wait
 clear
 printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
@@ -133,6 +135,8 @@ echo '<Directory /var/www/html/p/>
 systemctl restart httpd
 systemctl enable httpd
 sudo htpasswd -b -c /etc/httpd/.htpasswd ${adminusername} ${adminpassword}
+chown apache:apache /var/www/html/p/* &
+wait
 clear
 printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
