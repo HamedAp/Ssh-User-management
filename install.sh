@@ -14,6 +14,9 @@ if [[ -n "${passwordtmp}" ]]; then
     adminpassword=${passwordtmp}
 fi
 ipv4=$(curl -s4m8 ip.gs)
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+port=$(echo "$po" | sed "s/Port //g")
+
 if command -v apt-get >/dev/null; then
   apt update -y
   apt install apache2 php zip unzip net-tools curl -y
@@ -50,8 +53,6 @@ wait
 touch /var/www/html/p/tarikh &
 wait
 chown www-data:www-data /var/www/html/p/*
-po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/apache2/.htpasswd
@@ -75,9 +76,6 @@ clear
 printf "\nPanel Link : Http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
-sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php &
-wait
-
 elif command -v yum >/dev/null; then
 yum update -y
 yum install httpd php zip unzip net-tools curl -y
@@ -142,10 +140,9 @@ printf "\nPanel Link : Http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
 
-sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php &
-wait
-
 else
   echo "Wait For New Update !!"
 fi
 
+sudo sed -i 's/5829/$port/g' /var/www/html/p/menu.php &
+wait
