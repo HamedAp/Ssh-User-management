@@ -1,4 +1,6 @@
 #!/bin/bash
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+port=$(echo "$po" | sed "s/Port //g")
 adminusername=admin
 echo -e "\nPlease input Panel admin user."
 printf "Default user name is \e[33m${adminusername}\e[0m, let it blank to use this user name: "
@@ -70,11 +72,9 @@ echo '<Directory /var/www/html/p/>
 sudo service apache2 restart
 sudo htpasswd -b -c /etc/apache2/.htpasswd ${adminusername} ${adminpassword}
 clear
-po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
 printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
-printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
+printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
 elif command -v yum >/dev/null; then
 yum update -y
@@ -136,13 +136,14 @@ systemctl restart httpd
 systemctl enable httpd
 sudo htpasswd -b -c /etc/httpd/.htpasswd ${adminusername} ${adminpassword}
 clear
-po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
-sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php
 printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
-printf "\nPassword : \e[31m${adminpassword}\e[0m \n"
+printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
 else
   echo "Wait For New Update !!"
 fi
+sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php &
+wait
+
+
