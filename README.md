@@ -2,6 +2,8 @@
 Hit the ⭐ Star ⭐ button .
 برای حمایت از ما به پروژه ستاره بدین . 
 
+خوشحال میشم پیشنهادات و انتقادات خودتون رو در قسمت issue ثبت کنین .
+
 I Will Add English Soon :)
 
 # Single Command Install & upgrade
