@@ -145,7 +145,8 @@ printf "\nPort : \e[31m${port}\e[0m \n"
 
 sudo sed -i "s/apache2/httpd/g" /var/www/html/p/setting.php &
 wait
-
+chmod 644 /etc/ssh/sshd_config &
+wait
 
 else
   echo "Wait For New Update !!"
