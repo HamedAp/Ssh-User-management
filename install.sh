@@ -18,7 +18,7 @@ fi
 ipv4=$(curl -s4m8 ip.gs)
 if command -v apt-get >/dev/null; then
 apt update -y
-apt install apache2 php zip unzip net-tools curl -y
+apt install apache2 php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl -y
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
@@ -79,7 +79,7 @@ printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
 elif command -v yum >/dev/null; then
 yum update -y
-yum install httpd php zip unzip net-tools curl -y
+yum install httpd php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl -y
 systemctl restart httpd
 sudo wget -O /var/www/html/update https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/p/update -4 &
 wait
@@ -142,6 +142,11 @@ printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
+
+sudo sed -i "s/apache2/httpd/g" /var/www/html/p/setting.php &
+wait
+
+
 else
   echo "Wait For New Update !!"
 fi
