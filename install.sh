@@ -1,4 +1,7 @@
 #!/bin/bash
+
+sudo sed -i "s/#Port 22/Port 22/g" /etc/ssh/sshd_config &
+wait
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 adminusername=admin
@@ -18,6 +21,7 @@ fi
 ipv4=$(curl -s4m8 ip.gs)
 if command -v apt-get >/dev/null; then
 apt update -y
+apt upgrade -y
 apt install apache2 php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl -y
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
