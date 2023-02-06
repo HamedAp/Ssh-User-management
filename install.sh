@@ -1,6 +1,5 @@
 #!/bin/bash
 
-port=22
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 adminusername=admin
