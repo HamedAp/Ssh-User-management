@@ -26,7 +26,20 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 
 
 # Information
-Comming Soon ! :)
+دستور بالا رو اجرا کنین ازتون یوزر و پسورد ادمین پنل رو میپرسه و همه امکانات رو نصب میکنه 
+
+اگر مشکل از پورت پیش فرض ۲۲ استفاده میکنید احتمال فیلتر بودن پورت وجود دارد و پورت را تغییر دهید .
+
+نحوه تغییر پورت : 
+فایل /etc/ssh/sshd_config رو با ویرایشگر باز کنید و خط 
+Port 5829
+را اضافه کنید . 
+( new port = 5829 )
+بعد از ذخیره از درون فایروال پورت را باز کنین .
+و در آخر سرویس ssh را ریستارت کنید :
+systemctl restart sshd
+
+
 
 # Preview
 ![](screenshot/Capture.PNG)
