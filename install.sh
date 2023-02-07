@@ -51,6 +51,8 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/sed' | sudo EDITOR='tee -a' visud
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/rm' | sudo EDITOR='tee -a' visudo &
 wait
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/crontab' | sudo EDITOR='tee -a' visudo &
+wait
 touch /var/www/html/p/tarikh &
 wait
 echo 'AuthType Basic
@@ -113,6 +115,8 @@ echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/sed' | sudo EDITOR='tee -a' visudo 
 wait
 echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/rm' | sudo EDITOR='tee -a' visudo &
 wait
+echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/crontab' | sudo EDITOR='tee -a' visudo &
+wait
 touch /var/www/html/p/tarikh &
 wait
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
@@ -155,7 +159,8 @@ else
 fi
 sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php &
 wait
-
+sudo sed -i "s/5829/$port/g" /var/www/html/p/kill.php &
+wait
 
 code=$(awk -F', ' '!a[$1 FS $2]++' /etc/sudoers )
 echo "$code" > /etc/sudoers
