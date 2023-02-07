@@ -16,8 +16,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 
 -Remove Old Backups
 
--Multiuser Limits 
-
 -Enable/Disable Users 
 
 -Custom Expire Date 
