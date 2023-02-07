@@ -137,14 +137,3 @@ wait
 code=$(awk -F', ' '!a[$1 FS $2]++' /etc/sudoers )
 echo "$code" > /etc/sudoers
 
-code2=$(awk -F', ' '!a[$1 FS $2]++' /var/www/html/p/.htaccess )
-echo "$code2" > /var/www/html/p/.htaccess
-
-code3=$(awk -F', ' '!a[$1 FS $2]++' /etc/apache2/sites-enabled/000-default.conf )
-echo "$code3" > /etc/apache2/sites-enabled/000-default.conf
-
-code4=$(awk -F', ' '!a[$1 FS $2]++' /etc/apache2/apache2.conf )
-echo "$code4" > /etc/apache2/apache2.conf
-
-code5=$(awk -F', ' '!a[$1 FS $2]++' /etc/httpd/conf/httpd.conf )
-echo "$code5" > /etc/httpd/conf/httpd.conf
