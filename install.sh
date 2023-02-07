@@ -82,11 +82,6 @@ printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
 
-code3=$(awk -F', ' '!a[$1 FS $2]++' /etc/apache2/sites-enabled/000-default.conf )
-echo "$code3" > /etc/apache2/sites-enabled/000-default.conf
-
-code4=$(awk -F', ' '!a[$1 FS $2]++' /etc/apache2/apache2.conf )
-echo "$code4" > /etc/apache2/apache2.conf
 
 elif command -v yum >/dev/null; then
 yum update -y
@@ -161,9 +156,6 @@ wait
 chmod 644 /etc/ssh/sshd_config &
 wait
 
-code5=$(awk -F', ' '!a[$1 FS $2]++' /etc/httpd/conf/httpd.conf )
-echo "$code5" > /etc/httpd/conf/httpd.conf
-
 else
   echo "Wait For New Update !!"
 fi
@@ -172,10 +164,5 @@ wait
 sudo sed -i "s/5829/$port/g" /var/www/html/p/kill.php &
 wait
 
-code=$(awk -F', ' '!a[$1 FS $2]++' /etc/sudoers )
-echo "$code" > /etc/sudoers
-
-code2=$(awk -F', ' '!a[$1 FS $2]++' /var/www/html/p/.htaccess )
-echo "$code2" > /var/www/html/p/.htaccess
 
 
