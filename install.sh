@@ -173,5 +173,3 @@ wait
 mysql -e "create database ShaHaN;"
 mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';"
 mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';"
-
-php /var/www/html/p/restoretarikh.php
