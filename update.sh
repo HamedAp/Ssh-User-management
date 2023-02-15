@@ -65,9 +65,9 @@ elif command -v yum >/dev/null; then
 yum update -y
 yum install httpd php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl -y
 systemctl restart httpd
-sudo wget -O /var/www/html/update https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/p/update -4 &
-wait
-sudo bash /var/www/html/update &
+link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
+sudo wget -O /var/www/html/update.zip $link
+sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
 echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
 wait
