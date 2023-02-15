@@ -167,7 +167,8 @@ sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php &
 wait
 sudo sed -i "s/5829/$port/g" /var/www/html/p/kill.php &
 wait
-
+systemctl restart mariadb &
+wait
 
 mysql -e "create database ShaHaN;"
 mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';"
