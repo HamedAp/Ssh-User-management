@@ -78,12 +78,6 @@ sudo service apache2 restart
 sudo htpasswd -b -c /etc/apache2/.htpasswd ${adminusername} ${adminpassword}
 chown www-data:www-data /var/www/html/p/* &
 wait
-clear
-printf "\nPanel Link : http://${ipv4}/p/index.php"
-printf "\nUserName : \e[31m${adminusername}\e[0m "
-printf "\nPassword : \e[31m${adminpassword}\e[0m "
-printf "\nPort : \e[31m${port}\e[0m \n"
-
 
 elif command -v yum >/dev/null; then
 yum update -y
@@ -128,16 +122,6 @@ wait
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 
-
-sudo sed -i "s/22/$port/g" /var/www/html/p/config.php &
-wait 
-sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p/config.php &
-wait 
-sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
-wait 
-
-
-
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/httpd/.htpasswd
@@ -160,11 +144,7 @@ systemctl enable httpd
 sudo htpasswd -b -c /etc/httpd/.htpasswd ${adminusername} ${adminpassword}
 chown apache:apache /var/www/html/p/* &
 wait
-clear
-printf "\nPanel Link : http://${ipv4}/p/index.php"
-printf "\nUserName : \e[31m${adminusername}\e[0m "
-printf "\nPassword : \e[31m${adminpassword}\e[0m "
-printf "\nPort : \e[31m${port}\e[0m \n"
+
 
 sudo sed -i "s/apache2/httpd/g" /var/www/html/p/setting.php &
 wait
@@ -174,13 +154,25 @@ wait
 else
   echo "Wait For New Update !!"
 fi
-sudo sed -i "s/5829/$port/g" /var/www/html/p/menu.php &
-wait
-sudo sed -i "s/5829/$port/g" /var/www/html/p/kill.php &
-wait
+
 systemctl restart mariadb &
 wait
-
 mysql -e "create database ShaHaN;"
 mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';"
 mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';"
+
+
+
+sudo sed -i "s/22/$port/g" /var/www/html/p/config.php &
+wait 
+sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p/config.php &
+wait 
+sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
+wait 
+
+
+clear
+printf "\nPanel Link : http://${ipv4}/p/index.php"
+printf "\nUserName : \e[31m${adminusername}\e[0m "
+printf "\nPassword : \e[31m${adminpassword}\e[0m "
+printf "\nPort : \e[31m${port}\e[0m \n"
