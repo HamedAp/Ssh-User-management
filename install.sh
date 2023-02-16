@@ -129,14 +129,12 @@ po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 
 
-echo "<?php
-$port = '$port';
-$servername = 'localhost';
-$username = '$adminusername';
-$password = '$adminpassword';
-$dbname = 'ShaHaN';
-?>" > /var/www/html/p/config.php
-
+sudo sed -i "s/22/$port/g" /var/www/html/p/config.php &
+wait 
+sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p/config.php &
+wait 
+sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
+wait 
 
 
 
