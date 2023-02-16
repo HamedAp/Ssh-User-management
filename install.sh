@@ -155,8 +155,6 @@ else
   echo "Wait For New Update !!"
 fi
 
-systemctl restart mariadb &
-wait
 mysql -e "create database ShaHaN;"
 mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';"
 mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';"
@@ -176,3 +174,8 @@ printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
+
+
+systemctl restart mariadb &
+wait
+
