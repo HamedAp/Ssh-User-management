@@ -129,13 +129,13 @@ po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 
 
-echo '<?php
-$port = "$port";
-$servername = "localhost";
-$username = "$adminusername";
-$password = "$adminpassword";
-$dbname = "ShaHaN";
-?>' >> /var/www/html/p/config.php
+echo "<?php
+$port = '$port';
+$servername = 'localhost';
+$username = '$adminusername';
+$password = '$adminpassword';
+$dbname = 'ShaHaN';
+?>" > /var/www/html/p/config.php
 
 
 
