@@ -130,10 +130,10 @@ port=$(echo "$po" | sed "s/Port //g")
 
 
 echo '<?php
-$port = "${port}";
+$port = "$port";
 $servername = "localhost";
-$username = "${adminusername}";
-$password = "${adminpassword}";
+$username = "$adminusername";
+$password = "$adminpassword";
 $dbname = "ShaHaN";
 ?>' >> /var/www/html/p/config.php
 
