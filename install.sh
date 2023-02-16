@@ -187,4 +187,5 @@ printf "\nPort : \e[31m${port}\e[0m \n"
 
 
 
+curl -s "http://${ipv4}/p/restoretarikh.php" > /dev/null
 
