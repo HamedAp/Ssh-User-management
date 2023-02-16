@@ -177,6 +177,7 @@ sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p/config.php &
 wait 
 sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
 wait 
+curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
 
 
 clear
@@ -187,5 +188,4 @@ printf "\nPort : \e[31m${port}\e[0m \n"
 
 
 
-curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
 
