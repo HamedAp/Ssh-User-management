@@ -78,11 +78,15 @@ sudo service apache2 restart
 sudo htpasswd -b -c /etc/apache2/.htpasswd ${adminusername} ${adminpassword}
 chown www-data:www-data /var/www/html/p/* &
 wait
+systemctl restart mariadb &
+wait
 
 elif command -v yum >/dev/null; then
 yum update -y
 yum install httpd php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl -y
 systemctl restart httpd
+systemctl restart mariadb &
+wait
 sudo wget -O /var/www/html/update https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/p/update -4 &
 wait
 sudo bash /var/www/html/update &
@@ -155,9 +159,15 @@ else
   echo "Wait For New Update !!"
 fi
 
-mysql -e "create database ShaHaN;"
-mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';"
-mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';"
+mysql -e "create database ShaHaN;" &
+wait
+
+mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';" &
+wait
+
+mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';" &
+wait
+
 
 
 
@@ -176,6 +186,5 @@ printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
 
 
-systemctl restart mariadb &
-wait
+
 
