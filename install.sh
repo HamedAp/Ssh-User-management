@@ -187,5 +187,5 @@ printf "\nPort : \e[31m${port}\e[0m \n"
 
 
 
-curl "http://${ipv4}/p/restoretarikh.php"
+curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
 
