@@ -14,11 +14,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 ````
 # Will Be Added On Next Update 
 
--Remove Old Backups
-
--Enable/Disable Users 
-
--Custom Expire Date 
+-Traffic Limit
 
 -Add Telegram Bot
 
