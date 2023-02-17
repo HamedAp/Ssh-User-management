@@ -55,8 +55,7 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/rm' | sudo EDITOR='tee -a' visudo
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/crontab' | sudo EDITOR='tee -a' visudo &
 wait
-touch /var/www/html/p/tarikh &
-wait
+
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/apache2/.htpasswd
