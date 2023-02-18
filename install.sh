@@ -176,6 +176,9 @@ sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
 wait 
 curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
 
+cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
+
+rm -fr /var/www/html/p/tarikh
 
 clear
 printf "\nPanel Link : http://${ipv4}/p/index.php"
