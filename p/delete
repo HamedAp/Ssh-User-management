@@ -1,6 +1,0 @@
-#!/bin/bash
-sudo killall -u $1
-sudo sed -i "/^$1/d" /var/www/html/p/tarikh
-
-sudo userdel $1
-rm -r /home/$1 

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-online=$(netstat -atnp | grep '5829')
-true > onlineusers
-echo "$online" >> onlineusers
