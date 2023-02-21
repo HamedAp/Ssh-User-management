@@ -179,6 +179,7 @@ curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
 cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
 
 rm -fr /var/www/html/p/tarikh
+crontab -l ; echo "5 0 * * * php /var/www/html/p/expire.php >/dev/null 2>&1") | crontab -
 
 clear
 printf "\nPanel Link : http://${ipv4}/p/index.php"
