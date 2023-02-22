@@ -2,18 +2,12 @@
 
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-
-
 adminuser=$(mysql -N -e "use ShaHaN; select adminuser from setting;")
 adminpass=$(mysql -N -e "use ShaHaN; select adminpassword from setting;")
 if [ "$adminuser" != "" ]; then
 adminusername=$adminuser
 adminpassword=$adminpass
 else
-
-
-
-
 adminusername=admin
 echo -e "\nPlease input Panel admin user."
 printf "Default user name is \e[33m${adminusername}\e[0m, let it blank to use this user name: "
