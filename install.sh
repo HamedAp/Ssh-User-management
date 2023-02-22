@@ -7,7 +7,7 @@ port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use ShaHaN; select adminuser from setting;")
 adminpass=$(mysql -N -e "use ShaHaN; select adminpassword from setting;")
 if [ "$adminuser" != "" ]; then
-adminusername=$output
+adminusername=$adminuser
 adminpassword=$adminpass
 else
 
