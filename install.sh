@@ -2,6 +2,16 @@
 
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
+
+
+output=$(mysql -N -e "use ShaHaN; select adminuser from setting;")
+if [ "$output" != "" ]; then
+echo $output
+else
+
+
+
+
 adminusername=admin
 echo -e "\nPlease input Panel admin user."
 printf "Default user name is \e[33m${adminusername}\e[0m, let it blank to use this user name: "
@@ -16,6 +26,9 @@ read passwordtmp
 if [[ -n "${passwordtmp}" ]]; then
     adminpassword=${passwordtmp}
 fi
+
+fi
+
 ipv4=$(curl -s4m8 ip.gs)
 if command -v apt-get >/dev/null; then
 apt update -y
