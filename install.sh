@@ -20,7 +20,7 @@ ipv4=$(curl -s4m8 ip.gs)
 if command -v apt-get >/dev/null; then
 apt update -y
 apt upgrade -y
-apt install apache2 php zip unzip net-tools curl mariadb-server php-mysql php-xml vnstat -y
+apt install apache2 php zip unzip net-tools curl mariadb-server php-mysql php-xml vnstat nethogs -y
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
@@ -84,7 +84,7 @@ wait
 
 elif command -v yum >/dev/null; then
 yum update -y
-yum install httpd php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl vnstat -y
+yum install httpd php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl vnstat nethogs -y
 systemctl restart httpd
 systemctl restart mariadb &
 wait
