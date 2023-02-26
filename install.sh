@@ -92,6 +92,7 @@ systemctl restart mariadb &
 wait
 systemctl enable mariadb &
 wait
+sudo phpenmod curl
 
 elif command -v yum >/dev/null; then
 yum update -y
@@ -169,6 +170,7 @@ sudo sed -i "s/apache2/httpd/g" /var/www/html/p/setting.php &
 wait
 chmod 644 /etc/ssh/sshd_config &
 wait
+sudo phpenmod curl
 
 else
   echo "Wait For New Update !!"
