@@ -194,5 +194,5 @@ SSLCompression off
 SSLUseStapling on" > /etc/httpd/conf.d/${domain}.conf
 systemctl restart httpd
 fi
-
+clear
 printf "\nHTTPS Address : https://${domain} \n"
