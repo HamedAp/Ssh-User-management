@@ -46,9 +46,12 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 
 
 # Preview
-![](screenshot/Capture.PNG)
-![](screenshot/22.PNG)
-
+![](screenshot/index.PNG)
+![](screenshot/online.PNG)
+![](screenshot/newuser.PNG)
+![](screenshot/setting.PNG)
+![](screenshot/filtering.PNG)
+![](screenshot/menu.PNG)
 
 # Donations 💰
 USDT TRC20 Address :
