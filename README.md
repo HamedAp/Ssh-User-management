@@ -47,7 +47,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 
 # Preview
 ![](screenshot/index.PNG)
-![](screenshot/online.PNG)
+![](screenshot/online2.PNG)
 ![](screenshot/newuser.PNG)
 ![](screenshot/setting.PNG)
 ![](screenshot/filtering.PNG)
