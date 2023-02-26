@@ -9,12 +9,19 @@ Hit the ⭐ Star ⭐ button .
 
 I Will Add English Soon :)
 
-# Single Command Install & upgrade
-
+# Single Command Install & Update
 
 ````
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4)
 ````
+
+# Install SSL For Panel
+
+````
+bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4)
+````
+
+
 # Will Be Added On Next Update 
 
 -Traffic Limit
@@ -42,22 +49,10 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 ![](screenshot/Capture.PNG)
 ![](screenshot/22.PNG)
 
-# Changelog 
-
-V 2.2 :
-
-Disable Expired Users
-
-Added Backup/Restore
-
-Added Server Info
-
-
-
 
 # Donations 💰
-TRC20 Address :
+USDT TRC20 Address :
 TWAcjmHKhqMQ58xXo4do4RgALLkfMm61Ux
 
-ERC20 Address :
+USDT ERC20 Address :
 0x1426afae97fef9f4928e4e171593cae9f5c630cd
