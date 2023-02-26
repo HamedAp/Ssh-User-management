@@ -17,6 +17,8 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 
 # Install SSL For Panel
 
+لطفا در صورتی که دامنه دارید این دستور را اجرا کنید .
+
 ````
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4)
 ````
