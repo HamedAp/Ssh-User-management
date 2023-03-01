@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use ShaHaN; select adminuser from setting;")
