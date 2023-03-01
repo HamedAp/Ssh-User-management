@@ -36,16 +36,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 # Information
 دستور بالا رو اجرا کنین ازتون یوزر و پسورد ادمین پنل رو میپرسه و همه امکانات رو نصب میکنه 
 
-اگر از پورت پیش فرض 22 استفاده می کنید حتما قبل از نصب فایل 
-
-/etc/ssh/sshd_config  
-
-را ویرایش کرده و خط 
-
-#Port 22
-
-را آنکامند بکنید سپس پنل را نصب کنین .
-
 
 # Preview
 ![](screenshot/index.PNG)
