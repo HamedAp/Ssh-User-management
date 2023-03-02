@@ -15,13 +15,8 @@ I Will Add English Soon :)
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4)
 ````
 
-# Install SSL For Panel
-
-لطفا در صورتی که دامنه دارید این دستور را اجرا کنید .
-
-````
-bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4)
-````
+# Information
+دستور بالا رو اجرا کنین ازتون یوزر و پسورد ادمین پنل رو میپرسه و همه امکانات رو نصب میکنه 
 
 
 # Will Be Added On Next Update 
@@ -33,8 +28,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 
 
 
-# Information
-دستور بالا رو اجرا کنین ازتون یوزر و پسورد ادمین پنل رو میپرسه و همه امکانات رو نصب میکنه 
+
 
 
 # Preview
