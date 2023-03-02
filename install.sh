@@ -97,7 +97,7 @@ sudo phpenmod curl
 
 elif command -v yum >/dev/null; then
 yum update -y
-yum install httpd php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl php-curl -y
+yum install epel-release httpd php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl php-curl -y
 systemctl restart httpd
 systemctl restart mariadb &
 wait
