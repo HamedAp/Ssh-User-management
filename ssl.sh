@@ -157,13 +157,8 @@ done
         fi
     fi
     
-    bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/private.key --fullchain-file /root/cert.crt --ecc &
-	wait
-	cp /root/cert.crt /etc/ssl/certs/apache-selfsigned.crt &
-	wait
-	cp /root/private.key /etc/ssl/private/apache-selfsigned.key  &
-	wait
-  
+    bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/private.key --fullchain-file /root/cert.crt --ecc 
+
 
 
 if command -v apt-get >/dev/null; then
@@ -175,8 +170,8 @@ echo "<VirtualHost *:443>
    ServerName ${domain}
    DocumentRoot /var/www/html/
    SSLEngine on
-   SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
-   SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+   SSLCertificateFile /root/cert.crt
+   SSLCertificateKeyFile /root/private.key
 </VirtualHost>" > /etc/apache2/sites-available/${domain}.conf
 
 sudo a2ensite ${domain}
@@ -188,16 +183,9 @@ echo "<VirtualHost *:443>
    ServerName ${domain}
    DocumentRoot /var/www/html/
    SSLEngine on
-   SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
-   SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
-</VirtualHost>
-SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
-SSLProtocol -all +TLSv1.2
-SSLHonorCipherOrder On
-Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains"
-SSLCompression off
-SSLUseStapling on
-" > /etc/httpd/conf.d/${domain}.conf
+   SSLCertificateFile /root/cert.crt
+   SSLCertificateKeyFile /root/private.key
+</VirtualHost>" > /etc/httpd/conf.d/${domain}.conf
 systemctl restart httpd
 fi
 
