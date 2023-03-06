@@ -157,7 +157,12 @@ done
         fi
     fi
     
-    bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/private/apache-selfsigned.key --fullchain-file /etc/ssl/certs/apache-selfsigned.crt --ecc
+    bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/private.key --fullchain-file /root/cert.crt --ecc &
+	wait
+	cp /root/cert.crt /etc/ssl/certs/apache-selfsigned.crt &
+	wait
+	cp /root/private.key /etc/ssl/private/apache-selfsigned.key  &
+	wait
   
 
 
@@ -191,7 +196,8 @@ SSLProtocol -all +TLSv1.2
 SSLHonorCipherOrder On
 Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains"
 SSLCompression off
-SSLUseStapling on" > /etc/httpd/conf.d/${domain}.conf
+SSLUseStapling on
+" > /etc/httpd/conf.d/${domain}.conf
 systemctl restart httpd
 fi
 
