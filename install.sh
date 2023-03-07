@@ -23,9 +23,7 @@ read passwordtmp
 if [[ -n "${passwordtmp}" ]]; then
     adminpassword=${passwordtmp}
 fi
-
 fi
-
 ipv4=$(curl -s4m8 ip.gs)
 if command -v apt-get >/dev/null; then
 apt update -y
@@ -94,6 +92,10 @@ wait
 systemctl enable mariadb &
 wait
 sudo phpenmod curl
+
+PHP_INI=$(php -i | grep /.+/php.ini -oE)
+sed -i 's/;extension=intl/extension=intl/' ${PHP_INI}
+
 
 elif command -v yum >/dev/null; then
 yum update -y
@@ -165,13 +167,15 @@ systemctl enable httpd
 sudo htpasswd -b -c /etc/httpd/.htpasswd ${adminusername} ${adminpassword}
 chown apache:apache /var/www/html/p/* &
 wait
-
-
 sudo sed -i "s/apache2/httpd/g" /var/www/html/p/setting.php &
 wait
 chmod 644 /etc/ssh/sshd_config &
 wait
 sudo phpenmod curl
+
+PHP_INI=$(php -i | grep /.+/php.ini -oE)
+sed -i 's/;extension=intl/extension=intl/' ${PHP_INI}
+
 
 else
   echo "Wait For New Update !!"
