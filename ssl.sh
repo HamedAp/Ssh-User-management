@@ -201,7 +201,7 @@ echo "<IfModule mod_ssl.c>
                                 SSLOptions +StdEnvVars
                 </Directory>
         </VirtualHost>
-</IfModule>" >> /etc/apache2/sites-available/default-ssl.conf
+</IfModule>" > /etc/apache2/sites-available/default-ssl.conf
 
 sudo a2enmod ssl
 sudo a2enmod headers
