@@ -194,7 +194,7 @@ echo "<IfModule mod_ssl.c>
                 SSLEngine on
                 SSLCertificateFile      /etc/apache2/ssl/${domain}.crt
                 SSLCertificateKeyFile /etc/apache2/ssl/${domain}.key
-                <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                <FilesMatch '\.(cgi|shtml|phtml|php)$'>
                                 SSLOptions +StdEnvVars
                 </FilesMatch>
                 <Directory /usr/lib/cgi-bin>
