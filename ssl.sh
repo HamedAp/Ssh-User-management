@@ -178,7 +178,7 @@ Header always set X-Content-Type-Options nosniff
 # Requires Apache >= 2.4
 SSLCompression off
 SSLUseStapling on
-SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
+SSLStaplingCache 'shmcb:logs/stapling-cache(150000)'
 # Requires Apache >= 2.4.11
 SSLSessionTickets Off' > /etc/apache2/conf-available/ssl-params.conf
 
