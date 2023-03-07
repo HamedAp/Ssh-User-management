@@ -157,35 +157,90 @@ done
         fi
     fi
     
-    bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /root/private.key --fullchain-file /root/cert.crt --ecc 
 
 
 
 if command -v apt-get >/dev/null; then
-a2enmod ssl
-systemctl restart apache2
+bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/apache2/ssl/${domain}.key --fullchain-file /etc/apache2/ssl/${domain}.crt --ecc 
 
+echo 'SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
+# Requires Apache 2.4.36 & OpenSSL 1.1.1
+SSLProtocol -all +TLSv1.3 +TLSv1.2
+SSLOpenSSLConfCmd Curves X25519:secp521r1:secp384r1:prime256v1
+# Older versions
+# SSLProtocol All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
+SSLHonorCipherOrder On
+# Disable preloading HSTS for now.  You can use the commented out header line that includes 
+# the "preload" directive if you understand the implications.
+# Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+Header always set X-Frame-Options DENY
+Header always set X-Content-Type-Options nosniff
+# Requires Apache >= 2.4
+SSLCompression off
+SSLUseStapling on
+SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
+# Requires Apache >= 2.4.11
+SSLSessionTickets Off' > /etc/apache2/conf-available/ssl-params.conf
 
-echo "<VirtualHost *:443>
-   ServerName ${domain}
-   DocumentRoot /var/www/html/
-   SSLEngine on
-   SSLCertificateFile /root/cert.crt
-   SSLCertificateKeyFile /root/private.key
-</VirtualHost>" > /etc/apache2/sites-available/${domain}.conf
+sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
 
-sudo a2ensite ${domain}
-systemctl restart apache2
+echo "<IfModule mod_ssl.c>
+        <VirtualHost _default_:443>
+                ServerAdmin ShaHaN@${domain}
+                ServerName ${domain}
+                DocumentRoot /var/www/html
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+                SSLEngine on
+                SSLCertificateFile      /etc/apache2/ssl/${domain}.crt
+                SSLCertificateKeyFile /etc/apache2/ssl/${domain}.key
+                <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                                SSLOptions +StdEnvVars
+                </FilesMatch>
+                <Directory /usr/lib/cgi-bin>
+                                SSLOptions +StdEnvVars
+                </Directory>
+        </VirtualHost>
+</IfModule>" >> /etc/apache2/sites-available/default-ssl.conf
+
+sudo a2enmod ssl
+sudo a2enmod headers
+sudo a2ensite default-ssl
+sudo a2enconf ssl-params
+sudo apache2ctl configtest
+sudo systemctl restart apache2
 
 elif command -v yum >/dev/null; then
+bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/apache2/ssl/${domain}.key --fullchain-file /etc/apache2/ssl/${domain}.crt --ecc 
 
 echo "<VirtualHost *:443>
    ServerName ${domain}
    DocumentRoot /var/www/html/
    SSLEngine on
-   SSLCertificateFile /root/cert.crt
-   SSLCertificateKeyFile /root/private.key
-</VirtualHost>" > /etc/httpd/conf.d/${domain}.conf
+   SSLCertificateFile /etc/apache2/ssl/${domain}.crt
+   SSLCertificateKeyFile /etc/apache2/ssl/${domain}.key
+</VirtualHost>
+
+SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
+# Requires Apache 2.4.36 & OpenSSL 1.1.1
+SSLProtocol -all +TLSv1.2
+# SSLOpenSSLConfCmd Curves X25519:secp521r1:secp384r1:prime256v1
+# Older versions
+# SSLProtocol All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
+SSLHonorCipherOrder On
+# Disable preloading HSTS for now.  You can use the commented out header line that includes
+# the "preload" directive if you understand the implications.
+#Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
+Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains"
+# Requires Apache >= 2.4
+SSLCompression off
+SSLUseStapling on
+SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
+# Requires Apache >= 2.4.11
+# SSLSessionTickets Off
+" > /etc/httpd/conf.d/${domain}.conf
+
+sudo apachectl configtest
 systemctl restart httpd
 fi
 
