@@ -253,5 +253,5 @@ ENDOFFILE
 sudo apachectl configtest
 systemctl restart httpd
 fi
-
+clear
 printf "\nHTTPS Address : https://${domain} \n"
