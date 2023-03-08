@@ -239,10 +239,11 @@ Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains
 # Requires Apache >= 2.4
 SSLCompression off
 SSLUseStapling on
-SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
+SSLStaplingCache /"shmcb:logs/stapling-cache(150000)/"
 # Requires Apache >= 2.4.11
 # SSLSessionTickets Off
 " > /etc/httpd/conf.d/${domain}.conf
+sed -i 's#/"shmcb:logs/stapling-cache(150000)/"#"shmcb:logs/stapling-cache(150000)"#' /etc/httpd/conf.d/${domain}.conf
 
 sudo apachectl configtest
 systemctl restart httpd
