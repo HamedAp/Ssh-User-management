@@ -165,7 +165,8 @@ if command -v apt-get >/dev/null; then
 mkdir /etc/apache2/ssl/
 bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/apache2/ssl/${domain}.key --fullchain-file /etc/apache2/ssl/${domain}.crt --ecc 
 
-echo 'SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
+cat > /etc/apache2/conf-available/ssl-params.conf << ENDOFFILE
+SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
 # Requires Apache 2.4.36 & OpenSSL 1.1.1
 SSLProtocol -all +TLSv1.3 +TLSv1.2
 SSLOpenSSLConfCmd Curves X25519:secp521r1:secp384r1:prime256v1
@@ -180,10 +181,12 @@ Header always set X-Content-Type-Options nosniff
 # Requires Apache >= 2.4
 SSLCompression off
 SSLUseStapling on
-SSLStaplingCache /"shmcb:logs/stapling-cache(150000)/"
+SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 # Requires Apache >= 2.4.11
-SSLSessionTickets Off' > /etc/apache2/conf-available/ssl-params.conf
-sed -i 's#/"shmcb:logs/stapling-cache(150000)/"#"shmcb:logs/stapling-cache(150000)"#' /etc/apache2/conf-available/ssl-params.conf
+SSLSessionTickets Off
+ENDOFFILE
+
+
 
 sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
 
@@ -217,14 +220,14 @@ elif command -v yum >/dev/null; then
 mkdir /etc/ssl/
 bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/${domain}.key --fullchain-file /etc/ssl/${domain}.crt --ecc 
 
-echo "<VirtualHost *:443>
+cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
+<VirtualHost *:443>
    ServerName ${domain}
    DocumentRoot /var/www/html/
    SSLEngine on
    SSLCertificateFile /etc/ssl/${domain}.crt
    SSLCertificateKeyFile /etc/ssl/${domain}.key
 </VirtualHost>
-
 SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
 # Requires Apache 2.4.36 & OpenSSL 1.1.1
 SSLProtocol -all +TLSv1.2
@@ -242,8 +245,10 @@ SSLUseStapling on
 SSLStaplingCache /"shmcb:logs/stapling-cache(150000)/"
 # Requires Apache >= 2.4.11
 # SSLSessionTickets Off
-" > /etc/httpd/conf.d/${domain}.conf
-sed -i 's#/"shmcb:logs/stapling-cache(150000)/"#"shmcb:logs/stapling-cache(150000)"#' /etc/httpd/conf.d/${domain}.conf
+ENDOFFILE
+
+
+
 
 sudo apachectl configtest
 systemctl restart httpd
