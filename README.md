@@ -38,7 +38,6 @@ mysql -e "use ShaHaN;drop table setting;"
 
 -Traffic Limit
 
--Add Telegram Bot
 
 
 
