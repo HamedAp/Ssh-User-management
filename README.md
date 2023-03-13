@@ -1,7 +1,10 @@
-# Ssh-User-management In Persian Language :)
-Hit the ⭐ Star ⭐ button .
+# جهت حمایت از ما ادرس ولت تتر 💰
+USDT TRC20 Address :
+TWAcjmHKhqMQ58xXo4do4RgALLkfMm61Ux
 
-برای حمایت از ما به پروژه ستاره بدین . 
+USDT ERC20 Address :
+0x1426afae97fef9f4928e4e171593cae9f5c630cd
+ 
 
 جهت اپدیت پنل دستور نصب را دوباره بزنین .
 
@@ -53,9 +56,3 @@ mysql -e "use ShaHaN;drop table setting;"
 ![](screenshot/filtering.PNG)
 ![](screenshot/menu.PNG)
 
-# Donations 💰
-USDT TRC20 Address :
-TWAcjmHKhqMQ58xXo4do4RgALLkfMm61Ux
-
-USDT ERC20 Address :
-0x1426afae97fef9f4928e4e171593cae9f5c630cd
