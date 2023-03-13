@@ -21,7 +21,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 
 # SSL Installer ( Only SSL - NOT Panel - Need Domain )
 
-در صورتی که دامنه دارید این دستور را بزنید .
+در صورتی که دامنه دارید بعد از دستور نصب ( دقت کنید بعد از دستور نصب )  این دستور را بزنید .
 
 
 ````
@@ -29,8 +29,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 ````
 
 
-# Information
-دستور بالا رو اجرا کنین ازتون یوزر و پسورد ادمین پنل رو میپرسه و همه امکانات رو نصب میکنه 
+# Reset Admin Password
 
 اگر نیاز به ریست یوزر و پسورد ادمین دارید این دستور را زده و دوباره دستور نصب را بزنید :
 
@@ -41,12 +40,6 @@ mysql -e "use ShaHaN;drop table setting;"
 # Will Be Added On Next Update 
 
 -Traffic Limit
-
-
-
-
-
-
 
 
 # Preview
