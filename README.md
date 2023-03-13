@@ -15,7 +15,7 @@ I Will Add English Soon :)
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4)
 ````
 
-# SSL Installer ( Only Domain )
+# SSL Installer ( Only SSL - NOT Panel - Need Domain )
 
 در صورتی که دامنه دارید این دستور را بزنید .
 
