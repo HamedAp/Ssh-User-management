@@ -14,7 +14,7 @@ if (!empty($userarray[0])) {
 $out = shell_exec('bash delete '.$userarray[0]);
 echo $userarray[0] . " Removed  <br>";
 }}
-$strSQL = "SELECT * FROM users" ;
+$strSQL = "SELECT * FROM users where enable='true'" ;
 $rs = mysqli_query($conn,$strSQL);
 while($row = mysqli_fetch_array($rs)){ 
 $out = shell_exec('bash adduser '.$row['username'].' '.$row['password']);
