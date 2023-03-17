@@ -228,6 +228,7 @@ cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
    SSLCertificateFile /etc/ssl/${domain}.crt
    SSLCertificateKeyFile /etc/ssl/${domain}.key
 </VirtualHost>
+
 SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
 # Requires Apache 2.4.36 & OpenSSL 1.1.1
 SSLProtocol -all +TLSv1.2
@@ -242,7 +243,7 @@ Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains
 # Requires Apache >= 2.4
 SSLCompression off
 SSLUseStapling on
-SSLStaplingCache /"shmcb:logs/stapling-cache(150000)/"
+SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 # Requires Apache >= 2.4.11
 # SSLSessionTickets Off
 ENDOFFILE
