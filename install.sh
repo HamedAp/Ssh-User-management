@@ -24,7 +24,7 @@ if [[ -n "${passwordtmp}" ]]; then
     adminpassword=${passwordtmp}
 fi
 fi
-ipv4=$(curl -s4m8 ip.gs)
+ipv4=$(curl rabin.cf)
 if command -v apt-get >/dev/null; then
 apt update -y
 apt upgrade -y
