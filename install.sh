@@ -191,9 +191,6 @@ sudo phpenmod curl
 PHP_INI=$(php -i | grep /.+/php.ini -oE)
 sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
 
-
-else
-  echo "Wait For New Update !!"
 fi
 
 mysql -e "create database ShaHaN;" &
