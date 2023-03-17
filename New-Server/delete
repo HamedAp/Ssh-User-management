@@ -1,3 +1,2 @@
 #!/bin/bash
-sudo killall -u $1
 sudo userdel -r $1
