@@ -76,7 +76,16 @@ wait
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/apache2/.htpasswd
-Require valid-user' >> /var/www/html/p/.htaccess
+Require valid-user
+<Files "*">
+Require valid-user
+</Files>
+
+<Files "expire.php">
+Allow from all 
+Satisfy any
+</Files>
+' > /var/www/html/p/.htaccess
 echo '<VirtualHost *:80>
 <Directory "/var/www/html/p">
         AuthType Basic
@@ -163,7 +172,16 @@ port=$(echo "$po" | sed "s/Port //g")
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/httpd/.htpasswd
-Require valid-user' >> /var/www/html/p/.htaccess
+Require valid-user
+<Files "*">
+Require valid-user
+</Files>
+
+<Files "expire.php">
+Allow from all 
+Satisfy any
+</Files>
+' > /var/www/html/p/.htaccess
 echo '<VirtualHost *:80>
 <Directory "/var/www/html/p">
         AuthType Basic
