@@ -217,12 +217,12 @@ $msg = '<div class="alert alert-danger alert-dismissable">
 		'".$nettoken."',
 		'".$_POST['Description']."',
 		'".$_POST['Allowips']."');";
-	   if ($conn->query($addserver) === TRUE) {}
-	   $out = shell_exec("bash addserver " .$_POST['serverusername']." ". $_POST['serverpassword']. " %" );
+	   if ($conn->query($addserver) === TRUE) {
 	   $msg = '<div class="alert alert-success alert-dismissable">
 	   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 			توکن اضافه شد
 	   </div>';
+	   }
  }
 //  remove api token 
  if(!empty($_get['Remove_token'])){
