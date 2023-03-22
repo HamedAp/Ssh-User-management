@@ -1,97 +1,165 @@
 <?php
-$token = "test";
+$token = $_GET['token'];
+
+include("../p/config.php");
+include("../p/function.php");
+
+
 header("Content-Type:application/json");
-
 // checl api 
+if (isset($_POST['method'])) {
+    $query = "SELECT * FROM ApiToken WHERE Token ='".$_GET['token']."'";
+    $result = mysqli_query($conn, $query);
+    $res = mysqli_fetch_array($result);
+  if (!isset($result) || $res['token'] != $token ) {
+    die('api is not valid ');
+     
+  } elseif(isset($result) || $res['token'] == $token ) {
 
-
-
-
+    // api is ok 
+   
+  }else{
+    die('moshkel');
+  }
 
 // check ip 
-
-
-
-// check method 
-
-// https://Serverip/apiV1/
-
+if (! isAllowed($_SERVER['REMOTE_ADDR'] , $res['Allowips'])) {
+   die('ip not alloed ');
+}
 
 //////// user
 
-
 // add user
 
+if(isset($_POST['method'] ) || $_POST['method'] == "adduser"){
+
+    $adduser = "INSERT INTO `users` (
+        `username`,
+        `password`,
+        `email`,
+        `mobile`,
+        `multiuser` ,
+        `startdate`,
+        `finishdate`,
+        `enable`,
+        `traffic`,
+        `referral` ) VALUES (
+        '".$_POST['user']."',
+        '".$_POST['password']."',
+        '".$_POST['email']."',
+        '".$_POST['mobile']."',
+        '".$_POST['multiuser']."',
+        '".date("Y-m-d")."',
+        '".$_POST['finishdate']."',
+        'true',
+        '".$_POST['traffic']."',
+        '".$_POST['referral']."');";
+       if ($conn->query($adduser) === TRUE) {}
+       $out = shell_exec('bash adduser '.$_POST['user'].' '.$_POST['password']);
+      
+       response(NULL, NULL, 200,"No Record Found");
+
+      }
+
+
+}
 
 //edit user 
 
+if(isset($_POST['method'] ) || $_POST['method'] == "edituser"){
+
+}
 
 //change plan 
 
 
 // delete user 
 
+if(isset($_POST['method'] ) || $_POST['method'] == "deleteuser"){
+
+}
 
 // suspend user 
+
+if(isset($_POST['method'] ) || $_POST['method'] == "suspend user"){
+
+}
+
+// unsuspenduser
+
+if(isset($_POST['method'] ) || $_POST['method'] == "unsuspenduser"){
+
+}
 
 
 // get user info 
 
+if(isset($_POST['method'] ) || $_POST['method'] == "userinfo"){
+
+}
+
 
 // get all users 
 
+if(isset($_POST['method'] ) || $_POST['method'] == "alluser"){
+
+}
 
 // change user password 
 
+if(isset($_POST['method'] ) || $_POST['method'] == "changepassword"){
+
+}
 
 /////// server
 
 
 // add server 
 
+if(isset($_POST['method'] ) || $_POST['method'] == "addserver"){
+
+}
+
 // get server info 
+
+if(isset($_POST['method'] ) || $_POST['method'] == "serverinfo"){
+
+}
 
 // get server list 
 
+if(isset($_POST['method'] ) || $_POST['method'] == "serverlist"){
 
-////// traffic 
-
-// reset user traffic 
-
-// add traffic for user 
-
-// get traffic info 
-
-
-
-if (isset($token) {
-	include('db.php');
-	$order_id = $_GET['order_id'];
-	$result = mysqli_query(
-	$con,
-	"SELECT * FROM `transactions` WHERE order_id=$order_id");
-	if(mysqli_num_rows($result)>0){
-	$row = mysqli_fetch_array($result);
-	$amount = $row['amount'];
-	$response_code = $row['response_code'];
-	$response_desc = $row['response_desc'];
-	response($order_id, $amount, $response_code,$response_desc);
-	mysqli_close($con);
-	}else{
-		response(NULL, NULL, 200,"No Record Found");
-		}
-}else{
-	response(NULL, NULL, 400,"Invalid Request");
-	}
-
-
-function response($order_id,$amount,$response_code,$response_desc){
-	$response['order_id'] = $order_id;
-	$response['amount'] = $amount;
-	$response['response_code'] = $response_code;
-	$response['response_desc'] = $response_desc;
-	
-	$json_response = json_encode($response);
-	echo $json_response;
 }
+
+
+// disable server
+
+if(isset($_POST['method'] ) || $_POST['method'] == "disableserver"){
+
+}
+
+// enable server
+
+if(isset($_POST['method'] ) || $_POST['method'] == "enableserver"){
+
+}
+
+// reset traffic 
+
+if(isset($_POST['method'] ) || $_POST['method'] == "resettraffic "){
+
+}
+
+if(isset($_POST['method'] ) || $_POST['method'] == null){
+
+    response(NULL, 400,"Invalid Request");
+}
+
+}
+
+
+
+
+
 ?>
