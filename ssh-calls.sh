@@ -13,6 +13,7 @@ ENDOFFILE
 
 
 chmod +x /etc/rc.local
+sudo systemctl restart rc-local.service
 sudo chmod +x /usr/bin/badvpn-udpgw
 sudo screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 999
 
