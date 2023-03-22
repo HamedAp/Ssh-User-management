@@ -57,9 +57,9 @@ if(isset($_POST['method'] ) || $_POST['method'] == "adduser"){
        if ($conn->query($adduser) === TRUE) {}
        $out = shell_exec('bash adduser '.$_POST['user'].' '.$_POST['password']);
       
-       response(NULL, NULL, 200,"No Record Found");
+       response(NULL, 200,"User Created Success");
 
-      }
+      
 
 
 }
@@ -67,6 +67,27 @@ if(isset($_POST['method'] ) || $_POST['method'] == "adduser"){
 //edit user 
 
 if(isset($_POST['method'] ) || $_POST['method'] == "edituser"){
+
+    $strSQL = "SELECT * FROM users where username='".$_GET['edituser']."'" ;
+    $rs = mysqli_query($conn,$strSQL);
+    while($row = mysqli_fetch_array($rs)){ 
+    $editusername = $row['username']; 
+    $editpassword = $row['password']; 
+    $editemail = $row['email'];
+    $editmobile = $row['mobile'];
+    $editmultiuser = $row['multiuser'];
+    $editfinishdate = $row['finishdate'];
+    $edittraffic = $row['traffic'];
+    $editreferral = $row['referral'];
+    $editenable = $row['enable'];
+    }}
+    if(!empty($_POST['editnewuser'])){
+    $sql = "UPDATE users SET password='".$_POST['password']."',email='".$_POST['email']."',mobile='".$_POST['mobile']."',multiuser='".$_POST['multiuser']."',finishdate='".$_POST['finishdate']."',traffic='".$_POST['traffic']."',referral='".$_POST['referral']."' where username='".$_POST['useruser']."'" ;
+    if($conn->query($sql) === true){}
+    $out = shell_exec('bash ch '.$_POST['useruser'].' '.$_POST['password']);
+
+    response(NULL, 200,"User Edited Success");
+
 
 }
 
@@ -76,19 +97,28 @@ if(isset($_POST['method'] ) || $_POST['method'] == "edituser"){
 // delete user 
 
 if(isset($_POST['method'] ) || $_POST['method'] == "deleteuser"){
-
+    $sql = "delete FROM users where username='".$_GET['removeuser']."'";
+    if($conn->query($sql) === true){}
+    $out = shell_exec('bash delete '.$_GET['removeuser']);
+    response(NULL, 200,"User deleted Success");
 }
 
 // suspend user 
 
 if(isset($_POST['method'] ) || $_POST['method'] == "suspend user"){
-
+    $sql = "UPDATE users SET enable='false' where username='".$_GET['deactiveuser']."'" ;
+    if($conn->query($sql) === true){}
+    $out = shell_exec('bash delete '.$_GET['deactiveuser']);
+    response(NULL, 200,"User Suspend Success");
 }
 
 // unsuspenduser
 
 if(isset($_POST['method'] ) || $_POST['method'] == "unsuspenduser"){
-
+    $sql = "UPDATE users SET enable='true' where username='".$_GET['activeuser']."'" ;
+    if($conn->query($sql) === true){}
+    $out = shell_exec('bash adduser '.$_GET['activeuser'].' '.$_GET['password']);
+    response(NULL, 200,"User unsuspend Success");
 }
 
 
@@ -102,16 +132,17 @@ if(isset($_POST['method'] ) || $_POST['method'] == "userinfo"){
 // get all users 
 
 if(isset($_POST['method'] ) || $_POST['method'] == "alluser"){
-
+    $strSQL = "SELECT * FROM users" ;
+    response( $strSQL, 200,"get all users");
 }
 
 // change user password 
 
 if(isset($_POST['method'] ) || $_POST['method'] == "changepassword"){
 
-}
 
-/////// server
+
+}
 
 
 // add server 
