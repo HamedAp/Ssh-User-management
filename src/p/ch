@@ -1,0 +1,7 @@
+#!/bin/bash
+#By Hamed Ap
+
+sudo passwd $1 <<!
+$2
+$2
+!
