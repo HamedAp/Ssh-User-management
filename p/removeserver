@@ -1,5 +1,0 @@
-#!/bin/bash
-#By Hamed Ap
-
-sudo mysql -e "DROP USER '$1'@'$2';FLUSH PRIVILEGES;" &
-wait
