@@ -1,6 +1,7 @@
 <?php 
 include('header.php');
 include('menu.php');
+require('function.php')
 global $active;
 global $msg;
 $serverip = $_SERVER['SERVER_NAME'];
@@ -185,6 +186,7 @@ $msg = '<div class="alert alert-danger alert-dismissable">
   }
 }
  }
+/////////////////////  file ////////////////////////
 if(!empty($_GET['file'])){
 if (strpos($_GET['file'], ".sql") !== false) {
 $output = shell_exec("mysql -u '".$username."' --password='".$password."' ShaHaN < /var/www/html/p/backup/".$_GET['file']);
@@ -204,6 +206,51 @@ $msg = '<div class="alert alert-danger alert-dismissable">
 </div>';
 }
  }
+ /////////////////////  Token ////////////////////////
+//  create token
+ if(!empty($_POST['Create_token'])){
+	$nettoken = gen_token();
+	$addtoken = "INSERT INTO `ApiToken` (
+		`Token`,
+		`Description`,
+		`Allowips`) VALUES (
+		'".$nettoken."',
+		'".$_POST['Description']."',
+		'".$_POST['Allowips']."');";
+	   if ($conn->query($addserver) === TRUE) {}
+	   $out = shell_exec("bash addserver " .$_POST['serverusername']." ". $_POST['serverpassword']. " %" );
+	   $msg = '<div class="alert alert-success alert-dismissable">
+	   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			توکن اضافه شد
+	   </div>';
+ }
+//  remove api token 
+ if(!empty($_get['Remove_token'])){
+	sql = "delete FROM ApiToken where id='".$_GET['Remove_token']."'";
+	if($conn->query($sql) === true){}
+	$out = shell_exec("bash removeserver " .$_GET['user']." %" );
+	$msg = '<div class="alert alert-success alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	توکن با موفقیت حذف شد
+	</div>';
+ }
+//  revoke api token
+ if(!empty($_get['Revoke_token'])){
+   $nettoken = gen_token();
+
+   $sql = "UPDATE ApiToken SET Token='".$nettoken."'WHERE id='".$_get['Revoke_token']."'" ;
+   if($conn->query($sql) === true){}
+   
+   $msg = '<div class="alert alert-success alert-dismissable">
+   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+   توکن جدید '.$nettoken.'
+   </div>';
+ }
+ //////////////////
+
+
+
+
  ?>
             <div class="row">
                 <div class="col-md-12">
@@ -218,6 +265,7 @@ $msg = '<div class="alert alert-danger alert-dismissable">
 								<li role="presentation" class=""><a href="#Tab4" aria-controls="Tab4" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">ربات تلگرام</span></a></li>
                             	<li role="presentation" class=""><a href="#Tab5" aria-controls="Tab5" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">مولتی سرور</span></a></li>
                             	<li role="presentation" class=""><a href="#Tab6" aria-controls="Tab6" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">بکاپ و ریستور</span></a></li>
+                            	<li role="presentation" class=""><a href="#Tab7" aria-controls="Tab7" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">توکن API</span></a></li>
                             </ul>
 							<div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="Tab1">
@@ -436,6 +484,64 @@ $m++;
 										}	?>
 								</tbody>
                         </table>
+									</div>
+                                    <div class="clearfix"></div>
+                                </div>
+								<div role="tabpanel" class="tab-pane" id="Tab7">
+                                    <div class="col-md-6">
+									<h3>توکن API</h3>
+									<form action="setting.php" method="post">
+										<input type="hidden" name="Create_token" value="Create_token">
+										<h3>ساخت توکن جدید</h3>
+											<div class="form-group">
+												<label for="exampleInputEmail1">توضیحات توکن</label>
+												<input name="Description" type="text" class="form-control" id="exampleInputEmail1" placeholder="<?php echo $username; ?>" disabled>
+											</div>
+											<div class="form-group">
+												<label for="exampleInputPassword1">آی پی های مجاز</label>
+												<input name="Allowips" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+											</div>
+											<button name="createtoken" type="submit" class="btn btn-success waves-effect waves-light m-r-10" value="createtoken" >ثبت</button>
+										</form>
+
+										<hr>
+										<h3>لیست توکن ها </h3>
+										<?php
+										$m=1;
+										$strSQL = "SELECT * FROM ApiToken" ;
+										$rs = mysqli_query($conn,$strSQL);
+										echo '<div class="table-responsive" style="padding-bottom: 200px !important;overflow: inherit;">
+																	<table class="table table-hover manage-u-table">
+																		<thead>
+																		<tr>
+																			<th width="70" class="text-center">#</th>
+																			<th>Token</th>
+																			<th>توضیحات</th>
+																			<th>ای دی های مجاز</th>
+																			<th>نوسازی توکن</th>
+																			<th>غیر فعال کردن</th>
+																		</tr>
+																		</thead>
+																		<tbody>';
+										while($row = mysqli_fetch_array($rs)){
+										echo '<tr>
+												<td class="text-center">'.$m.'</td>
+												<td>'.$row['Token'].'</td>
+												<td>'.$row['Description'].'</td>
+												<td>'.$row['Allowips'].'</td>
+												<td><a href="setting.php?Revoke_token='.$row['id'].'" ><i class="fa fa-refresh text-warning" style="font-size:20px;"></i></a></td>
+												<td><a href="setting.php?Remove_token='.$row['id'].'" ><i class="fa fa-minus-circle text-danger" style="font-size:20px;"></i></a></td>';
+											
+												$m++;
+										}
+
+										?>
+										</tbody>
+										</table>
+
+										<hr>
+
+					
 									</div>
                                     <div class="clearfix"></div>
                                 </div>

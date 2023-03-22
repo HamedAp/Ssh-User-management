@@ -54,6 +54,7 @@ if ($conn->query($createtablesetting) === TRUE) {echo "Table tgmessage created <
 $createtablesetting = "CREATE TABLE if not exists `ApiToken` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT ,
     Token VARCHAR(30) NOT NULL,
+    Description VARCHAR(30) NOT NULL,
     Allowips VARCHAR(30) NOT NULL,
     enable VARCHAR(30) NOT NULL,
      primary key (id));";
