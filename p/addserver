@@ -1,0 +1,8 @@
+#!/bin/bash
+#By Hamed Ap
+
+sudo mysql -e "CREATE USER '$1'@'$3' IDENTIFIED BY '$2';" &
+wait
+
+sudo mysql -e "GRANT ALL ON *.* TO '$1'@'$3';" &
+wait

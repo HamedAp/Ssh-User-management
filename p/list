@@ -1,0 +1,6 @@
+#!/bin/bash
+#cat /etc/shadow | grep '^[^:]*:[^\*!]'
+cat /etc/passwd | grep /home/
+
+#awk -F: '{ print $1}' /etc/passwd 
+

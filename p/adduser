@@ -1,0 +1,11 @@
+#!/bin/bash
+#By Hamed Ap
+# Example : adduser hamed 123 
+
+sudo adduser $1 --shell /usr/sbin/nologin &
+wait
+
+sudo passwd $1 <<!
+$2
+$2
+!
