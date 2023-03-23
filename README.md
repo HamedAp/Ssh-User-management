@@ -1,3 +1,13 @@
+#ShaHaN SSH Panel
+
+پنل مدیریت و فروش پروتکل ssh 
+
+❇️ Connection limitation
+❇️ RestApi
+❇️ Multi Server
+❇️ Dynamic Expire time 
+
+
 # جهت حمایت از ما ادرس ولت تتر 💰
 USDT TRC20 Address :
 TWAcjmHKhqMQ58xXo4do4RgALLkfMm61Ux
@@ -49,4 +59,9 @@ mysql -e "use ShaHaN;drop table setting;"
 ![](screenshot/setting.PNG)
 ![](screenshot/filtering.PNG)
 ![](screenshot/menu.PNG)
+
+
+# Developed and created by 
+
+
 
