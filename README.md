@@ -1,4 +1,4 @@
-#ShaHaN SSH Panel
+# ShaHaN SSH Panel
 
 پنل مدیریت و فروش پروتکل ssh
 
@@ -66,4 +66,4 @@ mysql -e "use ShaHaN;drop table setting;"
 ![](screenshot/menu.PNG)
 
 
-# Special Thanks To @masoodsajedi
+# Special Thanks To [MasoodSajedi](https://github.com/masoodsajedi)
