@@ -60,7 +60,7 @@ include('menu.php');
                 <div class="col-md-12">
                     <div class="panel">
                         <div class="panel-heading" style="display: inline-block;">ثبت کاربر جدید</div>
-						<a href="bulkuser.php" class="btn btn-danger m-t-10 btn-rounded">کاربر تعدادی</a>
+						<a href="bulkuser.php" class="btn btn-danger m-t-10 btn-rounded">ساخت کاربر عمده </a>
 						<div class="table-responsive" >
 						<form action="newuser.php" method="post">
                         <div class="col-md-6">

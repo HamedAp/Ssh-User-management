@@ -34,6 +34,7 @@ include('menu.php');
                     <div class="panel">
                         <div class="panel-heading" style="display: inline-block;">مدیریت کاربران</div>
 						<a href="newuser.php" class="btn btn-danger m-t-10 btn-rounded">کاربر جدید</a>
+						<a href="bulkuser.php" class="btn btn-danger m-t-10 btn-rounded">ساخت کاربر عمده </a>
 	<div class="container mt-5" style="max-width: 555px;margin: 20px;float: left;">
         <input type="text" class="form-control" name="live_search" id="live_search" autocomplete="off"
             placeholder="Search ...">
