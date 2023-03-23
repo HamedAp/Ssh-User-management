@@ -1,6 +1,5 @@
 <?php 
 include('header.php'); 
-require('function.php'); 
 if($_POST['passtype'] == "number"){
 $alphabet = '1234567890';
 }
