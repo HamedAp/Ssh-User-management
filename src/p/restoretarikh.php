@@ -33,6 +33,7 @@ if ($conn->query($createuserlist) === TRUE) {echo "Table Users created <br>";}
 $createtablesetting = "CREATE TABLE if not exists `servers` (
 `id` bigint(20) NOT NULL AUTO_INCREMENT ,
 serverip VARCHAR(30) NOT NULL,
+serverlocation VARCHAR(30) NOT NULL,
 serverusername VARCHAR(30) NOT NULL,
 serverpassword VARCHAR(30) NOT NULL,
  primary key (id));";
@@ -50,8 +51,16 @@ rahnama VARCHAR(900) ,
 tamdid VARCHAR(900) ,
  UNIQUE (id));";
 if ($conn->query($createtablesetting) === TRUE) {echo "Table tgmessage created <BR>";}
-////////////////////
-
+///   Create Api Token Table 
+$createtablesetting = "CREATE TABLE if not exists `ApiToken` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT ,
+    Token VARCHAR(30) NOT NULL,
+    Description VARCHAR(30) NOT NULL,
+    Allowips VARCHAR(30) NOT NULL,
+    enable VARCHAR(30) NOT NULL,
+     primary key (id));";
+    if ($conn->query($createtablesetting) === TRUE) {echo "Table servers created <BR>";}
+///////////////
 
 
 

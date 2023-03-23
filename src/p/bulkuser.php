@@ -1,21 +1,13 @@
 <?php 
 include('header.php'); 
+require('function.php'); 
 if($_POST['passtype'] == "number"){
 $alphabet = '1234567890';
 }
 if($_POST['passtype'] == "alpha"){
 $alphabet = 'abcdefghijklmnopqrstuvwxyz1234567890';
 }
-function randomPassword($char_count,$type) {
-    $alphabet = $type;
-    $pass = array();
-    $alphaLength = strlen($alphabet) - 1;
-    for ($i = 0; $i < $char_count; $i++) {
-        $n = rand(0, $alphaLength);
-        $pass[] = $alphabet[$n];
-    }
-    return implode($pass);
-}
+
 $startword = $_POST['startword'];
 if(isset($_POST['submitbulkuser'])) {
 if (!empty($_POST['count']) && $_POST['count'] !== "0" && !empty($_POST['numberstart'])){
