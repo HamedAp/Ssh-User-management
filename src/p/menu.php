@@ -40,15 +40,7 @@ $disktotal = round(disk_total_space(".") / 1000000000);
 $diskused = round($disktotal - $diskfree);
 $diskusage = round($diskused/$disktotal*100);
 //////////////////////////////////////////////////
-function formatBytes($bytes) {
-    if ($bytes > 0) {
-        $i = floor(log($bytes) / log(1024));
-        $sizes = array(' بایت', ' کیلوبایت', ' مگ', ' گیگ', ' ترا', 'PB', 'EB', 'ZB', 'YB');
-        return sprintf('%.02F', round($bytes / pow(1024, $i),1)) * 1 . ' ' . @$sizes[$i];
-    } else {
-        return 0;
-    }
-}
+
 
 $traffic_rx = shell_exec('sudo netstat -e -n -i |  grep "RX packets" | grep -v "RX packets 0" | grep -v " B)"');
 $traffic_tx = shell_exec('sudo netstat -e -n -i |  grep "TX packets" | grep -v "TX packets 0" | grep -v " B)"');
@@ -85,6 +77,7 @@ $total = $download + $upload;
                 <ul class="nav" id="side-menu">
 					<li><a href="index.php" class="waves-effect"><i class="fa fa-home"></i>  <span class="hide-menu" style="margin-right: 5px !important;">صفحه اصلی</span></a></li>
 					<li><a href="setting.php" class="waves-effect"><i class="fa fa-cog"></i>  <span class="hide-menu" style="margin-right: 5px !important;">تنظیمات</span></a></li>
+                    <li><a href="github.com" class="waves-effect"><i class="fa fa-cog"></i>  <span class="hide-menu" style="margin-right: 5px !important;">آموزش و مستندات</span></a></li>
 					<li><a href="checkip.php" class="waves-effect"><i class="fa fa-lock"></i>  <span class="hide-menu" style="margin-right: 5px !important;">وضعیت فیلترینگ</span></a></li>
                 	<li><a href="https://t.me/ShaHaNPanel" class="waves-effect"><i class="fa fa-group"></i>  <span class="hide-menu text-success" style="margin-right: 5px !important;">گروه تلگرام</span></a></li>
 					<li><a href="changelog.php" class="waves-effect"><i class="fa fa-refresh"></i>  <span class="hide-menu" style="margin-right: 5px !important;">تغییرات آپدیت</span></a></li>

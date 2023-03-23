@@ -33,6 +33,7 @@ if ($conn->query($createuserlist) === TRUE) {echo "Table Users created <br>";}
 $createtablesetting = "CREATE TABLE if not exists `servers` (
 `id` bigint(20) NOT NULL AUTO_INCREMENT ,
 serverip VARCHAR(30) NOT NULL,
+serverlocation VARCHAR(30) NOT NULL,
 serverusername VARCHAR(30) NOT NULL,
 serverpassword VARCHAR(30) NOT NULL,
  primary key (id));";
@@ -59,7 +60,7 @@ $createtablesetting = "CREATE TABLE if not exists `ApiToken` (
     enable VARCHAR(30) NOT NULL,
      primary key (id));";
     if ($conn->query($createtablesetting) === TRUE) {echo "Table servers created <BR>";}
-///////////////////////////////
+///////////////
 
 
 

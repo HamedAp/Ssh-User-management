@@ -1,5 +1,6 @@
 <?php 
 include('header.php'); 
+require('function.php'); 
 
 $strSQL = "SELECT * FROM users" ;
 if(!empty($_GET['activeuser'])){

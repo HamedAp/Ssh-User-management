@@ -41,6 +41,17 @@ function response($Res,$response_code,$response_desc){
 }
 
 
+function formatBytes($bytes) {
+    if ($bytes > 0) {
+        $i = floor(log($bytes) / log(1024));
+        $sizes = array(' بایت', ' کیلوبایت', ' مگ', ' گیگ', ' ترا', 'PB', 'EB', 'ZB', 'YB');
+        return sprintf('%.02F', round($bytes / pow(1024, $i),1)) * 1 . ' ' . @$sizes[$i];
+    } else {
+        return 0;
+    }
+}
+
+
 
 
 ?>
