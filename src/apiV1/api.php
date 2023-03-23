@@ -1,8 +1,8 @@
 <?php
 $token = $_GET['token'];
 
-include("../p/config.php");
-include("../p/function.php");
+include("/var/www/html/p/config.php");
+include("/var/www/html/p/function.php");
 
 
 header("Content-Type:application/json");
@@ -13,11 +13,11 @@ if (isset($_POST['method'])) {
     $res = mysqli_fetch_array($result);
   if (!isset($result) || $res['token'] != $token ) {
     die('api is not valid ');
-     
+
   } elseif(isset($result) || $res['token'] == $token ) {
 
     // api is ok 
-   
+
   }else{
     die('moshkel');
   }
@@ -56,10 +56,10 @@ if (isset($_POST['method'])) {
           '".$_POST['referral']."');";
         if ($conn->query($adduser) === TRUE) {}
         $out = shell_exec('bash adduser '.$_POST['user'].' '.$_POST['password']);
-        
+
         response(NULL, 200,"User Created Success");
 
-        
+
 
 
   }
@@ -80,7 +80,9 @@ if (isset($_POST['method'])) {
       $edittraffic = $row['traffic'];
       $editreferral = $row['referral'];
       $editenable = $row['enable'];
-      }}
+      }
+	  }
+	  
       if(!empty($_POST['editnewuser'])){
       $sql = "UPDATE users SET password='".$_POST['password']."',email='".$_POST['email']."',mobile='".$_POST['mobile']."',multiuser='".$_POST['multiuser']."',finishdate='".$_POST['finishdate']."',traffic='".$_POST['traffic']."',referral='".$_POST['referral']."' where username='".$_POST['useruser']."'" ;
       if($conn->query($sql) === true){
@@ -151,7 +153,7 @@ if (isset($_POST['method'])) {
     $out = shell_exec('bash ch '.$_POST['useruser'].' '.$_POST['password']);
     }
   }
-
+  }
 
   // add server 
 
@@ -194,7 +196,5 @@ if (isset($_POST['method'])) {
 
       response(NULL, 400,"Invalid Request");
   }
-
 }
-
 ?>
