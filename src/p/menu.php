@@ -67,6 +67,14 @@ $total = $download + $upload;
                 <div class="top-left-part" style="width: 200px !important;">
                     <a class="logo" href="index.php" style="margin-right: 30px;">صفحه اصلی</a>
                 </div>
+                <div class="top-right-part" style="width: 200px !important;">
+                   <form action="request.php?method=changelang" method="post">
+                    <select name="language" id="">
+                        <option value="fa">فارسی</option>
+                        <option value="en">انگلیسی</option>
+                    </select>
+                   </form>
+                </div>
             </div>
         </nav>
         <div class="navbar-default sidebar" role="navigation">

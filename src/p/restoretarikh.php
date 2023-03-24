@@ -69,7 +69,7 @@ $adduser = "INSERT INTO tgmessage (account1m,account2m,account3m,account6m,accou
 if ($conn->query($adduser) === TRUE) {echo "tgmessage insted <br>";}
 
 
-$setting = "INSERT INTO setting (adminuser,adminpassword,sshport ) VALUES ( '".$username."', '".$password."', '".$port."');";
+$setting = "INSERT INTO setting (adminuser,adminpassword,sshport,language ) VALUES ( '".$username."', '".$password."', '".$port."' , 'fa');";
 if ($conn->query($setting) === TRUE) {echo "Setting Added <br>";}
 
 ?>
