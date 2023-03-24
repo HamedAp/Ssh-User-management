@@ -205,14 +205,8 @@ $msg = '<div class="alert alert-danger alert-dismissable">
 //  create token
  if(!empty($_POST['createtoken'])){
 	$nettoken = gen_token();
-	$addtoken = "INSERT INTO `ApiToken` (
-		`Token`,
-		`Description`,
-		`Allowips`) VALUES (
-		'".$nettoken."',
-		'".$_POST['Description']."',
-		'".$_POST['Allowips']."');";
-	   if ($conn->query($addtoken) === TRUE) {
+	$addtoken = "INSERT INTO ApiToken (enable,Token,Description,Allowips) VALUES ('true','".$nettoken."','".$_POST['Description']."','".$_POST['Allowips']."');";
+	if ($conn->query($addtoken) === TRUE) {
 	   $msg = '<div class="alert alert-success alert-dismissable">
 	   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 			توکن اضافه شد
