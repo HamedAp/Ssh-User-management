@@ -77,7 +77,7 @@ $total = $download + $upload;
                 <ul class="nav" id="side-menu">
 					<li><a href="index.php" class="waves-effect"><i class="fa fa-home"></i>  <span class="hide-menu" style="margin-right: 5px !important;">صفحه اصلی</span></a></li>
 					<li><a href="setting.php" class="waves-effect"><i class="fa fa-cog"></i>  <span class="hide-menu" style="margin-right: 5px !important;">تنظیمات</span></a></li>
-                    <li><a href="github.com" class="waves-effect"><i class="fa fa-cog"></i>  <span class="hide-menu" style="margin-right: 5px !important;">آموزش و مستندات</span></a></li>
+					<li><a href="#" class="waves-effect"><i class="fa fa-book"></i>  <span class="hide-menu" style="margin-right: 5px !important;">آموزش و مستندات</span></a></li>
 					<li><a href="checkip.php" class="waves-effect"><i class="fa fa-lock"></i>  <span class="hide-menu" style="margin-right: 5px !important;">وضعیت فیلترینگ</span></a></li>
                 	<li><a href="https://t.me/ShaHaNPanel" class="waves-effect"><i class="fa fa-group"></i>  <span class="hide-menu text-success" style="margin-right: 5px !important;">گروه تلگرام</span></a></li>
 					<li><a href="changelog.php" class="waves-effect"><i class="fa fa-refresh"></i>  <span class="hide-menu" style="margin-right: 5px !important;">تغییرات آپدیت</span></a></li>

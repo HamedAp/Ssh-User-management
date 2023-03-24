@@ -1,11 +1,16 @@
-#ShaHaN SSH Panel
+# ShaHaN SSH Panel
 
-پنل مدیریت و فروش پروتکل ssh 
+پنل مدیریت و فروش پروتکل ssh
+
 
 ❇️ Connection limitation
+
 ❇️ RestApi
+
 ❇️ Multi Server
+
 ❇️ Dynamic Expire time 
+
 
 
 # جهت حمایت از ما ادرس ولت تتر 💰
@@ -61,7 +66,4 @@ mysql -e "use ShaHaN;drop table setting;"
 ![](screenshot/menu.PNG)
 
 
-# Developed and created by 
-
-
-
+# Special Thanks To [MasoodSajedi](https://github.com/masoodsajedi)

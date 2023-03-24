@@ -1,9 +1,8 @@
 <?php
 $conn->close();
-$version = "3.3";
 $version = file_get_contents("https://konusanlar.tk/version.php");
 $msg = "لطفا پنل خود را از طریق دستور آپدیت کنید .";
-if ($version !== "3.3" ){
+if ($version !== "3.4" ){
 	echo'<div id="alerttopleft" class="myadmin-alert myadmin-alert-img alert-info myadmin-alert-top-left" style="display: block;">
  <img src="favicon.png" class="img" alt="img">
  <a href="#" class="closed">×</a>
@@ -11,7 +10,7 @@ if ($version !== "3.3" ){
 }
 ?>
 <div class="myadmin-alert myadmin-alert-icon myadmin-alert-click alert-warning myadmin-alert-bottom alertbottom" style="display: none;"><a href="/p/update.php">لطفا پنل خود را بروزرسانی کنید .</a></div>
-<footer class="footer text-center">ShaHaN Management By HamedAp <?php echo $version; ?></footer>
+<footer class="footer text-center">ShaHaN Management By HamedAp 3.4</footer>
         </div>
     </div>
     <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>

@@ -1,7 +1,5 @@
 <?php 
 include('header.php'); 
-require('function.php'); 
-
 $strSQL = "SELECT * FROM users" ;
 if(!empty($_GET['activeuser'])){
 $sql = "UPDATE users SET enable='true' where username='".$_GET['activeuser']."'" ;

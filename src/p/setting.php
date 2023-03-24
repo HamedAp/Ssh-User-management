@@ -1,7 +1,7 @@
 <?php 
 include('header.php');
 include('menu.php');
-require('function.php')
+// require('function.php');
 global $active;
 global $msg;
 $serverip = $_SERVER['SERVER_NAME'];
@@ -22,19 +22,15 @@ $msg5 = $row['account12m'];
 $msg6 = $row['contactadmin']; 
 $msg7 = $row['rahnama']; 
 $msg8 = $row['tamdid']; 
-
 }
-
 ///////////////////// Telegram Message Setting ////////////////////////
 if(!empty($_POST['changetelegrammessages'])){
 $sql = "UPDATE tgmessage SET account1m='".$_POST['account1m']."',account2m='".$_POST['account2m']."',account3m='".$_POST['account3m']."',account6m='".$_POST['account6m']."',account12m='".$_POST['account12m']."',contactadmin='".$_POST['contactadmin']."',rahnama='".$_POST['rahnama']."',tamdid='".$_POST['tamdid']."'" ;
 if($conn->query($sql) === true){}
-
 $msg = '<div class="alert alert-success alert-dismissable">
 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 پیام های ربات تلگرام ذخیره شد . 
 </div>';
-
 }
 ///////////////////// Telegram Bot Setting ////////////////////////
 if(!empty($_POST['changetgsetting'])){
@@ -186,7 +182,6 @@ $msg = '<div class="alert alert-danger alert-dismissable">
   }
 }
  }
-/////////////////////  file ////////////////////////
 if(!empty($_GET['file'])){
 if (strpos($_GET['file'], ".sql") !== false) {
 $output = shell_exec("mysql -u '".$username."' --password='".$password."' ShaHaN < /var/www/html/p/backup/".$_GET['file']);
@@ -206,18 +201,12 @@ $msg = '<div class="alert alert-danger alert-dismissable">
 </div>';
 }
  }
- /////////////////////  Token ////////////////////////
+  /////////////////////  Token ////////////////////////
 //  create token
- if(!empty($_POST['Create_token'])){
+ if(!empty($_POST['createtoken'])){
 	$nettoken = gen_token();
-	$addtoken = "INSERT INTO `ApiToken` (
-		`Token`,
-		`Description`,
-		`Allowips`) VALUES (
-		'".$nettoken."',
-		'".$_POST['Description']."',
-		'".$_POST['Allowips']."');";
-	   if ($conn->query($addserver) === TRUE) {
+	$addtoken = "INSERT INTO ApiToken (enable,Token,Description,Allowips) VALUES ('true','".$nettoken."','".$_POST['Description']."','".$_POST['Allowips']."');";
+	if ($conn->query($addtoken) === TRUE) {
 	   $msg = '<div class="alert alert-success alert-dismissable">
 	   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 			توکن اضافه شد
@@ -225,32 +214,25 @@ $msg = '<div class="alert alert-danger alert-dismissable">
 	   }
  }
 //  remove api token 
- if(!empty($_get['Remove_token'])){
-	sql = "delete FROM ApiToken where id='".$_GET['Remove_token']."'";
+ if(!empty($_GET['remove_token'])){
+	$sql = "delete FROM ApiToken where Token='".$_GET['remove_token']."'";
 	if($conn->query($sql) === true){}
-	$out = shell_exec("bash removeserver " .$_GET['user']." %" );
 	$msg = '<div class="alert alert-success alert-dismissable">
 	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 	توکن با موفقیت حذف شد
 	</div>';
  }
 //  revoke api token
- if(!empty($_get['Revoke_token'])){
+ if(!empty($_GET['revoke_token'])){
    $nettoken = gen_token();
-
-   $sql = "UPDATE ApiToken SET Token='".$nettoken."'WHERE id='".$_get['Revoke_token']."'" ;
+   $sql = "UPDATE ApiToken SET Token='".$nettoken."'WHERE Token='".$_GET['revoke_token']."'" ;
    if($conn->query($sql) === true){}
-   
    $msg = '<div class="alert alert-success alert-dismissable">
    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
    توکن جدید '.$nettoken.'
    </div>';
  }
  //////////////////
-
-
-
-
  ?>
             <div class="row">
                 <div class="col-md-12">
@@ -265,8 +247,8 @@ $msg = '<div class="alert alert-danger alert-dismissable">
 								<li role="presentation" class=""><a href="#Tab4" aria-controls="Tab4" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">ربات تلگرام</span></a></li>
                             	<li role="presentation" class=""><a href="#Tab5" aria-controls="Tab5" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">مولتی سرور</span></a></li>
                             	<li role="presentation" class=""><a href="#Tab6" aria-controls="Tab6" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">بکاپ و ریستور</span></a></li>
-                            	<li role="presentation" class=""><a href="#Tab7" aria-controls="Tab7" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">توکن API</span></a></li>
-                            </ul>
+								<li role="presentation" class=""><a href="#Tab7" aria-controls="Tab7" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">توکن API</span></a></li>
+							</ul>
 							<div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="Tab1">
                                     <div class="col-md-6">
@@ -384,7 +366,6 @@ $msg = '<div class="alert alert-danger alert-dismissable">
 												</div>
 											</div>
 											<button name="changetelegrammessages" type="submit" class="btn btn-success waves-effect waves-light m-r-10" value="changetelegrammessages" >ثبت</button>
-											
 										</form>
 									</div>
                                     <div class="clearfix"></div>
@@ -491,19 +472,17 @@ $m++;
                                     <div class="col-md-6">
 									<h3>توکن API</h3>
 									<form action="setting.php" method="post">
-										<input type="hidden" name="Create_token" value="Create_token">
 										<h3>ساخت توکن جدید</h3>
 											<div class="form-group">
 												<label for="exampleInputEmail1">توضیحات توکن</label>
-												<input name="Description" type="text" class="form-control" id="exampleInputEmail1" placeholder="<?php echo $username; ?>" disabled>
+												<input name="Description" type="text" class="form-control" id="exampleInputEmail1" >
 											</div>
 											<div class="form-group">
 												<label for="exampleInputPassword1">آی پی های مجاز</label>
-												<input name="Allowips" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+												<input name="Allowips" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password" value="0.0.0.0/0">
 											</div>
 											<button name="createtoken" type="submit" class="btn btn-success waves-effect waves-light m-r-10" value="createtoken" >ثبت</button>
 										</form>
-
 										<hr>
 										<h3>لیست توکن ها </h3>
 										<?php
@@ -517,7 +496,7 @@ $m++;
 																			<th width="70" class="text-center">#</th>
 																			<th>Token</th>
 																			<th>توضیحات</th>
-																			<th>ای دی های مجاز</th>
+																			<th>آی پی های مجاز</th>
 																			<th>نوسازی توکن</th>
 																			<th>غیر فعال کردن</th>
 																		</tr>
@@ -529,22 +508,17 @@ $m++;
 												<td>'.$row['Token'].'</td>
 												<td>'.$row['Description'].'</td>
 												<td>'.$row['Allowips'].'</td>
-												<td><a href="setting.php?Revoke_token='.$row['id'].'" ><i class="fa fa-refresh text-warning" style="font-size:20px;"></i></a></td>
-												<td><a href="setting.php?Remove_token='.$row['id'].'" ><i class="fa fa-minus-circle text-danger" style="font-size:20px;"></i></a></td>';
-											
+												<td><a href="setting.php?revoke_token='.$row['Token'].'" ><i class="fa fa-refresh text-warning" style="font-size:20px;"></i></a></td>
+												<td><a href="setting.php?remove_token='.$row['Token'].'" ><i class="fa fa-minus-circle text-danger" style="font-size:20px;"></i></a></td>';
 												$m++;
 										}
-
 										?>
 										</tbody>
 										</table>
-
 										<hr>
-
-					
 									</div>
                                     <div class="clearfix"></div>
-                                </div>
+                                </div></div>
                             </div>
                         </div>
                     </div>

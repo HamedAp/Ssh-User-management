@@ -8,7 +8,7 @@ id ENUM('1') NOT NULL ,
 adminuser VARCHAR(30),
  adminpassword VARCHAR(30) ,
  sshport VARCHAR(30) ,
- tgtoken VARCHAR(30) ,
+ tgtoken VARCHAR(100) ,
  tgid VARCHAR(30) ,
  language VARCHAR(30) ,
  UNIQUE (id));";
@@ -16,26 +16,26 @@ if ($conn->query($createtablesetting) === TRUE) {echo "Table Setting created <BR
 ////   Create Users Table 
 $createuserlist = "CREATE TABLE if not exists `users` ( 
 `id` bigint(20) NOT NULL AUTO_INCREMENT ,
- username VARCHAR(30),
- password VARCHAR(30) ,
- email VARCHAR(30) ,
- mobile VARCHAR(30) ,
- multiuser VARCHAR(30),
- startdate VARCHAR(30),
- finishdate VARCHAR(30),
+ username VARCHAR(100),
+ password VARCHAR(100) ,
+ email VARCHAR(100) ,
+ mobile VARCHAR(100) ,
+ multiuser VARCHAR(100),
+ startdate VARCHAR(100),
+ finishdate VARCHAR(100),
  enable VARCHAR(30),
- traffic VARCHAR(30),
- referral VARCHAR(30),
+ traffic VARCHAR(100),
+ referral VARCHAR(100),
  CONSTRAINT reference_unique UNIQUE (username) ,
  primary key (id));";
 if ($conn->query($createuserlist) === TRUE) {echo "Table Users created <br>";}
 ////   Create Servers Table
 $createtablesetting = "CREATE TABLE if not exists `servers` (
 `id` bigint(20) NOT NULL AUTO_INCREMENT ,
-serverip VARCHAR(30) NOT NULL,
-serverlocation VARCHAR(30) NOT NULL,
-serverusername VARCHAR(30) NOT NULL,
-serverpassword VARCHAR(30) NOT NULL,
+serverip VARCHAR(100) NOT NULL,
+serverlocation VARCHAR(100) NOT NULL,
+serverusername VARCHAR(100) NOT NULL,
+serverpassword VARCHAR(100) NOT NULL,
  primary key (id));";
 if ($conn->query($createtablesetting) === TRUE) {echo "Table servers created <BR>";}
 ////   Create Telegram Messages
@@ -51,16 +51,15 @@ rahnama VARCHAR(900) ,
 tamdid VARCHAR(900) ,
  UNIQUE (id));";
 if ($conn->query($createtablesetting) === TRUE) {echo "Table tgmessage created <BR>";}
-///   Create Api Token Table 
+////////////////////
 $createtablesetting = "CREATE TABLE if not exists `ApiToken` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT ,
-    Token VARCHAR(30) NOT NULL,
-    Description VARCHAR(30) NOT NULL,
-    Allowips VARCHAR(30) NOT NULL,
-    enable VARCHAR(30) NOT NULL,
+    Token VARCHAR(100) NOT NULL,
+    Description VARCHAR(100) NOT NULL,
+    Allowips VARCHAR(100) NOT NULL,
+    enable VARCHAR(100) NOT NULL,
      primary key (id));";
     if ($conn->query($createtablesetting) === TRUE) {echo "Table servers created <BR>";}
-///////////////
 
 
 
