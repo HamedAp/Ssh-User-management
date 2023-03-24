@@ -1,5 +1,4 @@
 #!/bin/bash
-
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
@@ -99,11 +98,8 @@ wait
 systemctl enable mariadb &
 wait
 sudo phpenmod curl
-
 PHP_INI=$(php -i | grep /.+/php.ini -oE)
 sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
-
-
 elif command -v yum >/dev/null; then
 yum update -y
 yum install epel-release httpd php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl php-curl -y
@@ -112,7 +108,6 @@ systemctl restart mariadb &
 wait
 systemctl enable mariadb &
 wait
-
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
@@ -159,7 +154,6 @@ echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/netstat' | sudo EDITOR='tee -a' vis
 wait
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-
 echo 'AuthType Basic
 AuthName "Restricted Content"
 AuthUserFile /etc/httpd/.htpasswd
@@ -187,24 +181,16 @@ wait
 chmod 644 /etc/ssh/sshd_config &
 wait
 sudo phpenmod curl
-
 PHP_INI=$(php -i | grep /.+/php.ini -oE)
 sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
-
 fi
-
+bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Nethogs-Json/main/install.sh --ipv4)
 mysql -e "create database ShaHaN;" &
 wait
-
 mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';" &
 wait
-
 mysql -e "GRANT ALL ON *.* TO '${adminusername}'@'localhost';" &
 wait
-
-
-
-
 sudo sed -i "s/22/$port/g" /var/www/html/p/config.php &
 wait 
 sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p/config.php &
@@ -212,19 +198,12 @@ wait
 sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
 wait 
 curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
-
 cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
-
 rm -fr /var/www/html/p/tarikh
 echo "5 0 * * * php /var/www/html/p/expire.php >/dev/null 2>&1" | crontab - &
 wait
-
 clear
 printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
-
-
-
-
