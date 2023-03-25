@@ -1,3 +1,10 @@
+[![Total Downloads](https://img.shields.io/github/downloads/HamedAp/Ssh-User-management/total.svg)](https://github.com/HamedAp/Ssh-User-management/archive/refs/heads/main.zip)
+[![Last Version](https://img.shields.io/github/release/HamedAp/Ssh-User-management/all.svg)](https://github.com/HamedAp/Ssh-User-management/releases)
+[![Last Release Date](https://img.shields.io/github/release-date/HamedAp/Ssh-User-management.svg)](https://github.com/HamedAp/Ssh-User-management/releases/latest)
+![](https://img.shields.io/tokei/lines/github/HamedAp/Ssh-User-management.svg)
+[![GitHub Stars](https://img.shields.io/github/stars/HamedAp/Ssh-User-management.svg)](https://github.com/HamedAp/Ssh-User-management/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/HamedAp/Ssh-User-management.svg)](https://github.com/HamedAp/Ssh-User-management/network)
+
 # ShaHaN SSH Panel
 
 پنل مدیریت و فروش پروتکل ssh
