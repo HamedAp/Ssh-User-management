@@ -5,9 +5,6 @@
 [![GitHub Stars](https://img.shields.io/github/stars/HamedAp/Ssh-User-management.svg)](https://github.com/HamedAp/Ssh-User-management/)
 [![GitHub Forks](https://img.shields.io/github/forks/HamedAp/Ssh-User-management.svg)](https://github.com/HamedAp/Ssh-User-management/)
 
-# Telegram Group : 
-
-https://t.me/+Vzm9A6yYpo44ZmFk
 
 # ShaHaN SSH Panel
 
@@ -21,6 +18,9 @@ https://t.me/+Vzm9A6yYpo44ZmFk
 
 ❇️ Dynamic Expire time 
 
+# Telegram Group : 
+
+https://t.me/+Vzm9A6yYpo44ZmFk
 
 
 # جهت حمایت از ما ادرس ولت تتر 💰
