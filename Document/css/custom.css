@@ -1,0 +1,307 @@
+/* dark / light mode */
+html.dark body {
+    background: #222;
+    color: #888888;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+    color: #dbdbdb;
+}
+
+html.dark hr {
+    border-color: #111;
+}
+
+html.dark .docs-sidebar .nav>li>a {
+    color: #eee;
+}
+
+html.dark .dark-text hr {
+    border-color: #fcfcfc;
+}
+
+html.dark strong {
+    color: #fcfcfc;
+}
+
+html.dark .intro1 {
+    background-color: #0c0c0c;
+}
+
+html.dark .intro1 a {
+    color: #F16811 !important;
+}
+
+html.dark a {
+    color: #CC8548;
+}
+
+html.dark a:hover {
+    color: #F16811;
+}
+
+html.dark .intro2 {
+    background-color: #F16811;
+    border-color: #DE7844;
+}
+
+html.dark .btn-primary {
+    background-color: #F16811;
+    border-color: #DE7844;
+    color: #000;
+}
+
+html.dark .btn-primary:hover {
+    background-color: #DE7844;
+    border-color: #F16811;
+}
+
+html.dark .btn-info {
+    background-color: #ABABAB;
+    border-color: #9A9A9A;
+    color: #000;
+}
+
+html.dark .btn-info:hover {
+    background-color: #9A9A9A;
+    border-color: #ABABAB;
+}
+
+#mode {
+    cursor: pointer;
+    position: fixed;
+    right: 16px;
+    top: 16px;
+    z-index: 1;
+    border-radius: 16px;
+    line-height: 0;
+}
+
+#mode svg {
+    width: 20px;
+    padding: 12px;
+    box-sizing: content-box;
+}
+
+html.dark #mode .light {
+    display: none;
+}
+
+html #mode .light {
+    display: block;
+}
+
+html.dark #mode .dark {
+    display: block;
+}
+
+html #mode .dark {
+    display: none;
+}
+
+/*Docs*/
+
+.body {
+    position: relative;
+}
+
+.sub-title {
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+}
+
+.sub-title a {
+    font-size: 16px;
+}
+
+.section.docs-heading {
+    padding: 60px 0;
+}
+
+.affix {
+    position: static;
+}
+
+@media (min-width: 992px) {
+    .affix,
+    .affix-bottom {
+        width: 213px
+    }
+    .affix {
+        position: fixed;
+        top: 20px
+    }
+    .affix-bottom {
+        position: absolute
+    }
+    .affix .bs-docs-sidenav,
+    .affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+
+@media (min-width: 1200px) {
+    .affix,
+    .affix-bottom {
+        width: 263px
+    }
+}
+
+/* SIDEBAR */
+
+@media (min-width: 768px) {
+    .docs-sidebar {
+        padding-top: 20px;
+        padding-left: 20px
+    }
+}
+
+/* all links */
+.docs-sidebar .nav>li>a {
+    color: #111;
+    border-left: 2px solid transparent;
+    padding: 0 20px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* nested links */
+.docs-sidebar .nav .nav>li>a {
+    padding-left: 40px;
+    font-size: 14px;
+}
+
+/* hover links */ 
+.docs-sidebar .nav>li:not(.active)>a:hover {
+    color: #0E97EE;
+    text-decoration: none;
+    background-color: transparent;
+    border-left-width: 1px;
+    border-left-color: #0E97EE;
+}
+/* focus links */
+.docs-sidebar .nav>li>a:focus {
+    text-decoration: none;
+    background-color: transparent;
+}
+/* active links */
+.docs-sidebar .nav>.active>a {
+    color: #0E97EE;
+    text-decoration: none;
+    background-color: transparent;
+    border-left-color: #0E97EE;
+}
+/* all active links */
+.docs-sidebar .nav>.active>a, 
+.docs-sidebar .nav>.active:hover>a,
+.docs-sidebar .nav>.active:focus>a {
+    font-weight: 700;
+}
+/* nested active links */
+.docs-sidebar .nav .nav>.active>a, 
+.docs-sidebar .nav .nav>.active:hover>a,
+.docs-sidebar .nav .nav>.active:focus>a {
+    font-weight: 500;
+}
+
+@media (min-width: 992px) {
+    .docs-sidebar .nav ul {
+        display: none;
+        padding-bottom: 10px;
+    }
+    .docs-sidebar .nav>.active>ul {
+        display: block
+    }
+}
+/*Syntax Highlighter : Sublime Theme */
+
+.syntaxhighlighter {
+    background-color: #2b303b !important;
+    padding: 15px 0;
+    margin: 2em 0 1em 0 !important;
+}
+
+.syntaxhighlighter a,
+.syntaxhighlighter div,
+.syntaxhighlighter code,
+.syntaxhighlighter table,
+.syntaxhighlighter table td,
+.syntaxhighlighter table tr,
+.syntaxhighlighter table tbody,
+.syntaxhighlighter table thead,
+.syntaxhighlighter table caption,
+.syntaxhighlighter textarea {
+    line-height: 1.3em !important;
+}
+
+.syntaxhighlighter .line.alt1 {
+    background-color: #2b303b !important;
+}
+
+.syntaxhighlighter .line.alt2 {
+    background-color: #2b303b !important;
+}
+
+.syntaxhighlighter .string,
+.syntaxhighlighter .string a {
+    color: #90be8c !important;
+}
+
+.syntaxhighlighter .color1,
+.syntaxhighlighter .color1 a {
+    color: #d08770 !important;
+}
+
+.syntaxhighlighter .plain,
+.syntaxhighlighter .plain a {
+    color: #c0c5ce !important;
+}
+
+.syntaxhighlighter .keyword {
+    color: #bf616a !important;
+}
+
+.syntaxhighlighter .gutter {
+    color: #757a84 !important;
+}
+
+.syntaxhighlighter .line.highlighted.alt1,
+.syntaxhighlighter .line.highlighted.alt2 {
+    background-color: #333E49 !important;
+}
+
+.syntaxhighlighter .gutter .line.highlighted {
+    background-color: #343d46 !important;
+    color: #757a84 !important;
+}
+
+.syntaxhighlighter .value {
+    color: #96b5b4 !important;
+}
+/*css*/
+/* .syntaxhighlighter .css.plain,
+.syntaxhighlighter .css.plain a {
+    color: #d08770 !important;
+} 
+
+.syntaxhighlighter .css.keyword {
+    color: #c0c5ce !important;
+}*/
+
+.syntaxhighlighter .color3,
+.syntaxhighlighter .color3 a {
+    color: #b48ead !important;
+}
+/*js*/
+
+.syntaxhighlighter .js.keyword {
+    color: #b48ead !important;
+}
