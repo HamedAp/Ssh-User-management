@@ -78,7 +78,9 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/pgrep' | sudo EDITOR='tee -a' vis
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/nethogs' | sudo EDITOR='tee -a' visudo &
 wait
-echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/pgrep' | sudo EDITOR='tee -a' visudo &
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/nethogs' | sudo EDITOR='tee -a' visudo &
+wait
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/local/sbin/nethogs' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'AuthType Basic
 AuthName "Restricted Content"
@@ -164,7 +166,9 @@ echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/pgrep' | sudo EDITOR='tee -a' visud
 wait
 echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/nethogs' | sudo EDITOR='tee -a' visudo &
 wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/pgrep' | sudo EDITOR='tee -a' visudo &
+echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/local/sbin/nethogs' | sudo EDITOR='tee -a' visudo &
+wait
+echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/nethogs' | sudo EDITOR='tee -a' visudo &
 wait
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
@@ -215,7 +219,8 @@ wait
 curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
 cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
 rm -fr /var/www/html/p/tarikh
-echo "*/5 * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/expire.php >/dev/null 2>&1" | crontab - &
+echo "* * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/expire.php >/dev/null 2>&1" | crontab - &
+echo "* * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/synctraffic.php >/dev/null 2>&1" | crontab - &
 
 wait
 clear
