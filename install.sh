@@ -27,6 +27,7 @@ ipv4=$(curl rabin.cf)
 if command -v apt-get >/dev/null; then
 apt update -y
 sudo add-apt-repository ppa:ondrej/php -y
+apt remove php*
 apt install apache2 php7.4 zip unzip net-tools curl mariadb-server php7.4-mysql php7.4-xml php7.4-curl -y
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
