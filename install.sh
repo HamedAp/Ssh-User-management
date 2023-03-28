@@ -219,8 +219,8 @@ wait
 curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
 cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
 rm -fr /var/www/html/p/tarikh
-echo "* * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/expire.php >/dev/null 2>&1" | crontab - &
-echo "* * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/synctraffic.php >/dev/null 2>&1" | crontab - &
+echo "* * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/expire.php >/dev/null 2>&1
+* * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/synctraffic.php >/dev/null 2>&1" | crontab - &
 
 wait
 clear
