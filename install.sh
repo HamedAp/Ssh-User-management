@@ -230,6 +230,19 @@ crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
 (crontab -l ; echo "* * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/expire.php >/dev/null 2>&1
 * * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/synctraffic.php >/dev/null 2>&1" ) | crontab - &
 
+
+
+echo "
+#!/bin/bash
+#By Hamed Ap
+i=0
+while [ $i -lt 12 ]; do 
+curl -u $adminusername:$adminpassword http://${ipv4}/p/kill.php &
+  sleep 5
+  i=$(( i + 1 ))
+done" > /var/www/html/p/killusers.sh
+
+
 wait
 clear
 printf "\nPanel Link : http://${ipv4}/p/index.php"
