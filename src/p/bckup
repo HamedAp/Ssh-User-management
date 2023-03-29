@@ -1,4 +1,0 @@
-#!/bin/bash
-#By Hamed Ap
-date=$(date '+%Y-%m-%d')
-cp /var/www/html/p/tarikh /var/www/html/p/backup/"$date"-tarikh
