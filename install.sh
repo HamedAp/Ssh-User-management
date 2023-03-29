@@ -116,7 +116,7 @@ sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum-config-manager --enable remi-php74 -y
 sudo yum install php php-cli -y
 
-yum install epel-release httpd zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl php-curl -y
+yum install epel-release httpd zip unzip net-tools curl mariadb-server php-mysql php-mysqli php-xml mod_ssl php-curl -y
 systemctl restart httpd
 systemctl restart mariadb &
 wait
