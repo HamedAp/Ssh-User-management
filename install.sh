@@ -112,7 +112,11 @@ PHP_INI=$(php -i | grep /.+/php.ini -oE)
 sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
 elif command -v yum >/dev/null; then
 yum update -y
-yum install epel-release httpd php zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl php-curl -y
+sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo yum-config-manager --enable remi-php74 -y
+sudo yum install php php-cli -y
+
+yum install epel-release httpd zip unzip net-tools curl mariadb-server php-mysql php-xml mod_ssl php-curl -y
 systemctl restart httpd
 systemctl restart mariadb &
 wait
