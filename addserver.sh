@@ -4,11 +4,8 @@
 echo -e "\nPlease Input Panel IP."
 read panelip
 
-echo -e "\nPlease Input Username Added In Main Panel."
-read panelusername
-
-echo -e "\nPlease Input Password Added In Main Panel."
-read panelpassword
+echo -e "\nPlease Input Token Added In Main Panel."
+read token
 
 
 if command -v apt-get >/dev/null; then
@@ -45,22 +42,22 @@ echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/passwd' | sudo EDITOR='tee -a' visu
 wait
 systemctl restart httpd &
 wait
+systemctl enable httpd
 
 
 fi
 
 
-sudo wget -O /var/www/html/syncdb.php https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/syncdb.php
-sudo wget -O /var/www/html/adduser https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/adduser
-sudo wget -O /var/www/html/delete https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/delete
-sudo wget -O /var/www/html/list https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/list
+sudo wget -4 -O /var/www/html/syncdb.php https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/syncdb.php
+sudo wget -4 -O /var/www/html/adduser https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/adduser
+sudo wget -4 -O /var/www/html/delete https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/delete
+sudo wget -4 -O /var/www/html/list https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/list
 
 sudo sed -i "s/serverip/$panelip/g" /var/www/html/syncdb.php &
 wait 
-sudo sed -i "s/adminuser/$panelusername/g" /var/www/html/syncdb.php &
+sudo sed -i "s/servertoken/$token/g" /var/www/html/syncdb.php &
 wait 
-sudo sed -i "s/adminpassword/$panelpassword/g" /var/www/html/syncdb.php &
-wait 
+
 
 echo "* * * * * php /var/www/html/syncdb.php >/dev/null 2>&1" | crontab - &
 wait
