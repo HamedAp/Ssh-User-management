@@ -220,29 +220,19 @@ sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p/config.php &
 wait 
 sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
 wait 
+sudo sed -i "s/SERVERUSER/$adminusername/g" /var/www/html/p/killusers.sh &
+wait 
+sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/p/killusers.sh &
+wait 
+sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/p/killusers.sh &
+wait 
 curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
 cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
 rm -fr /var/www/html/p/tarikh
-
 crontab -l | grep -v '/p/expire.php'  | crontab  -
 crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
-
 (crontab -l ; echo "* * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/expire.php >/dev/null 2>&1
 * * * * * curl -u $adminusername:$adminpassword http://${ipv4}/p/synctraffic.php >/dev/null 2>&1" ) | crontab - &
-
-
-
-echo "
-#!/bin/bash
-#By Hamed Ap
-i=0
-while [ $i -lt 12 ]; do 
-curl -u $adminusername:$adminpassword http://${ipv4}/p/kill.php &
-  sleep 5
-  i=$(( i + 1 ))
-done" > /var/www/html/p/killusers.sh
-
-
 wait
 clear
 printf "\nPanel Link : http://${ipv4}/p/index.php"
