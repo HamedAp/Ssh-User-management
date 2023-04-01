@@ -18,9 +18,9 @@
 
 ❇️ Dynamic Expire time 
 
-# Telegram Group : 
+# Telegram Channel: 
 
-https://t.me/+Vzm9A6yYpo44ZmFk
+https://t.me/Shahanpanel
 
 
 # حمایت مالی : 
