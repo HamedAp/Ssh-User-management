@@ -4,6 +4,7 @@ po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use ShaHaN; select adminuser from setting;")
 adminpass=$(mysql -N -e "use ShaHaN; select adminpassword from setting;")
+clear
 if [ "$adminuser" != "" ]; then
 adminusername=$adminuser
 adminpassword=$adminpass
