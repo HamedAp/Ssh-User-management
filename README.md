@@ -80,5 +80,3 @@ mysql -e "use ShaHaN;drop table setting;"
 ![](screenshot/filtering.PNG)
 ![](screenshot/menu.PNG)
 
-
-# Special Thanks To [MasoodSajedi](https://github.com/masoodsajedi)
