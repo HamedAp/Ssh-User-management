@@ -69,7 +69,7 @@ mysql -e "use ShaHaN;drop table setting;"
 
 # Will Be Added On Next Update 
 
--Traffic Limit
+-Multi Languages
 
 
 # Preview
