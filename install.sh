@@ -83,7 +83,7 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/nethogs' | sudo EDITOR='tee -a' v
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/local/sbin/nethogs' | sudo EDITOR='tee -a' visudo &
 wait
-em -fr /var/www/html/p/.htaccess
+rm -fr /var/www/html/p/.htaccess
 
 echo '<Directory /var/www/html/p/>
     Options Indexes FollowSymLinks
