@@ -83,18 +83,8 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/nethogs' | sudo EDITOR='tee -a' v
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/local/sbin/nethogs' | sudo EDITOR='tee -a' visudo &
 wait
-echo 'AuthType Basic
-AuthName "Restricted Content"
-AuthUserFile /etc/apache2/.htpasswd
-Require valid-user' > /var/www/html/p/.htaccess
-echo '<VirtualHost *:80>
-<Directory "/var/www/html/p">
-        AuthType Basic
-        AuthName "Restricted Content"
-        AuthUserFile /etc/apache2/.htpasswd
-        Require valid-user
-    </Directory>
-</VirtualHost>' >> /etc/apache2/sites-enabled/000-default.conf
+em -fr /var/www/html/p/.htaccess
+
 echo '<Directory /var/www/html/p/>
     Options Indexes FollowSymLinks
     AllowOverride All
@@ -177,18 +167,7 @@ echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/nethogs' | sudo EDITOR='tee -a' vis
 wait
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-echo 'AuthType Basic
-AuthName "Restricted Content"
-AuthUserFile /etc/httpd/.htpasswd
-Require valid-user' > /var/www/html/p/.htaccess
-echo '<VirtualHost *:80>
-<Directory "/var/www/html/p">
-        AuthType Basic
-        AuthName "Restricted Content"
-        AuthUserFile /etc/httpd/.htpasswd
-        Require valid-user
-    </Directory>
-</VirtualHost>' >> /etc/httpd/conf/httpd.conf
+rm -fr /var/www/html/p/.htaccess
 echo '<Directory /var/www/html/p/>
     Options Indexes FollowSymLinks
     AllowOverride All
