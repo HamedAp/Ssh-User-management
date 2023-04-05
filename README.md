@@ -60,13 +60,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 ````
 
 
-# Reset Admin Password
-
-اگر نیاز به ریست یوزر و پسورد ادمین دارید این دستور را زده و دوباره دستور نصب را بزنید :
-
-````
-mysql -e "use ShaHaN;drop table setting;"
-````
 
 # Will Be Added On Next Update 
 
