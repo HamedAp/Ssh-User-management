@@ -1,4 +1,5 @@
-
+ [![GitHub release (latest by date)](https://img.shields.io/github/v/release/HamedAp/Ssh-User-management)](https://github.com/HamedAp/Ssh-User-management/releases/latest) [![Downloads (Latest Release)](https://img.shields.io/github/downloads/HamedAp/Ssh-User-management/latest/total?label=latest%20release%20downloads)](https://github.com/HamedAp/Ssh-User-management/releases/latest) ![GitHub all releases](https://img.shields.io/github/downloads/HamedAp/Ssh-User-management/total?label=total%20downloads)
+  
 # ShaHaN SSH Panel
 
 پنل مدیریت و فروش پروتکل ssh
