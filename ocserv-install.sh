@@ -1,5 +1,6 @@
 #!/bin/bash
 #By Hamed Ap
+systemctl stop apache2
 
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
@@ -22,7 +23,8 @@ sudo ufw allow $sshport/udp
 sudo mkdir /var/www/ocserv
 sudo chown www-data:www-data /var/www/ocserv -R
 sudo a2ensite $domain
-sudo certbot certonly --webroot --agree-tos --email $fakeEmail -d $domain -w /var/www/ocserv
+sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email $fakeEmail -d $domain
+
 
 
 cat > /etc/ocserv/ocserv.conf << ENDOFFILE
@@ -97,3 +99,4 @@ read -rp "Create New Username ( Enter Username ) : " username
 sudo ocpasswd -c /etc/ocserv/ocpasswd $username
 
 systemctl restart ocserv
+systemctl restart apache2
