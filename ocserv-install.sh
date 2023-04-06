@@ -93,3 +93,5 @@ sudo systemctl restart ufw
 read -rp "Create New Username ( Enter Username ) : " username
 
 sudo ocpasswd -c /etc/ocserv/ocpasswd $username
+
+systemctl restart ocserv
