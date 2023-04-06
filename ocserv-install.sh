@@ -3,18 +3,20 @@
 
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
+sshport=$(echo "$po" | sed "s/Port //g")
 networkcard=$(ip route get 8.8.8.8 | sed -nr 's/.*dev ([^\ ]+).*/\1/p')
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 fakeEmail=$(date +%s%N | md5sum | cut -c 1-16)
 fakeEmail=$fakeEmail@gmail.com
+read -rp "Please enter the Port : " port
+
 
 sudo apt update -y
 sudo apt install ocserv ufw certbot -y
 sudo systemctl start ocserv
 
-sudo ufw allow 8080,80,$port/tcp
-sudo ufw allow 8080/udp
+sudo ufw allow 80,$port,$sshport/tcp
+sudo ufw allow $sshport/udp
 
 
 sudo mkdir /var/www/ocserv
@@ -25,8 +27,8 @@ sudo certbot certonly --webroot --agree-tos --email $fakeEmail -d $domain -w /va
 
 cat > /etc/ocserv/ocserv.conf << ENDOFFILE
 auth = "plain[passwd=/etc/ocserv/ocpasswd]"
-tcp-port = 8080
-udp-port = 8080
+tcp-port = $port
+udp-port = $port
 run-as-user = nobody
 run-as-group = daemon
 socket-file = /run/ocserv.socket
