@@ -38,7 +38,7 @@ USDT ERC20 Address :
 
 دستور زیر را در ترمینال خود وارد کرده و یوزر و پسورد ادمین را وارد کنید .
 
-*** به هیچ وجه برای پنل از یوزر Root استفاده نکنین .
+*** به هیچ وجه برای نام کاربری پنل از یوزر Root استفاده نکنین .
 
 ````
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4)
