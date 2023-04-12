@@ -59,7 +59,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 
 
 
-# SSL Installer ( Only SSL - NOT Panel - Need Domain )
+# Telegram Bot Installer ( Only For Telegram Bot - Need Domain )
 
 در صورتی که دامنه دارید بعد از دستور نصب ( دقت کنید بعد از دستور نصب )  این دستور را بزنید .
 
