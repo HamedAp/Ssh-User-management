@@ -27,6 +27,7 @@ fi
 ipv4=$(curl rabin.cf)
 if command -v apt-get >/dev/null; then
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C 
+sudo sysctl net.ipv6.conf.all.disable_ipv6=1
 apt update -y
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
