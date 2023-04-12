@@ -39,7 +39,7 @@ USDT ERC20 Address :
 # Suggested OSs
 
 - CentOS 7+
-- Ubuntu 16+ ( Not 22 : Have Some Install Problem )
+- Ubuntu 16+ 
 - Debian 8+
 
  
