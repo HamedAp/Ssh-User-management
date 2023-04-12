@@ -35,6 +35,13 @@ USDT ERC20 Address :
   ⭐️ جهت حمایت از ما به پروژه ستاره بدین
 
 بالا سمت راست ⭐️
+
+# Suggested OSs
+
+- CentOS 7+
+- Ubuntu 16+ ( Not 22 : Have Some Install Problem )
+- Debian 8+
+
  
 # اموزش نصب :
 
