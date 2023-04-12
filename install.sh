@@ -26,6 +26,7 @@ fi
 fi
 ipv4=$(curl rabin.cf)
 if command -v apt-get >/dev/null; then
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C 
 apt update -y
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
