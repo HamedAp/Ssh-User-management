@@ -1,23 +1,26 @@
 <?php
 date_default_timezone_set("Asia/Tehran");
-$servername = "serverip";
-$username = "adminuser";
-$password = "adminpassword";
-$dbname = "ShaHaN";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {die("Connection failed: " . $conn->connect_error);}
+$serverip = "serverip";
+$servertoken = "servertoken";
 $output = shell_exec('cat /etc/passwd | grep "/home/" | grep -v "/home/syslog"');
 $userlist = preg_split("/\r\n|\n|\r/", $output);
 foreach($userlist as $user){
 $userarray = explode(":",$user);
 if (!empty($userarray[0])) {
-$out = shell_exec('bash delete '.$userarray[0]);
-echo $userarray[0] . " Removed  <br>";
+ $out = shell_exec('bash delete '.$userarray[0]);
+ echo $userarray[0] . " Removed  <br>";
 }}
-$strSQL = "SELECT * FROM users where enable='true'" ;
-$rs = mysqli_query($conn,$strSQL);
-while($row = mysqli_fetch_array($rs)){ 
-$out = shell_exec('bash adduser '.$row['username'].' '.$row['password']);
-echo $row['username'] . " Added <br>";
+$postParameter = array(
+    'method' => 'multiserver'
+);
+$curlHandle = curl_init('http://'.$serverip.'/apiV1/api.php?token='.$servertoken);
+curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $postParameter);
+curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
+$curlResponse = curl_exec($curlHandle);
+curl_close($curlHandle);
+$data = json_decode($curlResponse, true);
+$data = $data['data'];
+foreach ($data as $user){
+	$out = shell_exec('bash adduser '.$user['username'].' '.$user['password']);
 }
 ?>
