@@ -25,6 +25,8 @@ if [[ -n "${passwordtmp}" ]]; then
 fi
 fi
 ipv4=$(curl rabin.cf)
+sudo sed -i '/www-data/d' /etc/sudoers
+sudo sed -i '/apache/d' /etc/sudoers
 if command -v apt-get >/dev/null; then
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E5267A6C 
 sudo sysctl net.ipv6.conf.all.disable_ipv6=1
