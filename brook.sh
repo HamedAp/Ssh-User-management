@@ -43,7 +43,7 @@ chmod +x $HOME/.nami/bin/nami
 echo 'export PATH=$HOME/.nami/bin:$PATH' >> $HOME/.bashrc
 echo 'export PATH=$HOME/.nami/bin:$PATH' >> $HOME/.bash_profile
 echo 'export PATH=$HOME/.nami/bin:$PATH' >> $HOME/.zshenv
-exec -l $SHELL
+
 
 sleep 2
 
