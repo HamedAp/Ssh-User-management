@@ -45,7 +45,8 @@ echo 'export PATH=$HOME/.nami/bin:$PATH' >> $HOME/.bash_profile
 echo 'export PATH=$HOME/.nami/bin:$PATH' >> $HOME/.zshenv
 exec -l $SHELL
 
-nami install joker brook &
-wait
-joker brook server -l :9999 -p shahantest &
-wait
+sleep 2
+
+nami install joker brook 
+
+joker brook server -l :9999 -p shahantest 
