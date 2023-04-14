@@ -29,10 +29,7 @@ sudo sed -i '/www-data/d' /etc/sudoers
 sudo sed -i '/apache/d' /etc/sudoers
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/brook.sh --ipv4) &
 wait
-nami install joker brook &
-wait
-joker brook server -l :9999 -p shahantest &
-wait
+
 if command -v apt-get >/dev/null; then
 apt update -y
 sudo apt -y install software-properties-common
