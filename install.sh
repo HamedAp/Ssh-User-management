@@ -27,7 +27,7 @@ fi
 ipv4=$(curl rabin.cf)
 sudo sed -i '/www-data/d' /etc/sudoers
 sudo sed -i '/apache/d' /etc/sudoers
-bash <(curl -Ls https://bash.ooo/nami.sh --ipv4)
+bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/brook.sh --ipv4) &
 wait
 nami install joker brook &
 wait
