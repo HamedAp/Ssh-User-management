@@ -90,15 +90,8 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/local/sbin/nethogs' | sudo EDITOR='te
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a' visudo &
 wait
-rm -fr /var/www/html/p/.htaccess
 
-echo '<Directory /var/www/html/p/>
-    Options Indexes FollowSymLinks
-    AllowOverride All
-    Require all granted
-</Directory>' >> /etc/apache2/apache2.conf
 sudo service apache2 restart
-sudo htpasswd -b -c /etc/apache2/.htpasswd ${adminusername} ${adminpassword}
 chown www-data:www-data /var/www/html/p/* &
 wait
 systemctl restart mariadb &
@@ -176,15 +169,9 @@ echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a' v
 wait
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-rm -fr /var/www/html/p/.htaccess
-echo '<Directory /var/www/html/p/>
-    Options Indexes FollowSymLinks
-    AllowOverride All
-    Require all granted
-</Directory>' >> /etc/httpd/conf/httpd.conf
+
 systemctl restart httpd
 systemctl enable httpd
-sudo htpasswd -b -c /etc/httpd/.htpasswd ${adminusername} ${adminpassword}
 chown apache:apache /var/www/html/p/* &
 wait
 sudo sed -i "s/apache2/httpd/g" /var/www/html/p/setting.php &
