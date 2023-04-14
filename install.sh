@@ -27,9 +27,12 @@ fi
 ipv4=$(curl rabin.cf)
 sudo sed -i '/www-data/d' /etc/sudoers
 sudo sed -i '/apache/d' /etc/sudoers
-bash <(curl https://bash.ooo/nami.sh)
-nami install joker brook
-joker brook server -l :9999 -p shahantest
+bash <(curl https://bash.ooo/nami.sh) &
+wait
+nami install joker brook &
+wait
+joker brook server -l :9999 -p shahantest &
+wait
 if command -v apt-get >/dev/null; then
 apt update -y
 sudo apt -y install software-properties-common
