@@ -25,8 +25,10 @@ if [[ -n "${passwordtmp}" ]]; then
 fi
 fi
 ipv4=$(curl rabin.cf)
-sudo sed -i '/www-data/d' /etc/sudoers
-sudo sed -i '/apache/d' /etc/sudoers
+sudo sed -i '/www-data/d' /etc/sudoers &
+wait
+sudo sed -i '/apache/d' /etc/sudoers & 
+wait
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/brook.sh --ipv4) &
 wait
 
