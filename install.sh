@@ -35,6 +35,10 @@ wait
 if command -v apt-get >/dev/null; then
 apt update -y
 sudo apt -y install software-properties-common
+sudo add-apt-repository main
+sudo add-apt-repository universe
+sudo add-apt-repository restricted
+sudo add-apt-repository multiverse
 sudo add-apt-repository ppa:ondrej/php -y
 apt remove php8* -y
 apt install apache2 php7.4 zip unzip net-tools curl mariadb-server php7.4-mysql php7.4-xml php7.4-curl -y
