@@ -57,7 +57,8 @@ sudo sed -i "s/serverip/$panelip/g" /var/www/html/syncdb.php &
 wait 
 sudo sed -i "s/servertoken/$token/g" /var/www/html/syncdb.php &
 wait 
-
+chown www-data:www-data /var/www/html/p/* &
+wait
 
 echo "* * * * * php /var/www/html/syncdb.php >/dev/null 2>&1" | crontab - &
 wait
