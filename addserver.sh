@@ -1,6 +1,7 @@
 #!/bin/bash
 #By Hamed Ap
 
+ipv4=$(curl rabin.cf)
 echo -e "\nPlease Input Panel IP."
 read panelip
 
@@ -60,7 +61,9 @@ wait
 chown www-data:www-data /var/www/html/* &
 wait
 
-echo "* * * * * php /var/www/html/syncdb.php >/dev/null 2>&1" | crontab - &
-wait
+crontab -l | grep -v '/syncdb.php'  | crontab  -
+
+(crontab -l ; echo "* * * * * curl  http://${ipv4}/syncdb.php >/dev/null 2>&1" ) | crontab - &
+
 
 
