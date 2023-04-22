@@ -3,7 +3,7 @@ apt update -y
 apt install git cmake -y
 
 
-git clone https://github.com/ambrop72/badvpn.git /root/
+git clone https://github.com/ambrop72/badvpn.git /root/badvpn
 
 mkdir /root/badvpn/badvpn-build
 
