@@ -1,20 +1,38 @@
 #!/bin/bash
-apt install screen -y
+apt update -y
+apt install git cmake -y
 
-sudo wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/daybreakersx/premscript/master/badvpn-udpgw64"
-sudo touch /etc/rc.local
 
-cat > /etc/rc.local << ENDOFFILE
-#!/bin/sh -e
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 999
-exit 0
+git clone https://github.com/ambrop72/badvpn.git /root/
+
+mkdir /root/badvpn/badvpn-build
+
+cd  /root/badvpn/badvpn-build
+
+cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1 &
+wait
+make &
+wait
+
+cp udpgw/badvpn-udpgw /usr/local/bin
+
+
+cat >  /etc/systemd/system/videocall.service << ENDOFFILE
+[Unit]
+Description=UDP forwarding for badvpn-tun2socks
+After=nss-lookup.target
+
+[Service]
+ExecStart=/usr/local/bin/badvpn-udpgw --loglevel none --listen-addr 127.0.0.1:7300 --max-clients 999
+User=videocall
+
+[Install]
+WantedBy=multi-user.target
 ENDOFFILE
 
 
+useradd -m videocall
+systemctl enable videocall
+systemctl start videocall
 
-chmod +x /etc/rc.local
-sudo systemctl restart rc-local.service
-sudo chmod +x /usr/bin/badvpn-udpgw
-sudo screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 999
 
-reboot
