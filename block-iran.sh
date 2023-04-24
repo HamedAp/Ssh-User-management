@@ -17,7 +17,10 @@ a2enmod geoip
 apt install geoip-bin -y
 curl -sSL https://www.ipdeny.com/ipblocks/data/countries/ir.zone | awk '{print "sudo ufw deny out from any to " $1}' | bash
 ufw allow from any to any port $pport proto tcp
-sudo ufw allow 80,$pport,443
+sudo ufw allow $pport
+sudo ufw allow 80
+sudo ufw allow 22
+sudo ufw allow 443
+sudo ufw allow 7300
 
 ufw enable
-ufw reload
