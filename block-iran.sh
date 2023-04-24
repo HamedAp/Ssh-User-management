@@ -1,6 +1,6 @@
 #!/bin/bash
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
+pport=$(echo "$po" | sed "s/Port //g")
 if [ -z "$port" ]
 then
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
