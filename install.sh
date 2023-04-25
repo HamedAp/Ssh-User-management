@@ -106,7 +106,11 @@ PHP_INI=$(php -i | grep /.+/php.ini -oE)
 sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
 elif command -v yum >/dev/null; then
 yum update -y
+
+sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo yum -y install yum-utils
+
 sudo yum-config-manager --enable remi-php74 -y
 sudo yum install php php-cli -y
 
