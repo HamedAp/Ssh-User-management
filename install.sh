@@ -30,6 +30,10 @@ wait
 sudo sed -i '/apache/d' /etc/sudoers & 
 wait
 
+sed -i 's@#Banner none@Banner /var/www/html/p/banner.txt@' /etc/ssh/sshd_config
+sed -i 's@#PrintMotd yes@PrintMotd yes@' /etc/ssh/sshd_config
+systemctl restart sshd
+
 if command -v apt-get >/dev/null; then
 apt update -y
 apt remove php8* -y
