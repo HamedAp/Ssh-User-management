@@ -222,8 +222,7 @@ crontab -l | grep -v '/p/posttraffic.php'  | crontab  -
 crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
 crontab -l | grep -v 'p/killusers.sh'  | crontab  -
 (crontab -l ; echo "* * * * * curl  http://${ipv4}/p/expire.php >/dev/null 2>&1
-* * * * * curl http://${ipv4}/p/synctraffic.php >/dev/null 2>&1
-*/5 * * * * curl http://${ipv4}/p/posttraffic.php >/dev/null 2>&1
+* * * * * curl http://${ipv4}/p/posttraffic.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1" ) | crontab - &
 wait
 clear
