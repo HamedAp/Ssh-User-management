@@ -114,7 +114,7 @@ done
         wg-quick down wgcf >/dev/null 2>&1
     fi
     
-    ipv4=$(curl rabin.cf)
+    ipv4=$(curl -s ipv4.icanhazip.com)
     ipv6=$(curl -s6m8 ip.gs)
     
     echo ""
