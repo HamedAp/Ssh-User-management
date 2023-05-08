@@ -2,7 +2,7 @@
 #By Hamed Ap
 apt install curl wget -y
 yum install curl wget -y
-ipv4=$(curl rabin.cf)
+ipv4=$(curl -s ipv4.icanhazip.com)
 echo -e "\nPlease Input Panel IP."
 read panelip
 
