@@ -64,7 +64,7 @@ wait
 
 crontab -l | grep -v '/syncdb.php'  | crontab  -
 
-(crontab -l ; echo "* * * * * curl  http://${ipv4}/syncdb.php >/dev/null 2>&1" ) | crontab - &
+(crontab -l ; echo "* * * * * php /var/www/html/syncdb.php >/dev/null 2>&1" ) | crontab - &
 
 
 
