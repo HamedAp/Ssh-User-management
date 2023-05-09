@@ -7,7 +7,7 @@ $userlist = preg_split("/\r\n|\n|\r/", $output);
 foreach($userlist as $user){
 $userarray = explode(":",$user);
 if (!empty($userarray[0])) {
- $out = shell_exec('bash delete '.$userarray[0]);
+ $out = shell_exec('bash /var/www/html/delete '.$userarray[0]);
  echo $userarray[0] . " Removed  <br>";
 }}
 $postParameter = array(
@@ -21,6 +21,6 @@ curl_close($curlHandle);
 $data = json_decode($curlResponse, true);
 $data = $data['data'];
 foreach ($data as $user){
-	$out = shell_exec('bash adduser '.$user['username'].' '.$user['password']);
+	$out = shell_exec('bash /var/www/html/adduser '.$user['username'].' '.$user['password']);
 }
 ?>
