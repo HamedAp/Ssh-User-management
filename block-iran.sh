@@ -22,5 +22,5 @@ sudo ufw allow 80
 sudo ufw allow 22
 sudo ufw allow 443
 sudo ufw allow 7300
-
+curl -sSL https://www.arvancloud.ir/en/ips.txt | awk '{print "sudo ufw deny out from any to " $1}' | bash
 ufw enable
