@@ -211,6 +211,7 @@ wait
 curl  "http://${ipv4}/p/restoretarikh.php"
 cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
 rm -fr /var/www/html/p/tarikh
+rm -fr /var/www/html/update.zip
 crontab -l | grep -v '/p/expire.php'  | crontab  -
 crontab -l | grep -v '/p/posttraffic.php'  | crontab  -
 crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
