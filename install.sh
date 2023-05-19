@@ -32,14 +32,12 @@ wait
 
 sed -i 's@#Banner none@Banner /var/www/html/p/banner.txt@' /etc/ssh/sshd_config
 sed -i 's@#PrintMotd yes@PrintMotd yes@' /etc/ssh/sshd_config
+sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
 systemctl restart sshd
 
 if command -v apt-get >/dev/null; then
 apt update -y
-apt remove php7* -y
-sudo apt -y install software-properties-common
-
-sudo add-apt-repository ppa:ondrej/php -y
+apt remove php* -y
 
 apt install apache2 zip unzip net-tools curl mariadb-server -y
 apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl -y
