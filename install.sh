@@ -38,6 +38,7 @@ systemctl restart sshd
 if command -v apt-get >/dev/null; then
 apt update -y
 apt remove php* -y
+rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
 apt install apache2 zip unzip net-tools curl mariadb-server -y
