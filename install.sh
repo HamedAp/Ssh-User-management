@@ -38,7 +38,8 @@ systemctl restart sshd
 if command -v apt-get >/dev/null; then
 apt update -y
 apt remove php* -y
-
+sudo apt -y install software-properties-common
+sudo add-apt-repository ppa:ondrej/php -y
 apt install apache2 zip unzip net-tools curl mariadb-server -y
 apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl -y
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
