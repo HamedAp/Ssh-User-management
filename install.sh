@@ -36,13 +36,13 @@ systemctl restart sshd
 
 if command -v apt-get >/dev/null; then
 apt update -y
-apt remove php8* -y
+apt remove php7* -y
 sudo apt -y install software-properties-common
 
 sudo add-apt-repository ppa:ondrej/php -y
 
 apt install apache2 zip unzip net-tools curl mariadb-server -y
-apt install php7.4 php7.4-mysql php7.4-xml php7.4-curl -y
+apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl -y
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
@@ -115,10 +115,8 @@ sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.
 sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-utils
 
-sudo yum-config-manager --enable remi-php74 -y
-sudo yum install php php-cli -y
 
-yum install epel-release httpd zip unzip net-tools curl mariadb-server php-mysql php-mysqli php-xml mod_ssl php-curl -y
+yum install epel-release httpd zip unzip net-tools curl mariadb-server php8.1 php8.1-cli php8.1-mysql php8.1-mysqli php8.1-xml mod_ssl php8.1-curl -y
 systemctl restart httpd
 systemctl restart mariadb &
 wait
@@ -185,8 +183,6 @@ systemctl restart httpd
 systemctl enable httpd
 chown apache:apache /var/www/html/p/* &
 wait
-sudo sed -i "s/apache2/httpd/g" /var/www/html/p/setting.php &
-wait
 chmod 644 /etc/ssh/sshd_config &
 wait
 sudo phpenmod curl
@@ -214,7 +210,7 @@ sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/p/killusers.sh &
 wait 
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/p/killusers.sh &
 wait 
-curl -u "$adminusername:$adminpassword" "http://${ipv4}/p/restoretarikh.php"
+curl  "http://${ipv4}/p/restoretarikh.php"
 cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
 rm -fr /var/www/html/p/tarikh
 crontab -l | grep -v '/p/expire.php'  | crontab  -
@@ -225,8 +221,6 @@ crontab -l | grep -v 'p/killusers.sh'  | crontab  -
 * * * * * curl http://${ipv4}/p/posttraffic.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1" ) | crontab - &
 wait
-sudo bash /var/www/html/p/ipv6.sh
-clear
 printf "\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
