@@ -227,10 +227,12 @@ sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/p/killusers.sh &
 wait 
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/p/killusers.sh &
 wait 
-php /var/www/html/p/restoretarikh.php"
+php /var/www/html/p/restoretarikh.php
 cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
 rm -fr /var/www/html/p/tarikh
 rm -fr /var/www/html/update.zip
+
+
 crontab -l | grep -v '/p/expire.php'  | crontab  -
 crontab -l | grep -v '/p/posttraffic.php'  | crontab  -
 crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
