@@ -224,7 +224,8 @@ crontab -l | grep -v '/p/expire.php'  | crontab  -
 crontab -l | grep -v '/p/posttraffic.php'  | crontab  -
 crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
 crontab -l | grep -v 'p/killusers.sh'  | crontab  -
-(crontab -l ; echo "* * * * * php /var/www/html/p/expire.php >/dev/null 2>&1
+(crontab -l ; echo "* */3 * * * php /var/www/html/p/versioncheck.php >/dev/null 2>&1
+* * * * * php /var/www/html/p/expire.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1" ) | crontab - &
 wait
