@@ -231,10 +231,7 @@ crontab -l | grep -v 'p/killusers.sh'  | crontab  -
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1" ) | crontab - &
 wait
-cat > /var/www/html/robots.txt << ENDOFFILE
-User-agent: *
-Disallow: /
-ENDOFFILE
+
 
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
