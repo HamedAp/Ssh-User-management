@@ -44,10 +44,14 @@ sudo add-apt-repository ppa:ondrej/php -y
 apt install apache2 zip unzip net-tools curl mariadb-server -y
 
 
-phpv=$(php -v)
-
+string=$(php -v)
+if [[ $string == *"8.1"* ]]; then
+  echo "PHP Is Installed :)"
+else
 apt remove php* -y
 apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl -y
+fi
+
 
 
 
