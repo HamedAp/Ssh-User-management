@@ -220,7 +220,14 @@ else
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Nethogs-Json/main/install.sh --ipv4)
 fi
 
-bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/ssh-calls.sh --ipv4)
+file=/etc/systemd/system/videocall.service
+if [ -e "$file" ]; then
+    echo "SSH-CALLS exists"
+else
+  bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/ssh-calls.sh --ipv4)
+fi
+
+
 mysql -e "create database ShaHaN;" &
 wait
 mysql -e "CREATE USER '${adminusername}'@'localhost' IDENTIFIED BY '${adminpassword}';" &
