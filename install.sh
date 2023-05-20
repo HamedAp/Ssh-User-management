@@ -33,7 +33,7 @@ wait
 sed -i 's@#Banner none@Banner /var/www/html/p/banner.txt@' /etc/ssh/sshd_config
 sed -i 's@#PrintMotd yes@PrintMotd yes@' /etc/ssh/sshd_config
 sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
-systemctl restart sshd
+
 
 if command -v apt-get >/dev/null; then
 apt update -y
@@ -196,6 +196,7 @@ port=$(echo "$po" | sed "s/Port //g")
 
 systemctl restart httpd
 systemctl enable httpd
+systemctl restart sshd
 chown apache:apache /var/www/html/* &
 wait
 chmod 644 /etc/ssh/sshd_config &
