@@ -204,8 +204,21 @@ sudo phpenmod curl
 PHP_INI=$(php -i | grep /.+/php.ini -oE)
 sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
 fi
+
+IonCube=$(php -v)
+if [[ $IonCube == *"PHP Loader v12.0.5"* ]]; then
+  echo "IonCube Is Installed :)"
+else
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/ioncube-loader/main/install.sh --ipv4)
+fi
+
+Nethogs=$(nethogs -V)
+if [[ $Nethogs == *"version 0.8.7"* ]]; then
+  echo "Nethogs Is Installed :)"
+else
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Nethogs-Json/main/install.sh --ipv4)
+fi
+
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/ssh-calls.sh --ipv4)
 mysql -e "create database ShaHaN;" &
 wait
