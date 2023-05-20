@@ -46,7 +46,7 @@ apt install apache2 zip unzip net-tools curl mariadb-server -y
 
 phpv=$(php -v)
 if [[ $phpv =~ "PHP 8.1" ]]; then
-elif
+else
 apt remove php* -y
 apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl -y
 fi
