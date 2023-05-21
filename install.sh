@@ -113,7 +113,9 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a'
 wait
 
 sudo service apache2 restart
-chown www-data:www-data /var/www/html/* &
+chown www-data:www-data /var/www/html/p/* &
+wait
+chown www-data:www-data /var/www/html/p2/* &
 wait
 systemctl restart mariadb &
 wait
@@ -197,7 +199,9 @@ port=$(echo "$po" | sed "s/Port //g")
 systemctl restart httpd
 systemctl enable httpd
 systemctl restart sshd
-chown apache:apache /var/www/html/* &
+chown apache:apache /var/www/html/p/* &
+wait
+chown apache:apache /var/www/html/p2/* &
 wait
 chmod 644 /etc/ssh/sshd_config &
 wait
