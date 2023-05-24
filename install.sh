@@ -244,12 +244,7 @@ sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p/config.php &
 wait 
 sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
 wait 
-sudo sed -i "s/22/$port/g" /var/www/html/p2/config.php &
-wait 
-sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p2/config.php &
-wait 
-sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p2/config.php &
-wait 
+
 sudo sed -i "s/SERVERUSER/$adminusername/g" /var/www/html/p/killusers.sh &
 wait 
 sudo sed -i "s/SERVERPASSWORD/$adminpassword/g" /var/www/html/p/killusers.sh &
