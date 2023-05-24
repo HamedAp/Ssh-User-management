@@ -129,6 +129,8 @@ yum update -y
 sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-utils
+yum remove php -y
+yum autoremove -y
 
 
 yum install epel-release httpd zip unzip net-tools curl mariadb-server php8.1 php8.1-cli php8.1-mysql php8.1-mysqli php8.1-xml mod_ssl php8.1-curl -y
