@@ -57,7 +57,7 @@ fi
 
 
 sudo wget -O /var/www/html/update.zip https://github.com/HamedAp/Ssh-User-management/releases/download/4.9/49.zip
-rm -fr /var/www/html/p/*.php
+
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
@@ -140,7 +140,7 @@ systemctl enable mariadb &
 wait
 
 sudo wget -O /var/www/html/update.zip https://github.com/HamedAp/Ssh-User-management/releases/download/4.9/49.zip
-rm -fr /var/www/html/p/*.php
+
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
 echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
