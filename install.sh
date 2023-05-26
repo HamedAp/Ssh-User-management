@@ -58,7 +58,6 @@ fi
 
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
-rm -fr /var/www/html/p/*.php
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
@@ -141,7 +140,6 @@ systemctl enable mariadb &
 wait
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
-rm -fr /var/www/html/p/*.php
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
 echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
