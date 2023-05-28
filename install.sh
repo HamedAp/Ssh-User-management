@@ -49,6 +49,8 @@ if [[ $string == *"8.1"* ]]; then
   echo "PHP Is Installed :)"
 else
 apt remove php* -y
+apt remove php -y
+apt autoremove -y
 apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl -y
 fi
 
