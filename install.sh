@@ -46,6 +46,8 @@ apt install apache2 zip unzip net-tools curl mariadb-server -y
 
 string=$(php -v)
 if [[ $string == *"8.1"* ]]; then
+apt remove php7.4 -y
+apt autoremove -y
   echo "PHP Is Installed :)"
 else
 apt remove php* -y
