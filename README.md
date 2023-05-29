@@ -26,9 +26,8 @@ https://t.me/Shahanpanel
 
 # Suggested OSs
 
-- CentOS 7+
-- Ubuntu 16+ 
-- Debian 8+
+- Ubuntu 18+ 
+
 
  
 # اموزش نصب :
