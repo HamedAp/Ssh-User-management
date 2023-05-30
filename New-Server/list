@@ -1,6 +1,5 @@
 #!/bin/bash
-#cat /etc/shadow | grep '^[^:]*:[^\*!]'
+# By HamedAp 
+# Dozdi Nakon Lanati :) Adam Bash .
+
 cat /etc/passwd | grep /home/
-
-#awk -F: '{ print $1}' /etc/passwd 
-
