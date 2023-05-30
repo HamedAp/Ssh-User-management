@@ -19,6 +19,7 @@ sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
 apt update -y &
 wait
+apt remove php7.4 -y
 apt install apache2 php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
