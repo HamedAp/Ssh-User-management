@@ -15,7 +15,7 @@ apt update -y &
 wait
 apt upgrade -y &
 wait
-apt install apache2 php curl php-mysql php-xml php-curl -y &
+apt install apache2 php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
 wait
@@ -45,9 +45,16 @@ wait
 systemctl restart httpd &
 wait
 systemctl enable httpd
-
-
 fi
+
+
+IonCube=$(php -v)
+if [[ $IonCube == *"PHP Loader v12.0.5"* ]]; then
+  echo "IonCube Is Installed :)"
+else
+bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/ioncube-loader/main/install.sh --ipv4)
+fi
+
 
 
 sudo wget -4 -O /var/www/html/syncdb.php https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/syncdb.php
