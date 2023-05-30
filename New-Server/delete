@@ -1,2 +1,6 @@
 #!/bin/bash
+# By HamedAp 
+# Dozdi Nakon Lanati :) Adam Bash .
+
+sudo killall -u $1
 sudo userdel -r $1
