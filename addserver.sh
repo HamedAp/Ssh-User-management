@@ -3,7 +3,7 @@
 apt install curl wget -y
 yum install curl wget -y
 ipv4=$(curl -s ipv4.icanhazip.com)
-echo -e "\nPlease Input Panel IP."
+echo -e "\nPlease Input Panel IP/Domain That Has License."
 read panelip
 
 echo -e "\nPlease Input Token Added In Main Panel."
