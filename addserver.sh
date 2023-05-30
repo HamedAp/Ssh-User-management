@@ -58,13 +58,14 @@ fi
 
 
 sudo wget -4 -O /var/www/html/syncdb.php https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/syncdb.php
+sudo wget -4 -O /var/www/html/token.php https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/token.php
 sudo wget -4 -O /var/www/html/adduser https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/adduser
 sudo wget -4 -O /var/www/html/delete https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/delete
 sudo wget -4 -O /var/www/html/list https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/list
 
-sudo sed -i "s/serverip/$panelip/g" /var/www/html/syncdb.php &
+sudo sed -i "s/serverip/$panelip/g" /var/www/html/token.php &
 wait 
-sudo sed -i "s/servertoken/$token/g" /var/www/html/syncdb.php &
+sudo sed -i "s/servertoken/$token/g" /var/www/html/token.php &
 wait 
 chown www-data:www-data /var/www/html/* &
 wait
