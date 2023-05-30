@@ -1,6 +1,6 @@
 #!/bin/bash
-#By Hamed Ap
-# Example : adduser hamed 123 
+# By HamedAp 
+# Dozdi Nakon Lanati :) Adam Bash .
 
 sudo adduser $1  --shell /usr/sbin/nologin &
 wait
