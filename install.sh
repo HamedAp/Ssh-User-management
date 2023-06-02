@@ -245,7 +245,7 @@ crontab -l | grep -v 'p/versioncheck.php'  | crontab  -
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1" ) | crontab - &
 wait
 sudo timedatectl set-timezone Asia/Tehran
-
+chmod 0644 /var/log/auth.log
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
 printf "\nPanel Link : http://${ipv4}/p/index.php"
