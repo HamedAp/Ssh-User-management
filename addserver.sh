@@ -1,7 +1,5 @@
 #!/bin/bash
 #By Hamed Ap
-apt install curl wget -y
-yum install curl wget -y
 ipv4=$(curl -s ipv4.icanhazip.com)
 echo -e "\nPlease Input Panel IP/Domain That Has License."
 read panelip
@@ -13,11 +11,12 @@ read token
 if command -v apt-get >/dev/null; then
 apt update -y &
 wait
-sudo apt -y install software-properties-common
+sudo apt -y install software-properties-common curl wget
 sudo add-apt-repository ppa:ondrej/php -y
 apt update -y &
 wait
-apt remove php7.4 -y
+apt remove php7.4 php8.2 -y
+apt autoremove -y
 apt install apache2 php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
@@ -37,7 +36,13 @@ wait
 elif command -v yum >/dev/null; then
 yum update -y &
 wait
-yum install httpd php php-mysql php-xml mod_ssl php-curl -y &
+sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo yum -y install yum-utils
+yum remove php -y
+yum autoremove -y
+
+yum install curl wget epel-release httpd zip unzip net-tools curl mariadb-server php8.1 php8.1-cli php8.1-mysql php8.1-mysqli php8.1-xml mod_ssl php8.1-curl -y &
 wait
 echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
 wait
