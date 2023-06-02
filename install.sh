@@ -234,6 +234,8 @@ cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
 rm -fr /var/www/html/p/tarikh
 rm -fr /var/www/html/update.zip
 
+nowdate=$(date +"%Y-%m-%d-%H-%M-%S")
+mysqldump -u ${adminusername} --password=${adminpassword} ShaHaN > /var/www/html/p/backup/${nowdate}-full-installbackup.sql
 
 crontab -l | grep -v '/p/expire.php'  | crontab  -
 crontab -l | grep -v '/p/posttraffic.php'  | crontab  -
