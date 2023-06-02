@@ -244,7 +244,7 @@ crontab -l | grep -v 'p/versioncheck.php'  | crontab  -
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1" ) | crontab - &
 wait
-
+sudo timedatectl set-timezone Asia/Tehran
 
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
