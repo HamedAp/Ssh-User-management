@@ -13,8 +13,6 @@ read token
 if command -v apt-get >/dev/null; then
 apt update -y &
 wait
-apt upgrade -y &
-wait
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
 apt update -y &
