@@ -104,8 +104,7 @@ wait
 sudo service apache2 restart
 chown www-data:www-data /var/www/html/p/* &
 wait
-chown www-data:www-data /var/log/auth.log &
-wait
+
 systemctl restart mariadb &
 wait
 systemctl enable mariadb &
@@ -179,8 +178,7 @@ systemctl enable httpd
 systemctl restart sshd
 chown apache:apache /var/www/html/p/* &
 wait
-chown apache:apache /var/log/auth.log &
-wait
+
 chmod 644 /etc/ssh/sshd_config &
 wait
 sudo phpenmod curl
