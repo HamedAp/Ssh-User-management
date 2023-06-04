@@ -16,6 +16,7 @@ sudo add-apt-repository ppa:ondrej/php -y
 apt update -y &
 wait
 apt remove php7.4 php8.2 -y
+apt remove php* -y
 apt autoremove -y
 apt install apache2 php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y &
 wait
