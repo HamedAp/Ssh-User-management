@@ -43,7 +43,7 @@ sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
 apt install apache2 zip unzip net-tools curl mariadb-server -y
 
-apt remove php7.4 -y &
+apt remove php7* -y &
 wait
 string=$(php -v)
 if [[ $string == *"8.1"* ]]; then
