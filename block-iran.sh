@@ -15,7 +15,7 @@ apt update -y
 apt install ufw libapache2-mod-geoip geoip-database -y
 a2enmod geoip
 apt install geoip-bin -y
-curl -sSL https://www.ipdeny.com/ipblocks/data/countries/ir.zone | awk '{print "sudo ufw deny out from any to " $1}' | bash
+curl -sSL https://www.ipdeny.com/ipblocks/data/aggregated/iq-aggregated.zone | awk '{print "sudo ufw deny out from any to " $1}' | bash
 ufw allow from any to any port $pport proto tcp
 sudo ufw allow $pport
 sudo ufw allow 80
