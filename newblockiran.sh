@@ -10,15 +10,7 @@ sudo apt-get -y upgrade
 sudo apt-get install curl unzip perl xtables-addons-common libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl iptables-persistent -y 
 sudo mkdir /usr/share/xt_geoip
 
-cat >  /usr/local/bin/geo-update.sh << ENDOFFILE
-#!/bin/bash
-MON=$(date +"%m")
-YR=$(date +"%Y")
-wget https://download.db-ip.com/free/dbip-country-lite-${YR}-${MON}.csv.gz -O /usr/share/xt_geoip/dbip-country-lite.csv.gz
-gunzip /usr/share/xt_geoip/dbip-country-lite.csv.gz
-/usr/lib/xtables-addons/xt_geoip_build -D /usr/share/xt_geoip/ -S /usr/share/xt_geoip/
-rm /usr/share/xt_geoip/dbip-country-lite.csv
-ENDOFFILE
+sudo wget -4 -O /usr/local/bin/geo-update.sh https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/geo-update.sh
 
 chmod 755 /usr/lib/xtables-addons/xt_geoip_build
 bash /usr/local/bin/geo-update.sh
