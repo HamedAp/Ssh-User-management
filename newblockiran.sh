@@ -17,6 +17,6 @@ bash /usr/local/bin/geo-update.sh
 
 
 iptables -A OUTPUT -m geoip -p tcp --dport $SSHPORT --src-cc IR -j DROP
-
+iptables-save
 clear
 printf "\nAll IRAN IP Blocked :)"
