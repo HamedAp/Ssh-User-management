@@ -71,7 +71,8 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/ioncube-loader/main/in
 fi
 
 
-
+sudo wget -4 -O /var/www/html/kill.php https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/kill.php
+sudo wget -4 -O /var/www/html/killusers.sh https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/killusers.sh
 sudo wget -4 -O /var/www/html/syncdb.php https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/syncdb.php
 sudo wget -4 -O /var/www/html/token.php https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/token.php
 sudo wget -4 -O /var/www/html/online.php https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/New-Server/online.php
