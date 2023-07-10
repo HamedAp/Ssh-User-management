@@ -7,6 +7,8 @@ read panelip
 echo -e "\nPlease Input Token Added In Main Panel."
 read token
 
+echo -e "\nPlease Input Limitation of Users Connection"
+read multilimit
 
 if command -v apt-get >/dev/null; then
 apt update -y &
@@ -83,6 +85,8 @@ sudo wget -4 -O /var/www/html/list https://raw.githubusercontent.com/HamedAp/Ssh
 sudo sed -i "s/serverip/$panelip/g" /var/www/html/token.php &
 wait 
 sudo sed -i "s/servertoken/$token/g" /var/www/html/token.php &
+wait 
+sudo sed -i "s/1/$multilimit/g" /var/www/html/token.php &
 wait 
 chown www-data:www-data /var/www/html/* &
 wait
