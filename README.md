@@ -68,7 +68,7 @@ https://t.me/Shahanpanel
 
 # Suggested OSs
 
-- Ubuntu 18+ 
+- Ubuntu 20
 
 
  
@@ -97,12 +97,11 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4)
 ````
 
+# Block Iran IP Outgoing
 
-
-# Will Be Added On Next Update 
-
--Multi Languages
-
+````
+bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/newblockiran.sh --ipv4)
+````
 
 # Preview
 ![](screenshot/login.jpg)
