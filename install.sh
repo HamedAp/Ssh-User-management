@@ -305,7 +305,11 @@ if [[ $string == *"8.1"* ]]; then
 else
 echo -e "\n${Red_font_prefix}PHP8.1 Is NOT Installed${Font_color_suffix}"
 fi
-
+if [ -e "$file" ]; then
+echo -e "\n${Green_font_prefix}SSH-Calls Is Installed${Font_color_suffix}"
+else
+echo -e "\n${Red_font_prefix}SSH-Calls Is NOT Installed${Font_color_suffix}"
+fi
 
 
 
