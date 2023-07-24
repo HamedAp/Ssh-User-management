@@ -279,7 +279,7 @@ crontab -l | grep -v '/p/posttraffic.php'  | crontab  -
 crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
 crontab -l | grep -v 'p/killusers.sh'  | crontab  -
 crontab -l | grep -v 'p/versioncheck.php'  | crontab  -
-(crontab -l ; echo "* */3 * * * php /var/www/html/p/versioncheck.php >/dev/null 2>&1
+(crontab -l ; echo "* */2 * * * php /var/www/html/p/versioncheck.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/expire.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1" ) | crontab - &
@@ -288,7 +288,28 @@ sudo timedatectl set-timezone Asia/Tehran
 chmod 0644 /var/log/auth.log
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
-printf "\nPanel Link : http://${ipv4}/p/index.php"
+
+Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Font_color_suffix="\033[0m"
+if [[ $IonCube == *"PHP Loader v12.0.5"* ]]; then
+  echo -e "\n${Green_font_prefix}IonCube Is Installed${Font_color_suffix}"
+else
+echo -e "\n${Red_font_prefix}IonCube Is NOT Installed${Font_color_suffix}"
+fi
+if [[ $Nethogs == *"version 0.8.7"* ]]; then
+  echo -e "\n${Green_font_prefix}Nethogs Is Installed${Font_color_suffix}"
+else
+echo -e "\n${Red_font_prefix}Nethogs Is NOT Installed${Font_color_suffix}"
+fi
+if [[ $string == *"8.1"* ]]; then
+  echo -e "\n${Green_font_prefix}PHP8.1 Is Installed${Font_color_suffix}"
+else
+echo -e "\n${Red_font_prefix}PHP8.1 Is NOT Installed${Font_color_suffix}"
+fi
+
+
+
+
+printf "\n\n\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
