@@ -86,7 +86,7 @@ sudo sed -i "s/serverip/$panelip/g" /var/www/html/token.php &
 wait 
 sudo sed -i "s/servertoken/$token/g" /var/www/html/token.php &
 wait 
-sudo sed -i "s/1/$multilimit/g" /var/www/html/token.php &
+sudo sed -i "s/10619/$multilimit/g" /var/www/html/token.php &
 wait 
 chown www-data:www-data /var/www/html/* &
 wait
