@@ -116,6 +116,7 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/netstat' | sudo EDITOR='tee -a' v
 wait
 
 sudo service apache2 restart
+touch /var/www/html/p/banner.txt
 chown -R www-data:www-data /var/www/html/p/* &
 wait
 
@@ -190,6 +191,7 @@ port=$(echo "$po" | sed "s/Port //g")
 systemctl restart httpd
 systemctl enable httpd
 systemctl restart sshd
+touch /var/www/html/p/banner.txt
 chown -R apache:apache /var/www/html/p/* &
 wait
 
