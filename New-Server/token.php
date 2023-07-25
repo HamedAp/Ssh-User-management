@@ -1,5 +1,5 @@
 <?php
 $ip = "serverip";
 $token = "servertoken";
-$userLimit = '1';
+$userLimit = '10619';
 ?>
