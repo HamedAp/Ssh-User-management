@@ -268,7 +268,6 @@ wait
 sudo sed -i "s/SERVERIP/$ipv4/g" /var/www/html/p/killusers.sh &
 wait 
 php /var/www/html/p/restoretarikh.php
-curl http://${ipv4}/p/versioncheck.php
 cp /var/www/html/p/tarikh /var/www/html/p/backup/tarikh
 rm -fr /var/www/html/p/tarikh
 rm -fr /var/www/html/update.zip
