@@ -287,6 +287,9 @@ crontab -l | grep -v 'p/versioncheck.php'  | crontab  -
 wait
 sudo timedatectl set-timezone Asia/Tehran
 chmod 0644 /var/log/auth.log
+sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
+wait
+chmod +x /usr/local/bin/shahan
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
 
@@ -318,3 +321,4 @@ printf "\n\n\nPanel Link : http://${ipv4}/p/index.php"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
+printf "\n NOW You Can Use shahan Command To See Menu Of Shahan Panel \n"
