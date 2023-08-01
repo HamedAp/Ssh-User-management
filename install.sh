@@ -294,16 +294,19 @@ clear
 printf "%s" "$(</var/www/html/shahan.txt)"
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Font_color_suffix="\033[0m"
+IonCube=$(php -v)
 if [[ $IonCube == *"PHP Loader v12.0.5"* ]]; then
   echo -e "\n${Green_font_prefix}IonCube Is Installed${Font_color_suffix}"
 else
 echo -e "\n${Red_font_prefix}IonCube Is NOT Installed${Font_color_suffix}"
 fi
+Nethogs=$(nethogs -V)
 if [[ $Nethogs == *"version 0.8.7"* ]]; then
   echo -e "\n${Green_font_prefix}Nethogs Is Installed${Font_color_suffix}"
 else
 echo -e "\n${Red_font_prefix}Nethogs Is NOT Installed${Font_color_suffix}"
 fi
+string=$(php -v)
 if [[ $string == *"8.1"* ]]; then
   echo -e "\n${Green_font_prefix}PHP8.1 Is Installed${Font_color_suffix}"
 else
