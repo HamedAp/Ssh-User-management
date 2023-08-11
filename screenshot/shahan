@@ -57,8 +57,11 @@ echo -e "  6)Install CisCo Anyconnect"
 echo -e "  7)Forgot Password & ERROR-500"
 echo -e "  8)Backup Users"
 echo -e "  9)Remove ShaHaN"
+echo -e "\n"
 echo -e "  10)${RED}Remove CisCo Anyconnect${ENDCOLOR}"
-echo -e "  11)${RED}Remove SSL${ENDCOLOR}"
+echo -e "${CYAN}  11)${RED}Remove SSL${ENDCOLOR}"
+echo -e "${CYAN}  12)${RED}Remove Apache And PHP${ENDCOLOR}"
+
 echo -e "  0)Exit"
 
 echo -ne "${GREEN}\nSelect Operation : ${ENDCOLOR}" ;read n
@@ -75,6 +78,7 @@ case $n in
   9) rm -fr /var/www/html/*;;
   10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4);;
   11) rm -fr /etc/apache2/conf-available/ssl-params.conf;rm -fr /etc/apache2/sites-available/default-ssl.conf;systemctl restart apache2;;
+  12) apt purge php* php8* php7* apache2 -y;apt autoremove -y;;
   0) clear;exit;;
   *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}";read && shahan;;
 esac
