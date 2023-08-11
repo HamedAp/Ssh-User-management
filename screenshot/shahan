@@ -58,6 +58,7 @@ echo -e "  7)Forgot Password & ERROR-500"
 echo -e "  8)Backup Users"
 echo -e "  9)Remove ShaHaN"
 echo -e "  10)${RED}Remove CisCo Anyconnect${ENDCOLOR}"
+echo -e "  11)${RED}Remove SSL${ENDCOLOR}"
 echo -e "  0)Exit"
 
 echo -ne "${GREEN}\nSelect Operation : ${ENDCOLOR}" ;read n
@@ -73,6 +74,7 @@ case $n in
   8) mysqldump -u root ShaHaN > /root/bckup-new.sql || echo "New Backup Created : /root/bckup-new.sql";;
   9) rm -fr /var/www/html/*;;
   10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4);;
+  11) rm -fr /etc/apache2/conf-available/ssl-params.conf;rm -fr /etc/apache2/sites-available/default-ssl.conf;systemctl restart apache2;;
   0) clear;exit;;
   *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}";read && shahan;;
 esac
