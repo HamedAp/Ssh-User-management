@@ -1,9 +1,4 @@
 #!/bin/bash
-clear
-SSHPORT=22
-echo -e "\nPlease input SSH Port ."
-printf "Default Port is \e[33m${SSHPORT}\e[0m, let it blank to use this Port: "
-read udpport
 
 sudo apt-get update -y
 sudo apt-get -y upgrade
@@ -16,7 +11,8 @@ chmod 755 /usr/lib/xtables-addons/xt_geoip_build
 bash /usr/local/bin/geo-update.sh
 
 
-iptables -A OUTPUT -m geoip -p tcp --dport $SSHPORT --src-cc IR -j DROP
+iptables -A OUTPUT -m geoip -p tcp --dport 80 --src-cc IR -j DROP
+iptables -A OUTPUT -m geoip -p tcp --dport 443 --src-cc IR -j DROP
 iptables-save
 clear
 printf "\nAll IRAN IP Blocked :)\n\n\n\n"
