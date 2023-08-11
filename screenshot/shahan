@@ -54,11 +54,11 @@ echo -e "  3)Install SSL For Domain"
 echo -e "  4)Change SSH Port"
 echo -e "  5)Block Iran IP ( Outgoing )"
 echo -e "  6)Install CisCo Anyconnect"
-echo -e "  7)Forgot Password"
+echo -e "  7)Forgot Password & ERROR-500"
 echo -e "  8)Backup Users"
 echo -e "  9)Remove ShaHaN"
 echo -e "  10)${RED}Remove CisCo Anyconnect${ENDCOLOR}"
-echo -e "  20)Exit"
+echo -e "  0)Exit"
 
 echo -ne "${GREEN}\nSelect Operation : ${ENDCOLOR}" ;read n
 
@@ -73,6 +73,6 @@ case $n in
   8) mysqldump -u root ShaHaN > /root/bckup-new.sql || echo "New Backup Created : /root/bckup-new.sql";;
   9) rm -fr /var/www/html/*;;
   10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4);;
-  20) clear;exit;;
+  0) clear;exit;;
   *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}";read && shahan;;
 esac
