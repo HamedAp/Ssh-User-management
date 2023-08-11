@@ -53,7 +53,7 @@ echo -e "  2)Install SSH-Calls"
 echo -e "  3)Install SSL For Domain"
 echo -e "  4)Change SSH Port"
 echo -e "  5)Block Iran IP ( Outgoing )"
-echo -e "  6)Install CisCo Anyconnect"
+echo -e "  6) "
 echo -e "  7)Forgot Password & ERROR-500"
 echo -e "  8)Backup Users"
 echo -e "  9)Remove ShaHaN"
@@ -72,7 +72,7 @@ case $n in
   3) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4);;
   4) echo  -ne "${YELLOW}Please enter new port: ";read new_port;sudo sed -i "s@Port $port@Port $new_port@g" /etc/ssh/sshd_config;systemctl restart sshd;echo "Port Changed Successfully${ENDCOLOR}";;
   5) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/newblockiran.sh --ipv4);;
-  6) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/c.sh --ipv4);;
+  6) shahan;;
   7) mysql -e "use ShaHaN;update setting set adminuser='' and adminpassword='' where id=1;drop user $adminuser@localhost;" ;bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4) ;;  
   8) mysqldump -u root ShaHaN > /root/bckup-new.sql || echo "New Backup Created : /root/bckup-new.sql";;
   9) rm -fr /var/www/html/*;;
