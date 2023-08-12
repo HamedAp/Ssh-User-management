@@ -289,6 +289,14 @@ sudo timedatectl set-timezone Asia/Tehran
 chmod 0644 /var/log/auth.log
 sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
 wait
+sudo wget -4 -O /var/www/html/n.apk https://github.com/HamedAp/Ssh-User-management/raw/main/n.apk &
+wait
+sudo wget -4 -O /var/www/html/h.apk https://github.com/HamedAp/Ssh-User-management/raw/main/h.apk &
+wait
+
+
+
+
 chmod +x /usr/local/bin/shahan
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
