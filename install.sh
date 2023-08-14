@@ -48,7 +48,7 @@ sed -i 's@#PrintMotd yes@PrintMotd yes@' /etc/ssh/sshd_config
 sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
 
 
-
+if command -v apt-get >/dev/null; then
 apt update -y
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
@@ -231,8 +231,9 @@ sudo wget -4 -O /var/www/html/n.apk https://github.com/HamedAp/Ssh-User-manageme
 wait
 sudo wget -4 -O /var/www/html/h.apk https://github.com/HamedAp/Ssh-User-management/raw/main/h.apk &
 wait
-
-
+elif command -v yum >/dev/null; then
+echo "Only Ubuntu Supported"
+fi
 
 
 chmod +x /usr/local/bin/shahan
