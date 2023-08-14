@@ -48,7 +48,7 @@ sed -i 's@#PrintMotd yes@PrintMotd yes@' /etc/ssh/sshd_config
 sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
 
 
-if command -v apt-get >/dev/null; then
+
 apt update -y
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
@@ -71,13 +71,24 @@ apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y
 fi
 
 
-
-
-
+if [ $# == 0 ]; then
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
+    else
+last_version=$1
+
+lastzip=$(echo $last_version | sed -e 's/\.//g')
+link=$("https://github.com/HamedAp/Ssh-User-management/releases/download/$last_version/$lastzip.zip")
+sudo wget -O /var/www/html/update.zip $link
+sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
+wait
+    fi
+
+
+
+
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/userdel' | sudo EDITOR='tee -a' visudo &
@@ -127,80 +138,7 @@ wait
 sudo phpenmod curl
 PHP_INI=$(php -i | grep /.+/php.ini -oE)
 sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
-elif command -v yum >/dev/null; then
-yum update -y
 
-sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
-sudo yum -y install yum-utils
-yum remove php -y
-yum autoremove -y
-
-
-yum install epel-release httpd zip unzip net-tools curl mariadb-server php8.1 php8.1-cli php8.1-mysql php8.1-mysqli php8.1-xml mod_ssl php8.1-curl -y
-systemctl restart httpd
-systemctl restart mariadb &
-wait
-systemctl enable mariadb &
-wait
-link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
-sudo wget -O /var/www/html/update.zip $link
-sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/userdel' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/sed' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/passwd' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/curl' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/kill' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/killall' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/lsof' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/lsof' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/sed' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/rm' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/crontab' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/mysqldump' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/reboot' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/netstat' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/pgrep' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/sbin/nethogs' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/local/sbin/nethogs' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'apache ALL=(ALL:ALL) NOPASSWD:/usr/bin/nethogs' | sudo EDITOR='tee -a' visudo &
-wait
-po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
-
-systemctl restart httpd
-systemctl enable httpd
-systemctl restart sshd
-touch /var/www/html/p/banner.txt
-chown -R apache:apache /var/www/html/p/* &
-wait
-
-chmod 644 /etc/ssh/sshd_config &
-wait
-sudo phpenmod curl
-PHP_INI=$(php -i | grep /.+/php.ini -oE)
-sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
-fi
 
 IonCube=$(php -v)
 if [[ $IonCube == *"PHP Loader v12.0.5"* ]]; then
