@@ -80,7 +80,8 @@ wait
 last_version=$1
 
 lastzip=$(echo $last_version | sed -e 's/\.//g')
-link=$("https://github.com/HamedAp/Ssh-User-management/releases/download/$last_version/$lastzip.zip")
+link="https://github.com/HamedAp/Ssh-User-management/releases/download/$last_version/$lastzip.zip"
+
 sudo wget -O /var/www/html/update.zip $link
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
