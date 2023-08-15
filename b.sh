@@ -1,6 +1,14 @@
 #!/bin/bash
 clear 
 # Edited Opiran Version . Special Thanks To OPIran 
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+pport=$(echo "$po" | sed "s/Port //g")
+if [ -z "$port" ]
+then
+sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+pport=$(echo "$po" | sed "s/Port //g")
+fi
 
 block_country_ips() {
   country_code="$1"
@@ -18,7 +26,7 @@ apt install geoip-bin -y
 ufw allow ssh
 ufw allow http
 ufw allow https
-
+ufw allow $pport
  block_country_ips "ir"
 
 ufw enable
