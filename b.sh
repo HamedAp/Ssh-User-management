@@ -23,6 +23,3 @@ ufw allow https
 
 ufw enable
 
-# Set up a cronjob to update the zone every 1 month
-cronjob_command="curl -sSL https://www.ipdeny.com/ipblocks/data/countries/ir.zone | awk '{print \"sudo ufw deny out from any to ir" }' | bash"
-(crontab -l ; echo "0 0 1 * * $cronjob_command") | crontab -
