@@ -1,4 +1,8 @@
- [![GitHub release (latest by date)](https://img.shields.io/github/v/release/HamedAp/Ssh-User-management)](https://github.com/HamedAp/Ssh-User-management/releases/latest) [![Downloads (Latest Release)](https://img.shields.io/github/downloads/HamedAp/Ssh-User-management/latest/total?label=latest%20release%20downloads)](https://github.com/HamedAp/Ssh-User-management/releases/latest) ![GitHub all releases](https://img.shields.io/github/downloads/HamedAp/Ssh-User-management/total?label=total%20downloads)
+ [![GitHub release (latest by date)](https://img.shields.io/github/v/release/HamedAp/Ssh-User-management)](https://github.com/HamedAp/Ssh-User-management/releases/latest) 
+ [![GitHub all releases](https://img.shields.io/github/downloads/HamedAp/Ssh-User-management/total?label=total%20downloads)](https://github.com/HamedAp/Ssh-User-management/releases/latest)
+[![Telegram Channel](https://img.shields.io/endpoint?label=Channel&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2FShaHaNPanel&color=blue)](https://t.me/ShaHaNPanel)
+[![Telegram Group](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fshahanpanel_gp)](https://t.me/shahanpanel_gp)
+
   
 # ShaHaN SSH Panel
 
