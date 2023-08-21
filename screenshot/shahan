@@ -71,7 +71,7 @@ case $n in
   2) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssh-calls.sh --ipv4);;
   3) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4);;
   4) echo  -ne "${YELLOW}Please enter new port: ";read new_port;sudo sed -i "s@Port $port@Port $new_port@g" /etc/ssh/sshd_config;systemctl restart sshd;echo "Port Changed Successfully${ENDCOLOR}";;
-  5) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/b.sh --ipv4);;
+  5) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/newblockiran.sh --ipv4);;
   6) shahan;;
   7) mysql -e "use ShaHaN;update setting set adminuser='' and adminpassword='' where id=1;drop user $adminuser@localhost;" ;bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4) ;;  
   8) mysqldump -u root ShaHaN > /root/bckup-new.sql || echo "New Backup Created : /root/bckup-new.sql";;
