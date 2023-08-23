@@ -13,6 +13,6 @@ bash /usr/local/bin/geo-update.sh
 
 iptables -A OUTPUT -m geoip -p tcp --dport 80 --src-cc IR -j DROP
 iptables -A OUTPUT -m geoip -p tcp --dport 443 --src-cc IR -j DROP
-iptables-save
+sudo iptables-save | sudo tee /etc/iptables/rules.v4
 clear
 printf "\nAll IRAN IP Blocked :)\n\n\n\n"
