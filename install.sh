@@ -144,7 +144,7 @@ sed -i 's/extension=intl/;extension=intl/' ${PHP_INI}
 
 
 IonCube=$(php -v)
-if [[ $IonCube == *"PHP Loader v12.0.5"* ]]; then
+if [[ $IonCube == *"PHP Loader v13"* ]]; then
   echo "IonCube Is Installed :)"
 else
 sed -i 's@zend_extension = /usr/local/ioncube/ioncube_loader_lin_8.1.so@@' /etc/php/8.1/cli/php.ini
@@ -248,7 +248,7 @@ printf "%s" "$(</var/www/html/shahan.txt)"
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Font_color_suffix="\033[0m"
 IonCube=$(php -v)
-if [[ $IonCube == *"PHP Loader v12.0.5"* ]]; then
+if [[ $IonCube == *"PHP Loader v13"* ]]; then
   echo -e "\n${Green_font_prefix}IonCube Is Installed${Font_color_suffix}"
 else
 echo -e "\n${Red_font_prefix}IonCube Is NOT Installed${Font_color_suffix}"
