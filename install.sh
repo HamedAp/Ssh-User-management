@@ -149,6 +149,7 @@ if [[ $IonCube == *"PHP Loader v12.0.5"* ]]; then
 else
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/ioncube-loader/main/install.sh --ipv4)
 fi
+sed -i 's@zend_extension = /usr/local/ioncube/ioncube_loader_lin_8.1.so@@' /etc/php/8.1/cli/php.ini
 
 Nethogs=$(nethogs -V)
 if [[ $Nethogs == *"version 0.8.7"* ]]; then
