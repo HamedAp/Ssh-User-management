@@ -1,9 +1,9 @@
 #!/bin/bash
-ipv4=$(curl -s ipv4.icanhazip.com)
+ipv4=$(curl --connect-timeout 5 -s ipv4.icanhazip.com)
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
-ipv6=$(curl https://ipv6.icanhazip.com)
+ipv6=$(curl --connect-timeout 5 -s ipv6.icanhazip.com)
 panelversion=$(cat /var/www/html/p/version.txt)
 RED="\e[31m"
 GREEN="\e[32m"
