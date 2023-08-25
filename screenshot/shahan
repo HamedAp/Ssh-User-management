@@ -61,7 +61,7 @@ echo -e "\n"
 echo -e "  10)${RED}Remove CisCo Anyconnect${ENDCOLOR}"
 echo -e "${CYAN}  11)${RED}Remove SSL${ENDCOLOR}"
 echo -e "${CYAN}  12)${RED}Remove Apache And PHP${ENDCOLOR}"
-
+echo -e "${CYAN}  13)${RED}Disable IPV6${ENDCOLOR}"
 echo -e "  0)Exit"
 
 echo -ne "${GREEN}\nSelect Operation : ${ENDCOLOR}" ;read n
@@ -79,6 +79,7 @@ case $n in
   10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4);;
   11) rm -fr /etc/apache2/conf-available/ssl-params.conf && rm -fr /etc/apache2/sites-available/default-ssl.conf && systemctl restart apache2;;
   12) apt purge php* php8* php7* apache2 -y && apt autoremove -y;;
+  10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/disableipv6.sh --ipv4);;
   0) clear;exit;;
-  *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}";read && shahan;;
+  *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}" ; read && shahan;;
 esac
