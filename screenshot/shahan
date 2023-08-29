@@ -67,19 +67,19 @@ echo -e "  0)Exit"
 echo -ne "${GREEN}\nSelect Operation : ${ENDCOLOR}" ;read n
 
 case $n in
-  1) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4);;
-  2) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssh-calls.sh --ipv4);;
-  3) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4);;
+  1) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4) ;;
+  2) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssh-calls.sh --ipv4) ;;
+  3) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4) ;;
   4) echo  -ne "${YELLOW}Please enter new port: ";read new_port;sudo sed -i "s@Port $port@Port $new_port@g" /etc/ssh/sshd_config;systemctl restart sshd;echo "Port Changed Successfully${ENDCOLOR}";;
-  5) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/newblockiran.sh --ipv4);;
-  6) shahan;;
+  5) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/newblockiran.sh --ipv4) ;;
+  6) shahan ;;
   7) mysql -e "use ShaHaN;update setting set adminuser='' and adminpassword='' where id=1;drop user $adminuser@localhost;" ;bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4) ;;  
   8) mysqldump -u root ShaHaN > /root/bckup-new.sql || echo "New Backup Created : /root/bckup-new.sql";;
   9) rm -fr /var/www/html/*;;
-  10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4);;
+  10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4) ;;
   11) rm -fr /etc/apache2/conf-available/ssl-params.conf && rm -fr /etc/apache2/sites-available/default-ssl.conf && systemctl restart apache2;;
   12) apt purge php* php8* php7* apache2 -y && apt autoremove -y;;
-  10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/disableipv6.sh --ipv4);;
+  10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/disableipv6.sh --ipv4) ;;
   0) clear;exit;;
   *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}" ; read && shahan;;
 esac
