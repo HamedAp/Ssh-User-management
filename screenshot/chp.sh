@@ -28,6 +28,10 @@ read panelPortt
 ufw allow $panelPortt/tcp
 systemctl restart apache2 
 
+sudo sed -i "s/80/$panelPortt/g" /var/www/html/p/config.php &
+wait 
+
+
 clear 
 echo -e "\nPanel Port Changed To : $panelPortt"
 echo -e "\nPanel Address : http://$ipv4:$panelPortt/p/index.php"
