@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 ipv4=$(curl -s ipv4.icanhazip.com)
-panelPortt=80
+panelPort=80
 echo -e "\nPlease input Panel Port ."
 printf "Default Port is \e[33m${panelPort}\e[0m, let it blank to use this Port: "
 read panelPortt
