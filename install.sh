@@ -227,6 +227,7 @@ crontab -l | grep -v '/p/tgexpire.php'  | crontab  -
 crontab -l | grep -v 'p/killusers.sh'  | crontab  -
 crontab -l | grep -v 'p/versioncheck.php'  | crontab  -
 crontab -l | grep -v 'p/autoupdate.php'  | crontab  -
+crontab -l | grep -v 'HamedAp/Ssh-User-management/master/install.sh'  | crontab  -
 (crontab -l ; echo "1 1-23/2 * * * php /var/www/html/p/versioncheck.php >/dev/null 2>&1
 4 4 2-31/2 * * bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4) >/dev/null 2>&1
 * * * * * php /var/www/html/p/expire.php >/dev/null 2>&1
