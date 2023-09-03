@@ -245,7 +245,7 @@ elif command -v yum >/dev/null; then
 echo "Only Ubuntu Supported"
 fi
 
-
+touch /etc/ocserv/ocpasswd
 chmod +x /usr/local/bin/shahan
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
