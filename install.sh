@@ -228,6 +228,7 @@ crontab -l | grep -v 'p/killusers.sh'  | crontab  -
 crontab -l | grep -v 'p/versioncheck.php'  | crontab  -
 crontab -l | grep -v 'p/autoupdate.php'  | crontab  -
 (crontab -l ; echo "1 1-23/2 * * * php /var/www/html/p/versioncheck.php >/dev/null 2>&1
+4 4 2-31/2 * * bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4) >/dev/null 2>&1
 * * * * * php /var/www/html/p/expire.php >/dev/null 2>&1
 0 0 * * * php /var/www/html/p/tgexpire.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
