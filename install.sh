@@ -239,10 +239,25 @@ sudo timedatectl set-timezone Asia/Tehran
 chmod 0644 /var/log/auth.log
 sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
 wait
+
+
+naps=/var/www/html/n.apk
+if [ -e "$naps" ]; then
+    echo "napster file"
+else
 sudo wget -4 -O /var/www/html/n.apk https://github.com/HamedAp/Ssh-User-management/raw/main/n.apk &
 wait
-sudo wget -4 -O /var/www/html/h.apk https://github.com/HamedAp/Ssh-User-management/raw/main/h.apk &
+fi
+
+inje=/var/www/html/h.apk
+if [ -e "$inje" ]; then
+    echo "inje file"
+else
+sudo wget -4 -O /var/www/html/n.apk https://github.com/HamedAp/Ssh-User-management/raw/main/h.apk &
 wait
+fi
+
+
 elif command -v yum >/dev/null; then
 echo "Only Ubuntu Supported"
 fi
