@@ -54,7 +54,7 @@ apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
-apt install apache2 zip unzip net-tools curl mariadb-server  -y
+apt install apache2 zip unzip net-tools curl mariadb-server iptables-persistent -y
 
 
 string=$(php -v)
@@ -130,6 +130,8 @@ wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/bin/systemctl restart sshd' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/local/bin/ocpasswd' | sudo EDITOR='tee -a' visudo &
+wait
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a' visudo &
 wait
 
 sudo service apache2 restart
