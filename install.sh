@@ -137,6 +137,8 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a'
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables-save' | sudo EDITOR='tee -a' visudo &
 wait
+sudo sed -i '/%sudo/s/^/#/' /etc/sudoers
+
 
 sudo service apache2 restart
 touch /var/www/html/p/banner.txt
