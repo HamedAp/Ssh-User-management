@@ -137,7 +137,8 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a'
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables-save' | sudo EDITOR='tee -a' visudo &
 wait
-sudo sed -i '/%sudo/s/^/#/' /etc/sudoers
+sudo sed -i '/%sudo/s/^/#/' /etc/sudoers &
+wait
 
 
 sudo service apache2 restart
