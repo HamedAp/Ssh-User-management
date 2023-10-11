@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 printf "\e[33m NOTICE : SERVER WILL Restart After Installation .\e[0m"
 dropport=222
 echo -e "\nPlease input DropBear Port."
