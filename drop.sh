@@ -23,5 +23,5 @@ ENDOFFILE
 sudo ufw allow $dropport
 sudo systemctl restart dropbear
 sudo systemctl enable dropbear
-
+clear
 echo "DROPBEAR Installed As Port : $dropport"
