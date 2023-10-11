@@ -273,6 +273,33 @@ fi
 
 touch /etc/ocserv/ocpasswd
 chmod +x /usr/local/bin/shahan
+
+JAILPATH='/jailed'
+mkdir -p $JAILPATH
+if ! getent group jailed > /dev/null 2>&1
+then
+  echo "creating jailed group"
+  groupadd -r jailed
+fi
+if ! grep -q "Match group jailed" /etc/ssh/sshd_config
+then
+  echo "Users Limited From SSH Login"
+  echo "
+Match group jailed
+  ChrootDirectory $JAILPATH
+  AllowTCPForwarding no
+  X11Forwarding no
+" >> /etc/ssh/sshd_config
+fi
+sudo chmod 400 /jailed/
+systemctl restart sshd
+
+
+
+
+
+
+
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
 
