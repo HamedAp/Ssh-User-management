@@ -1,4 +1,5 @@
 #!/bin/bash
+
 clear
 dropport=222
 echo -e "\nPlease input DropBear Port."
@@ -11,8 +12,8 @@ fi
 
 
 
-apt update -y
-apt install dropbear -y
+sudo apt update -y
+sudo apt install dropbear -y
 cat >  /etc/default/dropbear << ENDOFFILE
 NO_START=0
 DROPBEAR_PORT=$dropport
@@ -23,5 +24,5 @@ DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
 DROPBEAR_RECEIVE_WINDOW=65536
 ENDOFFILE
 sudo ufw allow $dropport
-sudo systemctl start dropbear
+sudo systemctl restart dropbear
 sudo systemctl enable dropbear
