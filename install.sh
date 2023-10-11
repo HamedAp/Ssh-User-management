@@ -287,8 +287,6 @@ then
   echo "
 Match group jailed
   ChrootDirectory $JAILPATH
-  AllowTCPForwarding no
-  X11Forwarding no
 " >> /etc/ssh/sshd_config
 fi
 sudo chmod 400 /jailed/
