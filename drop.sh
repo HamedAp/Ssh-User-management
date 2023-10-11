@@ -1,6 +1,5 @@
 #!/bin/bash
 clear
-printf "\e[33m NOTICE : SERVER WILL Restart After Installation .\e[0m"
 dropport=222
 echo -e "\nPlease input DropBear Port."
 printf "Default Port is \e[33m${dropport}\e[0m, let it blank to use this Port: "
@@ -26,4 +25,3 @@ ENDOFFILE
 sudo ufw allow $dropport
 sudo systemctl start dropbear
 sudo systemctl enable dropbear
-reboot
