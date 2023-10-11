@@ -9,9 +9,6 @@ if [[ -n "${dropporttmp}" ]]; then
     dropport=${dropporttmp}
 fi
 
-
-
-
 sudo apt update -y
 sudo apt install dropbear -y
 cat >  /etc/default/dropbear << ENDOFFILE
@@ -26,3 +23,5 @@ ENDOFFILE
 sudo ufw allow $dropport
 sudo systemctl restart dropbear
 sudo systemctl enable dropbear
+
+echo "DROPBEAR Installed As Port : $dropport"
