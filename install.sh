@@ -294,7 +294,10 @@ fi
 sudo chmod 400 /jailed/
 systemctl restart sshd
 
-
+sudo sed -i '/AllowTCPForwarding no/d' /etc/ssh/sshd_config &
+wait
+sudo sed -i '/X11Forwarding no/d' /etc/ssh/sshd_config &
+wait
 
 
 
