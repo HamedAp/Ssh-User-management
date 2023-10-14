@@ -49,7 +49,7 @@ sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
 
 
 if command -v apt-get >/dev/null; then
-apt update -y
+apt update -y -qq
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
 sudo apt -y install software-properties-common
@@ -178,7 +178,7 @@ file=/etc/systemd/system/videocall.service
 if [ -e "$file" ]; then
     echo "SSH-CALLS exists"
 else
-apt update -y
+
 apt install git cmake -y
 git clone https://github.com/ambrop72/badvpn.git /root/badvpn
 mkdir /root/badvpn/badvpn-build
