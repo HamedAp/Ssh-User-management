@@ -232,7 +232,7 @@ rm -fr /var/www/html/p/tarikh
 rm -fr /var/www/html/update.zip
 
 nowdate=$(date +"%Y-%m-%d-%H-%M-%S")
-mysqldump -u ${adminusername} --password=${adminpassword} ShaHaN > /var/www/html/p/backup/${nowdate}-full-installbackup.sql
+mysqldump -u root ShaHaN > /var/www/html/p/backup/${nowdate}-full-installbackup.sql
 
 crontab -l | grep -v '/p/expire.php'  | crontab  -
 crontab -l | grep -v '/p/posttraffic.php'  | crontab  -
@@ -277,7 +277,7 @@ echo "Only Ubuntu Supported"
 fi
 
 touch /etc/ocserv/ocpasswd
-chmod +x /usr/local/bin/shahan
+sudo chmod a+rx /usr/local/bin/shahan
 
 JAILPATH='/jailed'
 mkdir -p $JAILPATH
