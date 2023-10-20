@@ -108,6 +108,9 @@ LimitNOFILE=infinity
 WantedBy=multi-user.target
 EOL
 
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/bin/systemctl restart tuic' | sudo EDITOR='tee -a' visudo &
+wait
+
 systemctl daemon-reload
 systemctl enable tuic > /dev/null 2>&1
 systemctl start tuic
