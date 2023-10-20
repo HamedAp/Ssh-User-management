@@ -15,7 +15,7 @@ echo ""
 printshahan "Tuic For ShaHaN Panel :) By HamedAp" 0.1
 echo ""
 echo ""
-
+printshahan "Please Wait . . ." 0.1
 
 sudo apt update -y > /dev/null 2>&1
 sudo apt install curl jq openssl uuid-runtime -y > /dev/null 2>&1
