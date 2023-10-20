@@ -110,6 +110,9 @@ EOL
 
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/bin/systemctl restart tuic' | sudo EDITOR='tee -a' visudo &
 wait
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/uuidgen' | sudo EDITOR='tee -a' visudo &
+wait
+
 
 systemctl daemon-reload
 systemctl enable tuic > /dev/null 2>&1
