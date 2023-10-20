@@ -12,7 +12,7 @@ printshahan() {
 }
 clear
 echo ""
-printshahan "Tuic For ShaHaN Panel :) By HamedAp"
+printshahan "Tuic For ShaHaN Panel :) By HamedAp" 0.1
 echo ""
 echo ""
 
