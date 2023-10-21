@@ -14,7 +14,7 @@ sudo apt install dropbear -y
 cat >  /etc/default/dropbear << ENDOFFILE
 NO_START=0
 DROPBEAR_PORT=$dropport
-DROPBEAR_EXTRA_ARGS=""
+DROPBEAR_EXTRA_ARGS="-G -w"
 DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
 DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
 DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
