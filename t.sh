@@ -111,10 +111,7 @@ LimitNOFILE=infinity
 WantedBy=multi-user.target
 EOL
 
-echo 'www-data ALL=(ALL:ALL) NOPASSWD:/bin/systemctl restart tuic' | sudo EDITOR='tee -a' visudo &
-wait
-echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/uuidgen' | sudo EDITOR='tee -a' visudo &
-wait
+
 
 
 systemctl daemon-reload
