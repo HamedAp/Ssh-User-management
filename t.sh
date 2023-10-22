@@ -67,7 +67,7 @@ if [ -z "$UUID" ]; then
     exit 1
 fi
 
-cat > /root/tuic/config.json <<EOL
+cat > /var/www/config.json <<EOL
 {
   "server": "[::]:$port",
   "users": {
@@ -101,7 +101,7 @@ User=root
 WorkingDirectory=/root/tuic
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW
-ExecStart=/root/tuic/tuic-server -c /root/tuic/config.json
+ExecStart=/root/tuic/tuic-server -c /var/www/config.json
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=infinity
@@ -119,6 +119,6 @@ wait
 systemctl daemon-reload
 systemctl enable tuic > /dev/null 2>&1
 systemctl start tuic
-chmod 777 /root/tuic/config.json
-
+chmod 644 /var/www/config.json
+clear
 echo "TUIC Installed :)"
