@@ -66,6 +66,7 @@ if [ -z "$UUID" ]; then
     echo "Error: Failed to generate UUID."
     exit 1
 fi
+touch /var/www/config.json
 
 cat > /var/www/config.json <<EOL
 {
