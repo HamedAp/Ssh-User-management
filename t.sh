@@ -119,6 +119,6 @@ wait
 systemctl daemon-reload
 systemctl enable tuic > /dev/null 2>&1
 systemctl start tuic
-chmod 644 /var/www/config.json
+chmod 646 /var/www/config.json
 clear
 echo "TUIC Installed :)"
