@@ -66,7 +66,7 @@ if [ -z "$UUID" ]; then
     echo "Error: Failed to generate UUID."
     exit 1
 fi
-touch /var/www/config.json
+cp /root/tuic/config.json /var/www/config.json
 
 cat > /var/www/config.json <<EOL
 {
@@ -119,7 +119,7 @@ wait
 
 systemctl daemon-reload
 systemctl enable tuic > /dev/null 2>&1
-systemctl start tuic
+systemctl restart tuic
 chmod 646 /var/www/config.json
 clear
 echo "TUIC Installed :)"
