@@ -302,7 +302,12 @@ sudo sed -i '/X11Forwarding no/d' /etc/ssh/sshd_config &
 wait
 
 
-
+naps=/var/www/config.json
+if [ -e "$naps" ]; then
+echo "Hi"
+else
+bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/t.sh --ipv4)
+fi
 
 
 clear
