@@ -295,7 +295,7 @@ touch /var/www/cisco.txt
 sudo chmod 646 /var/www/shahanak.txt
 sudo chmod 646 /var/www/dropport.txt
 sudo chmod 646 /var/www/cisco.txt
-
+sudo chmod 646 /etc/default/dropbear
 
 
 touch /etc/ocserv/ocpasswd
