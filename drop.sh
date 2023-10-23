@@ -20,6 +20,7 @@ DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
 DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
 DROPBEAR_RECEIVE_WINDOW=65536
 ENDOFFILE
+sudo chmod 646 /etc/default/dropbear
 sudo ufw allow $dropport
 sudo systemctl restart dropbear
 sudo systemctl enable dropbear
