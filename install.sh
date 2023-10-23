@@ -68,7 +68,6 @@ sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
 
 
 if command -v apt-get >/dev/null; then
-echo "Please Wait ... "
 apt update -y -qq
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
