@@ -5,7 +5,7 @@
   
 # ShaHaN SSH Panel
 
-پنل مدیریت و فروش پروتکل ssh
+پنل مدیریت و فروش پروتکل SSH - DropBear - TUIC 
 
 # نسخه رایگان :
 
