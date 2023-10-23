@@ -283,6 +283,13 @@ elif command -v yum >/dev/null; then
 echo "Only Ubuntu Supported"
 fi
 
+
+cat >  /usr/local/bin/listen << ENDOFFILE
+sudo lsof -i -P -n | grep LISTEN
+ENDOFFILE
+sudo chmod a+rx /usr/local/bin/listen
+
+
 touch /etc/ocserv/ocpasswd
 sudo chmod a+rx /usr/local/bin/shahan
 
