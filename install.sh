@@ -289,6 +289,14 @@ sudo lsof -i -P -n | grep LISTEN
 ENDOFFILE
 sudo chmod a+rx /usr/local/bin/listen
 
+touch /var/www/shahanak.txt
+touch /var/www/dropport.txt
+touch /var/www/cisco.txt
+sudo chmod 646 /var/www/shahanak.txt
+sudo chmod 646 /var/www/dropport.txt
+sudo chmod 646 /var/www/cisco.txt
+
+
 
 touch /etc/ocserv/ocpasswd
 sudo chmod a+rx /usr/local/bin/shahan
