@@ -331,7 +331,10 @@ fi
 if ! grep -q "Match group jailed" /etc/ssh/sshd_config
 then
   echo "Users Limited From SSH Login"
-
+  echo "
+Match group jailed
+  ChrootDirectory $JAILPATH
+" >> /etc/ssh/sshd_config
 fi
 sudo chmod 400 /jailed/
 systemctl restart sshd
