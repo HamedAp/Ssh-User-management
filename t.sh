@@ -49,7 +49,7 @@ latest_release_version=$(curl -s "https://api.github.com/repos/EAimTY/tuic/relea
 download_url="https://github.com/EAimTY/tuic/releases/download/$latest_release_version/$latest_release_version-$server_arch"
 mkdir -p /root/tuic
 cd /root/tuic
-wget -O tuic-server -q "$download_url"
+wget -4 -O tuic-server -q "$download_url"
 if [[ $? -ne 0 ]]; then
     echo "Failed to download the tuic binary."
     exit 1
