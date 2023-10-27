@@ -15,12 +15,12 @@ else
 fi
 
 RandomHTML=$(a=(*); echo ${a[$((RANDOM % ${#a[@]}))]} 2>&1)
-msg_inf "Random template name: ${RandomHTML}"
+echo "Random template name: ${RandomHTML}"
 
 if [[ -d "${RandomHTML}" && -d "/var/www/html/" ]]; then
 	cp -a ${RandomHTML}/. "/var/www/html/"
  clear
-	msg_ok "Fake Website Installed ! :) "
+	echo  "Fake Website Installed ! :) "
 else
-	msg_err "Extraction error!"
+	echo "Extraction error!"
 fi
