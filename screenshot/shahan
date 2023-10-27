@@ -59,6 +59,7 @@ echo -e "  8)Backup Users"
 echo -e "  9)Remove ShaHaN"
 echo -e "  10)${GREEN}Install Cisco Anyconnect ${ENDCOLOR}"
 echo -e "  11)${GREEN}Install DropBear ${ENDCOLOR}"
+echo -e "  12)${GREEN}Install Fake Website ${ENDCOLOR}"
 echo -e "\n"
 echo -e "  20)${RED}Remove CisCo Anyconnect${ENDCOLOR}"
 echo -e "${CYAN}  21)${RED}Remove SSL${ENDCOLOR}"
@@ -81,6 +82,7 @@ case $n in
   9) rm -fr /var/www/html/*;;
   10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/c.sh --ipv4) ;;
   11) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/drop.sh --ipv4) ;;
+  12) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/fakewebsite.sh --ipv4) ;;
   20) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4) ;;
   21) rm -fr /etc/apache2/conf-available/ssl-params.conf && rm -fr /etc/apache2/sites-available/default-ssl.conf && systemctl restart apache2 ;;
   22) apt purge php* php8* php7* apache2 -y && apt autoremove -y ;;
