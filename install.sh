@@ -279,7 +279,7 @@ crontab -l | grep -v 'HamedAp/Ssh-User-management/master/install.sh'  | crontab 
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1" ) | crontab - &
 wait
 sudo timedatectl set-timezone Asia/Tehran
-chmod 0644 /var/log/auth.log
+chmod 0646 /var/log/auth.log
 sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
 wait
 
