@@ -17,13 +17,7 @@ printshahan "Please Wait . . ." 0.1
 echo ""
 echo ""
 
- echo "
-deb http://archive.ubuntu.com/ubuntu focal main restricted universe
-deb http://archive.ubuntu.com/ubuntu focal-updates main restricted universe
-deb http://security.ubuntu.com/ubuntu focal-security main restricted universe multiverse
-deb http://archive.canonical.com/ubuntu focal partner
 
-" > /etc/apt/sources.list
 
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
