@@ -288,6 +288,16 @@ sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/
 wait
 
 
+ind=/var/www/html/index.html
+if [ -e "$ind" ]; then
+    echo "index is ok"
+else
+cat >  /var/www/html/index.html << ENDOFFILE
+<meta http-equiv="refresh" content="0;url=http://google.com" />
+ENDOFFILE
+fi
+
+
 naps=/var/www/html/n.apk
 if [ -e "$naps" ]; then
     echo "napster file"
