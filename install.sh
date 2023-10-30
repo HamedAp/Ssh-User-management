@@ -8,6 +8,12 @@ printshahan() {
     done
     echo
 }
+sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+port=$(echo "$po" | sed "s/Port //g")
+adminuser=$(mysql -N -e "use ShaHaN; select adminuser from setting where id='1';")
+adminpass=$(mysql -N -e "use ShaHaN; select adminpassword from setting where id='1';")
+
 clear
 echo ""
 printshahan "ShaHaN Panel Installation :) By HamedAp" 0.1
@@ -17,13 +23,6 @@ printshahan "Please Wait . . ." 0.1
 echo ""
 echo ""
 
-
-
-sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
-po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
-adminuser=$(mysql -N -e "use ShaHaN; select adminuser from setting where id='1';")
-adminpass=$(mysql -N -e "use ShaHaN; select adminpassword from setting where id='1';")
 
 if [ "$adminuser" != "" ]; then
 adminusername=$adminuser
