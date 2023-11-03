@@ -5,7 +5,10 @@ panelPort=80
 echo -e "\nPlease input Panel Port ."
 printf "Default Port is \e[33m${panelPort}\e[0m, let it blank to use this Port: "
 read panelPortt
-   echo "<VirtualHost 0.0.0.0:$panelPortt>
+if [[ -n "${panelPortt}" ]]; then
+    panelPort=${panelPortt}
+fi
+   echo "<VirtualHost 0.0.0.0:$panelPort>
         ServerAdmin ShaHaN@localhost
         DocumentRoot /var/www/html/
         ErrorLog ${APACHE_LOG_DIR}/error.log
