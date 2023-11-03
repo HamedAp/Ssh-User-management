@@ -112,6 +112,8 @@ wait
 
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
 wait
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/useradd' | sudo EDITOR='tee -a' visudo &
+wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/userdel' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/sed' | sudo EDITOR='tee -a' visudo &
@@ -347,17 +349,20 @@ then
   echo "Users Limited From SSH Login"
   echo "
 Match group jailed
-  ChrootDirectory $JAILPATH
+ForceCommand /bin/false
 " >> /etc/ssh/sshd_config
 fi
-sudo chmod 400 /jailed/
-systemctl restart sshd
+
+
 
 sudo sed -i '/AllowTCPForwarding no/d' /etc/ssh/sshd_config &
+wait
+sudo sed -i 's@ChrootDirectory /jailed@ForceCommand /bin/false@' /etc/ssh/sshd_config &
 wait
 sudo sed -i '/X11Forwarding no/d' /etc/ssh/sshd_config &
 wait
 
+systemctl restart sshd
 
 naps=/var/www/config.json
 if [ -e "$naps" ]; then
