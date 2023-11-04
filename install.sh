@@ -288,7 +288,7 @@ sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/
 wait
 
 
-ind=/var/www/html/index.html
+ind='/var/www/html/index.html'
 if [ -e "$ind" ]; then
     echo "index is ok"
 else
@@ -298,7 +298,7 @@ ENDOFFILE
 fi
 
 
-naps=/var/www/html/n.apk
+naps='/var/www/html/n.apk'
 if [ -e "$naps" ]; then
     echo "napster file"
 else
@@ -306,7 +306,7 @@ sudo wget -4 -O /var/www/html/n.apk https://github.com/HamedAp/Ssh-User-manageme
 wait
 fi
 
-inje=/var/www/html/h.apk
+inje='/var/www/html/h.apk'
 if [ -e "$inje" ]; then
     echo "inje file"
 else
