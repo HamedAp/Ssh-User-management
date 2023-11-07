@@ -8,6 +8,16 @@ printshahan() {
     done
     echo
 }
+function isRoot() {
+	if [ "$EUID" -ne 0 ]; then
+		return 1
+	fi
+}
+if ! isRoot; then
+	echo "Sorry, you need to run this as root"
+	exit 1
+fi
+ 
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
