@@ -23,6 +23,24 @@ printshahan "Please Wait . . ." 0.1
 echo ""
 echo ""
 
+if [[ -e /etc/debian_version ]]; then
+		OS="debian"
+		source /etc/os-release
+		if [[ $ID == "ubuntu" ]]; then
+			OS="ubuntu"
+			MAJOR_UBUNTU_VERSION=$(echo "$VERSION_ID" | cut -d '.' -f1)
+			if [[ $MAJOR_UBUNTU_VERSION -lt 18 ]]; then
+				echo "⚠️ Your version of Ubuntu is not supported. Please Install On Ubuntu 20"
+				echo ""
+				exit
+			fi
+		else
+			echo "⚠️ Your OS not supported. Please Install On Ubuntu 20"
+			echo ""
+			exit
+		fi
+fi
+
 
 if [ "$adminuser" != "" ]; then
 adminusername=$adminuser
