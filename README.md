@@ -5,7 +5,7 @@
   
 # ShaHaN SSH Panel
 
-پنل مدیریت و فروش پروتکل SSH - DropBear - TUIC 
+پنل مدیریت و فروش پروتکل SSH - DropBear - TUIC - Cisco
 
 به زودی بقیه پروتکل ها اضافه می شود .
 
@@ -18,22 +18,25 @@
 حذف یوزر ✔️
 ویرایش یوزر✔️
 فعال غیرفعال کردن یوزر ✔️
-تنظیمات ✔️
+بکاپ و ریستور ✔️
 قطعی بعد از تاریخ انقضا ✔️
-محدودیت تک کاربر ✔️
+محدودیت چند کاربر ✔️
 ریست ترافیک ✔️
-قطعی بعد از ترافیک ✔️
-
+محدودیت ترافیک ✔️
+پورت DropBear ✔️
+تم دارک و لایت ✔️
+وضعیت فیلترینگ ✔️
+کاربران پرمصرف ✔️
 
 
 
 
 # نسخه حرفه ای 
 
-برنامه اختصاصی اندروید ( به زودی ) ✔️
-برنامه اختصاصی ویندوز ✔️
+برنامه اختصاصی اندروید ( با برند شخصی ) ✔️
+برنامه اختصاصی ویندوز ( با برند شخصی ) ✔️
 کاربر عمده ✔️
-ربات تلگرام ✔️
+ربات تلگرام ( فروش خودکار ) ✔️
 لاگ ورود خروج کاربران ✔️
 هدیه به کاربران ✔️
 حذف کاربران منقضی شده ✔️
@@ -42,21 +45,27 @@
 پیام اتصال ✔️
 توکن API ✔️
 مولتی سرور ✔️
-لاگ کلی ✔️
+پروتکل TUIC ✔️
+پروتکل سیسکو ✔️
+کانفیگ با QRCode ✔️
+فایروال اختصاصی ✔️
+ارسال پیام به کاربران تلگرام ✔️
+ارسال بکاپ روزانه به تلگرام ✔️
 
-# Telegram Channel: 
 
-https://t.me/Shahanpanel
 
- # حمایت قلبی 
+
+
+
+ # حمایت 
  
   ⭐️ جهت حمایت از ما به پروژه ستاره بدین
 
 بالا سمت راست ⭐️
 
-# Suggested OSs
+# سیستم عامل پیشنهادی : 
 
-- Ubuntu 20
+- اوبونتو 20 - Ubuntu 20
 
 
  
@@ -70,13 +79,14 @@ https://t.me/Shahanpanel
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4)
 ````
 
-جهت آپدیت پنل نیز همان دستور بالا را وارد کرده ( یوزر و پسورد ادمین نیاز نیست - یوزر ها پاک نمیشوند ) 
+بعد از نصب پنل میتوانید از دستور shahan در ترمینال خود استفاده کنید و گزینه های پنل رو انتخاب کنین . 
 
 
 
 
 
-# Telegram Bot Installer ( Only For Telegram Bot - Need Domain )
+
+# دریافت SSL برای پنل و ربات تلگرام ( نیازمند دامنه میباشد ) 
 
 در صورتی که دامنه دارید بعد از دستور نصب ( دقت کنید بعد از دستور نصب )  این دستور را بزنید .
 
@@ -85,13 +95,8 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4)
 ````
 
-# Block Iran IP Outgoing
 
-````
-bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/newblockiran.sh --ipv4)
-````
-
-# Preview
+# اسکرین شات
 ![](screenshot/login.jpg)
 ![](screenshot/index.jpg)
 ![](screenshot/edit.jpg)
