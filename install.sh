@@ -395,13 +395,7 @@ wait
 
 systemctl restart sshd
 
-naps=/var/www/config.json
-if [ -e "$naps" ]; then
-echo "Hi"
-else
-bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/t.sh --ipv4)
-fi
-chown www-data:www-data /var/www/config.json
+
 
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
