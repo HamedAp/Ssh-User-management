@@ -47,7 +47,10 @@ if [[ -e /etc/debian_version ]]; then
 		else
 			echo "⚠️ Your OS not supported. Please Install On Ubuntu 20"
 			echo ""
-			exit
+			read -rp "Please enter 'Y' to exit, or press the any key to continue installation ：" back2menuInput
+   			 case "$back2menuInput" in
+       			 y) exit 1 ;;
+   			 esac
 		fi
 fi
 
