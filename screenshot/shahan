@@ -94,7 +94,7 @@ case $n in
   22) apt purge php* php8* php7* apache2 -y && apt autoremove -y ;;
   23) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/disableipv6.sh --ipv4) ;;
   30) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/cpu.sh --ipv4) ;;
-  31) (crontab -l ; echo "4 4 * * * sudo bash /root/updateshahan.sh >/dev/null 2>&1" ) | crontab -  ;;
+  31) (crontab -l ; echo '4 4 * * * /bin/bash -c "sudo bash /root/updateshahan.sh"' ) | crontab -  ;;
   32) crontab -l | grep -v '/root/updateshahan.sh'  | crontab  - ;;
   0) clear;exit;;
   *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}" ; read && shahan ;;
