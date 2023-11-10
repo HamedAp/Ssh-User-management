@@ -311,7 +311,7 @@ crontab -l | grep -v '/p/checkipauto.php'  | crontab  -
 * * * * * php /var/www/html/p/expire.php >/dev/null 2>&1
 0 0 * * * php /var/www/html/p/tgexpire.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
-*/5 * * * * php /var/www/html/p/checkipauto.php >/dev/null 2>&1
+0 * * * * php /var/www/html/p/checkipauto.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1" ) | crontab - &
 wait
 sudo timedatectl set-timezone Asia/Tehran
