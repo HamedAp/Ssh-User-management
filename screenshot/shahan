@@ -68,6 +68,8 @@ echo -e "${CYAN}  22)${RED}Remove Apache And PHP${ENDCOLOR}"
 echo -e "${CYAN}  23)${RED}Disable IPV6${ENDCOLOR}"
 echo -e "\n"
 echo -e "${CYAN}  30)${RED}CPU Cooler${ENDCOLOR}"
+echo -e "${CYAN}  31)${GREEN}Enable AutoUpdate Panel${ENDCOLOR}"
+echo -e "${CYAN}  32)${GREEN}Disable AutoUpdate Panel${ENDCOLOR}"
 echo -e "\n"
 echo -e "  0)Exit"
 
@@ -92,6 +94,8 @@ case $n in
   22) apt purge php* php8* php7* apache2 -y && apt autoremove -y ;;
   23) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/disableipv6.sh --ipv4) ;;
   30) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/cpu.sh --ipv4) ;;
+  31) (crontab -l ; echo "4 4 * * * sudo bash /root/updateshahan.sh >/dev/null 2>&1" ) | crontab -  ;;
+  32) crontab -l | grep -v '/root/updateshahan.sh'  | crontab  - ;;
   0) clear;exit;;
   *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}" ; read && shahan ;;
 esac
