@@ -308,7 +308,6 @@ crontab -l | grep -v 'p/autoupdate.php'  | crontab  -
 crontab -l | grep -v 'HamedAp/Ssh-User-management/master/install.sh'  | crontab  -
 crontab -l | grep -v '/p/checkipauto.php'  | crontab  -
 (crontab -l ; echo "1 1-23/2 * * * php /var/www/html/p/versioncheck.php >/dev/null 2>&1
-4 4 * * * bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4)
 * * * * * php /var/www/html/p/expire.php >/dev/null 2>&1
 0 0 * * * php /var/www/html/p/tgexpire.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
@@ -319,7 +318,7 @@ sudo timedatectl set-timezone Asia/Tehran
 chmod 0646 /var/log/auth.log
 sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
 wait
-
+sudo wget -4 -O /root/updateshahan.sh https://github.com/HamedAp/Ssh-User-management/raw/main/install.sh
 
 ind='/var/www/html/index.html'
 if [ -e "$ind" ]; then
