@@ -7,8 +7,7 @@ read panelip
 echo -e "\nPlease Input Token Added In Main Panel."
 read token
 
-echo -e "\nPlease Input Limitation of Users Connection"
-read multilimit
+
 
 if command -v apt-get >/dev/null; then
 apt update -y &
@@ -98,8 +97,7 @@ sudo sed -i "s/serverip/$panelip/g" /var/www/html/token.php &
 wait 
 sudo sed -i "s/servertoken/$token/g" /var/www/html/token.php &
 wait 
-sudo sed -i "s/10619/$multilimit/g" /var/www/html/token.php &
-wait 
+
 chown www-data:www-data /var/www/html/* &
 wait
 
@@ -108,6 +106,6 @@ crontab -l | grep -v 'killusers.sh'  | crontab  -
 
 (crontab -l ; echo "* * * * * php /var/www/html/syncdb.php >/dev/null 2>&1
 * * * * * bash /var/www/html/killusers.sh >/dev/null 2>&1" ) | crontab - &
-
-
-
+php /var/www/html/syncdb.php
+clear
+echo "Multiserver Installed :) "
