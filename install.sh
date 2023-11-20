@@ -24,6 +24,10 @@ port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use ShaHaN; select adminuser from setting where id='1';")
 adminpass=$(mysql -N -e "use ShaHaN; select adminpassword from setting where id='1';")
 
+sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
+wait
+sudo chmod a+rx /usr/local/bin/shahan
+
 clear
 echo ""
 printshahan "ShaHaN Panel Installation :) By HamedAp" 0.1
@@ -316,8 +320,7 @@ crontab -l | grep -v '/p/checkipauto.php'  | crontab  -
 wait
 sudo timedatectl set-timezone Asia/Tehran
 chmod 0646 /var/log/auth.log
-sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
-wait
+
 sudo wget -4 -O /root/updateshahan.sh https://github.com/HamedAp/Ssh-User-management/raw/main/install.sh
 
 ind='/var/www/html/index.html'
@@ -367,7 +370,7 @@ sudo chmod 646 /etc/default/dropbear
 
 
 touch /etc/ocserv/ocpasswd
-sudo chmod a+rx /usr/local/bin/shahan
+
 
 JAILPATH='/jailed'
 mkdir -p $JAILPATH
