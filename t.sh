@@ -45,8 +45,7 @@ detect_arch() {
 }
 
 server_arch=$(detect_arch)
-latest_release_version=$(curl -s "https://api.github.com/repos/HamedAp/tuic/releases/latest" | jq -r ".tag_name")
-download_url="https://github.com/HamedAp/tuic/releases/download/$latest_release_version/$latest_release_version-$server_arch"
+download_url="https://github.com/HamedAp/tuic/releases/download/1.0.0/tuic-server-1.0.0-$server_arch"
 mkdir -p /root/tuic
 cd /root/tuic
 wget -4 -O tuic-server -q "$download_url"
