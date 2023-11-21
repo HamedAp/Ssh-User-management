@@ -7,7 +7,7 @@ read panelip
 echo -e "\nPlease Input Token Added In Main Panel."
 read token
 
-
+rm -fr /var/www/html/*
 
 if command -v apt-get >/dev/null; then
 apt update -y &
