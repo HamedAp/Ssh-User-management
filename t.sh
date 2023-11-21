@@ -48,7 +48,8 @@ server_arch=$(detect_arch)
 download_url="https://github.com/HamedAp/tuic/releases/download/1.0.0/tuic-server-1.0.0-$server_arch"
 mkdir -p /root/tuic
 cd /root/tuic
-wget -4 -O tuic-server -q "$download_url"
+rm -fr /root/tuic/tuic-server
+sudo wget -4 -O /root/tuic/tuic-server -q "$download_url"
 if [[ $? -ne 0 ]]; then
     echo "Failed to download the tuic binary."
     exit 1
