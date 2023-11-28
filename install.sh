@@ -28,6 +28,10 @@ sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/
 wait
 sudo chmod a+rx /usr/local/bin/shahan
 
+sudo wget -4 -O /usr/local/bin/shahancheck https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahancheck &
+wait
+sudo chmod a+rx /usr/local/bin/shahancheck
+
 clear
 echo ""
 printshahan "ShaHaN Panel Installation :) By HamedAp" 0.1
