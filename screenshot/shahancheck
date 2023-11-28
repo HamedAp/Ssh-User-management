@@ -1,0 +1,111 @@
+#!/bin/bash
+# By Hamed Ap :) Have Fun :)
+ipv4=$(curl --connect-timeout 5 -s ipv4.icanhazip.com)
+sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+po=$(cat /etc/ssh/sshd_config | grep "^Port")
+port=$(echo "$po" | sed "s/Port //g")
+ipv6=$(curl --connect-timeout 5 -s ipv6.icanhazip.com)
+panelversion=$(cat /var/www/html/p/version.txt)
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m"
+CYAN="\e[36m"
+ENDCOLOR="\e[0m"
+phpversion=$(php -v)
+Ciscoporttmp=$(sudo lsof -i -P -n | grep -i LISTEN | grep ocserv | awk '{print $9}')
+Ciscoport=$(echo $Ciscoporttmp | sed 's/[^0-9]*//g' )
+dropbearporttmp=$(sudo lsof -i -P -n | grep -i LISTEN | grep dropbear | grep -v "127" | awk '{if(!seen[$9]++)print $9}')
+dropport=$(echo $dropbearporttmp | sed 's/[^0-9]*//g' )
+tuicporttmp=$(netstat -tulnp | grep "tuic-server" | grep -v "0.0.0.0" | awk '{print $4}')
+tuicport=$(echo $tuicporttmp | sed 's/[^0-9]*//g' )
+
+apacheipv=$(sudo lsof -i -P -n | grep -i LISTEN | grep apache2 |  awk '{if(!seen[$5]++)print $5}')
+
+
+clear
+echo -e "${YELLOW}********** ShaHaN CHECKER **********"
+echo -e "${YELLOW}-------- Server Details -----------"
+echo -e "${GREEN}IPv4 : $ipv4"
+echo -e "Ipv6 : $ipv6"
+echo -e "SSH port : $port"
+echo -e "DropBear port : $dropport"
+echo -e "Cisco port : $Ciscoport"
+echo -e "TUIC port : $tuicport"
+echo -e "Panel Version : $panelversion"
+echo -e "${RED}-----------------------------------\n"
+
+if [[ $apacheipv == *"IPv4"* ]]; then
+echo -e "${GREEN}Apache IPV4 = OK${ENDCOLOR}"
+else
+echo -e "${RED}Apache IPV4 = NOT V4${ENDCOLOR}"
+fi
+
+SERVICE="mysqld"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}Database = OK${ENDCOLOR}"
+else
+    echo -e "${RED}Database = NOT Running${ENDCOLOR}"
+fi
+
+SERVICE="apache2"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}Apache2 = OK${ENDCOLOR}"
+else
+    echo -e "${RED}Apache2 = NOT Running${ENDCOLOR}"
+fi
+
+if [[ $phpversion == *"8.1"* ]]; then
+    echo -e "${GREEN}PHP = 8.1${ENDCOLOR}"
+else
+    echo -e "${RED}PHP = NOT 8.1${ENDCOLOR}"
+fi
+
+SERVICE="badvpn-udpgw"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}SSH-Calls = OK${ENDCOLOR}"
+else
+    echo -e "${RED}SSH-Calls = NOT Running${ENDCOLOR}"
+fi
+
+SERVICE="tuic-server"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}TUIC = OK${ENDCOLOR}"
+else
+    echo -e "${RED}TUIC = NOT Running${ENDCOLOR}"
+fi
+
+SERVICE="dropbear"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}Dropbear = OK${ENDCOLOR}"
+else
+    echo -e "${RED}Dropbear = NOT Running${ENDCOLOR}"
+fi
+
+SERVICE="ocserv-main"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}CISCO = OK${ENDCOLOR}"
+else
+    echo -e "${RED}CISCO = NOT Running${ENDCOLOR}"
+fi
+
+SERVICE="nethogs"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}NetHogs = OK${ENDCOLOR}"
+else
+    echo -e "${RED}NetHogs = NOT Running${ENDCOLOR}"
+fi
+
+IonCube=$(php -v)
+if [[ $IonCube == *"PHP Loader v13"* ]]; then
+    echo -e "${GREEN}IonCube = OK${ENDCOLOR}"
+else
+    echo -e "${RED}IonCube = NOT Running${ENDCOLOR}"
+fi
