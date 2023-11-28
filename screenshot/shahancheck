@@ -46,7 +46,15 @@ if pgrep -x "$SERVICE" >/dev/null
 then
     echo -e "${GREEN}Database = OK${ENDCOLOR}"
 else
+
+SERVICE="mariadbd"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}Database = OK${ENDCOLOR}"
+else
     echo -e "${RED}Database = NOT Running${ENDCOLOR}"
+fi
+
 fi
 
 SERVICE="apache2"
