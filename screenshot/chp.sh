@@ -20,11 +20,11 @@ fi
 
    echo "Listen 0.0.0.0:$panelPortt
 <IfModule ssl_module>
-        Listen 443
+        Listen 0.0.0.0:443
 </IfModule>
 
 <IfModule mod_gnutls.c>
-        Listen 443
+        Listen 0.0.0.0:443
 </IfModule>" > /etc/apache2/ports.conf
 
 
