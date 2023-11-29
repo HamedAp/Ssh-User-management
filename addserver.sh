@@ -104,8 +104,7 @@ wait
 crontab -l | grep -v '/syncdb.php'  | crontab  -
 crontab -l | grep -v 'killusers.sh'  | crontab  -
 
-(crontab -l ; echo "* * * * * php /var/www/html/syncdb.php >/dev/null 2>&1
-* * * * * bash /var/www/html/killusers.sh >/dev/null 2>&1" ) | crontab - &
+(crontab -l ; echo "* * * * * php /var/www/html/syncdb.php >/dev/null 2>&1" ) | crontab - &
 php /var/www/html/syncdb.php
 clear
 echo "Multiserver Installed :) "
