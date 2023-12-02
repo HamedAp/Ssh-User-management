@@ -306,6 +306,8 @@ rm -fr /var/www/html/update.zip
 nowdate=$(date +"%Y-%m-%d-%H-%M-%S")
 mysqldump -u root ShaHaN > /var/www/html/p/backup/${nowdate}-full-installbackup.sql
 
+rnd=$(shuf -i 1-59 -n 1)
+
 crontab -l | grep -v '/p/expire.php'  | crontab  -
 crontab -l | grep -v '/p/posttraffic.php'  | crontab  -
 crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
@@ -313,6 +315,7 @@ crontab -l | grep -v '/p/tgexpire.php'  | crontab  -
 crontab -l | grep -v 'p/killusers.sh'  | crontab  -
 crontab -l | grep -v 'p/versioncheck.php'  | crontab  -
 crontab -l | grep -v 'p/autoupdate.php'  | crontab  -
+crontab -l | grep -v 'p/checkipauto.php'  | crontab  -
 crontab -l | grep -v 'ocserv'  | crontab  -
 crontab -l | grep -v 'tuic'  | crontab  -
 crontab -l | grep -v 'HamedAp/Ssh-User-management/master/install.sh'  | crontab  -
@@ -323,7 +326,8 @@ crontab -l | grep -v '/p/checkipauto.php'  | crontab  -
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1
 5 * * * * systemctl restart ocserv >/dev/null 2>&1
-7 * * * * systemctl restart tuic >/dev/null 2>&1" ) | crontab - &
+7 * * * * systemctl restart tuic >/dev/null 2>&1
+$rnd * * * * php /var/www/html/p/checkipauto.php" ) | crontab - &
 wait
 sudo timedatectl set-timezone Asia/Tehran
 chmod 0646 /var/log/auth.log
