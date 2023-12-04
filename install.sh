@@ -343,12 +343,12 @@ cat >  /var/www/html/index.html << ENDOFFILE
 ENDOFFILE
 fi
 
-
+rm -fr /var/www/html/n.apk
 naps='/var/www/html/n.apk'
 if [ -e "$naps" ]; then
     echo "napster file"
 else
-sudo wget -4 -O /var/www/html/n.apk https://github.com/HamedAp/Ssh-User-management/raw/main/n.apk &
+sudo wget -4 -O /var/www/html/n.apk https://shahanpanel.online/n.apk &
 wait
 fi
 
