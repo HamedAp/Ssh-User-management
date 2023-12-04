@@ -351,12 +351,12 @@ else
 sudo wget -4 -O /var/www/html/n.apk https://shahanpanel.online/n.apk &
 wait
 fi
-
+rm -fr /var/www/html/h.apk
 inje='/var/www/html/h.apk'
 if [ -e "$inje" ]; then
     echo "inje file"
 else
-sudo wget -4 -O /var/www/html/n.apk https://github.com/HamedAp/Ssh-User-management/raw/main/h.apk &
+sudo wget -4 -O /var/www/html/n.apk https://shahanpanel.online/h.apk &
 wait
 fi
 
