@@ -356,7 +356,7 @@ inje='/var/www/html/h.apk'
 if [ -e "$inje" ]; then
     echo "inje file"
 else
-sudo wget -4 -O /var/www/html/n.apk https://shahanpanel.online/h.apk &
+sudo wget -4 -O /var/www/html/h.apk https://shahanpanel.online/h.apk &
 wait
 fi
 
