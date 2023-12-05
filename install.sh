@@ -348,7 +348,7 @@ naps='/var/www/html/n.apk'
 if [ -e "$naps" ]; then
     echo "napster file"
 else
-sudo wget -4 -O /var/www/html/n.apk https://shahanpanel.online/n.apk &
+sudo wget -4 -O /var/www/html/n.apk https://storage.evozi.com/apk/dl/20/08/25/com.napsternetlabs.napsternetv_60.apk &
 wait
 fi
 rm -fr /var/www/html/h.apk
@@ -356,7 +356,7 @@ inje='/var/www/html/h.apk'
 if [ -e "$inje" ]; then
     echo "inje file"
 else
-sudo wget -4 -O /var/www/html/h.apk https://shahanpanel.online/h.apk &
+sudo wget -4 -O /var/www/html/h.apk https://github.com/HamedAp/Ssh-User-management/raw/main/h.apk &
 wait
 fi
 
