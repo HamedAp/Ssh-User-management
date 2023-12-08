@@ -35,9 +35,6 @@ echo "Iran IP Blocking ( List 3 ) : $line_number / $allcount "
 done
 ufw allow from any to any port $pport proto tcp
 sudo ufw allow $pport
-sudo ufw allow ssh
-sudo ufw allow 80
-sudo ufw allow 22
-sudo ufw allow 443
-sudo ufw allow 7300
+sudo ufw allow 1:65000/tcp
+sudo ufw allow 1:65000/udp
 ufw enable
