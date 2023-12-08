@@ -325,8 +325,6 @@ crontab -l | grep -v '/p/checkipauto.php'  | crontab  -
 0 0 * * * php /var/www/html/p/tgexpire.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1
-5 * * * * systemctl restart ocserv >/dev/null 2>&1
-7 * * * * systemctl restart tuic >/dev/null 2>&1
 $rnd * * * * php /var/www/html/p/checkipauto.php" ) | crontab - &
 wait
 sudo timedatectl set-timezone Asia/Tehran
