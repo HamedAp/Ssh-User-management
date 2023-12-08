@@ -81,7 +81,7 @@ case $n in
   4) echo  -ne "${YELLOW}Please enter new port: ";read new_port;sudo sed -i "s@Port $port@Port $new_port@g" /etc/ssh/sshd_config;systemctl restart sshd;echo "Port Changed Successfully${ENDCOLOR}";;
   5) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/block-iran.sh --ipv4) ;;
   6) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/screenshot/chp.sh --ipv4) ;;
-  7) mysql -e "use ShaHaN;update setting set adminuser='' and adminpassword='' where id=1;drop user $adminuser@localhost;" || echo "Please Install Panel Again" ;;  
+  7) mysql -e "use ShaHaN;update setting set adminuser='' and adminpassword='' where id=1";mysql -e "drop user $adminuser@localhost;" || echo "Please Install Panel Again" ;;  
   8) mysqldump -u root ShaHaN > /root/bckup-new.sql || echo "New Backup Created : /root/bckup-new.sql" ;;
   9) rm -fr /var/www/html/*;;
   10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/c.sh --ipv4) ;;
