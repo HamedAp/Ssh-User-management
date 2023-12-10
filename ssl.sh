@@ -1,4 +1,29 @@
 #!/bin/bash
+printshahan() {
+    text="$1"
+    delay="$2"
+    for ((i=0; i<${#text}; i++)); do
+        echo -n "${text:$i:1}"
+        sleep $delay
+    done
+    echo
+}
+function isRoot() {
+	if [ "$EUID" -ne 0 ]; then
+		return 1
+	fi
+}
+if ! isRoot; then
+	echo "Sorry, you need to run this as root"
+	exit 1
+fi
+
+clear
+echo ""
+printshahan "ShaHaN Panel SSL Installation :) By HamedAp" 0.1
+echo ""
+echo ""
+
 
 read -rp "Please enter the pointed domain / sub-domain name: " domain
 systemctl stop apache2
