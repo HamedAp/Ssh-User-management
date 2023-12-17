@@ -99,7 +99,8 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 # اسکرین شات
 ![](screenshot/login.jpg)
 ![](screenshot/index.jpg)
-![](screenshot/edit.jpg)
-![](screenshot/log.jpg)
+![](screenshot/status.jpg)
+![](screenshot/filter.jpg)
+![](screenshot/userlog.jpg)
 
 
