@@ -376,9 +376,11 @@ sudo chmod a+rx /usr/local/bin/listen
 touch /var/www/shahanak.txt
 touch /var/www/dropport.txt
 touch /var/www/cisco.txt
+touch /var/www/userlog.txt
 sudo chmod 646 /var/www/shahanak.txt
 sudo chmod 646 /var/www/dropport.txt
 sudo chmod 646 /var/www/cisco.txt
+sudo chmod 646 /var/www/userlog.txt
 sudo chmod 646 /etc/default/dropbear
 
 
