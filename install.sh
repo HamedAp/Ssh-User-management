@@ -315,6 +315,7 @@ crontab -l | grep -v '/p/posttraffic.php'  | crontab  -
 crontab -l | grep -v '/p/synctraffic.php'  | crontab  -
 crontab -l | grep -v '/p/tgexpire.php'  | crontab  -
 crontab -l | grep -v 'p/killusers.sh'  | crontab  -
+crontab -l | grep -v '/p/log/log.sh'  | crontab  -
 crontab -l | grep -v 'p/versioncheck.php'  | crontab  -
 crontab -l | grep -v 'p/autoupdate.php'  | crontab  -
 crontab -l | grep -v 'p/checkipauto.php'  | crontab  -
@@ -327,6 +328,7 @@ crontab -l | grep -v '/p/checkipauto.php'  | crontab  -
 0 0 * * * php /var/www/html/p/tgexpire.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1
+* * * * * bash /var/www/html/p/log/log.sh >/dev/null 2>&1
 $rnd * * * * php /var/www/html/p/checkipauto.php" ) | crontab - &
 wait
 sudo timedatectl set-timezone Asia/Tehran
