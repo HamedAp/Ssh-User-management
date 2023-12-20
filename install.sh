@@ -112,7 +112,7 @@ apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
-apt install apache2 zip unzip net-tools curl mariadb-server iptables-persistent -y
+apt install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
 
 
 string=$(php -v)
