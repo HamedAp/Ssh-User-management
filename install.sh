@@ -308,7 +308,7 @@ rm -fr /var/www/html/p/tarikh
 rm -fr /var/www/html/update.zip
 
 nowdate=$(date +"%Y-%m-%d-%H-%M-%S")
-mysqldump -u root ShaHaN > /var/www/html/p/backup/${nowdate}-full-installbackup.sql
+mysqldump -u root ShaHaN > /var/www/html/p/backup/${nowdate}-update.sql
 
 rnd=$(shuf -i 1-59 -n 1)
 
