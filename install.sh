@@ -215,6 +215,8 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/uuidgen' | sudo EDITOR='tee -a' v
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/who' | sudo EDITOR='tee -a' visudo &
 wait
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/vnstat' | sudo EDITOR='tee -a' visudo &
+wait
 
 sudo sed -i '/%sudo/s/^/#/' /etc/sudoers &
 wait
