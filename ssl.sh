@@ -140,7 +140,7 @@ done
     fi
     
     ipv4=$(curl -s ipv4.icanhazip.com)
-    ipv6=$(curl -s6m8 ip.gs)
+    ipv6=""
     
     echo ""
     yellow "When using port 80 application mode, first point your domain name to your server's public IP address. Otherwise the certificate application will be failed!"
