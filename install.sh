@@ -337,10 +337,7 @@ chmod 0646 /var/log/auth.log
 
 sudo wget -4 -O /root/updateshahan.sh https://github.com/HamedAp/Ssh-User-management/raw/main/install.sh
 
-ind='/var/www/html/index.html'
-if [ -e "$ind" ]; then
-    echo "index is ok"
-else
+if  grep -q "Apache2 Ubuntu Default Page" "/var/www/html/index.html" ; then
 cat >  /var/www/html/index.html << ENDOFFILE
 <meta http-equiv="refresh" content="0;url=http://google.com" />
 ENDOFFILE
