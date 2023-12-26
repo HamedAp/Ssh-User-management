@@ -18,5 +18,6 @@ echo ""
 echo ""
 
 rm -fr /var/log/auth.log
+rm -fr /var/www/userlog.txt
 systemctl restart syslog
 reboot
