@@ -325,6 +325,7 @@ crontab -l | grep -v 'ocserv'  | crontab  -
 crontab -l | grep -v 'tuic'  | crontab  -
 crontab -l | grep -v 'HamedAp/Ssh-User-management/master/install.sh'  | crontab  -
 crontab -l | grep -v '/p/checkipauto.php'  | crontab  -
+crontab -l | grep -v '/p/log/clear.sh'  | crontab  -
 (crontab -l ; echo "1 * * * * php /var/www/html/p/versioncheck.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/expire.php >/dev/null 2>&1
 0 0 * * * php /var/www/html/p/tgexpire.php >/dev/null 2>&1
