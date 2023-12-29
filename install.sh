@@ -17,7 +17,8 @@ if ! isRoot; then
 	echo "Sorry, you need to run this as root"
 	exit 1
 fi
- 
+panelporttmp=$(sudo lsof -i -P -n | grep -i LISTEN | grep apache2 | awk '{if(!seen[$9]++)print $9;exit}')
+panelportt=$(echo $panelporttmp | sed 's/[^0-9]*//g' )
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
@@ -295,6 +296,12 @@ sudo sed -i "s/adminuser/$adminusername/g" /var/www/html/p/config.php &
 wait 
 sudo sed -i "s/adminpass/$adminpassword/g" /var/www/html/p/config.php &
 wait 
+
+sed -i '/panelport/d' /var/www/html/p/config.php
+cat >>  /var/www/html/p/config.php << ENDOFFILE
+\$panelport = "$panelportt";
+ENDOFFILE
+
 
 
 php /var/www/html/p/restoretarikh.php
