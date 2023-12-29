@@ -1,5 +1,15 @@
 #!/bin/bash
 #By Hamed Ap
+
+sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
+wait
+sudo chmod a+rx /usr/local/bin/shahan
+
+sudo wget -4 -O /usr/local/bin/shahancheck https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahancheck &
+wait
+sudo chmod a+rx /usr/local/bin/shahancheck
+
+
 ipv4=$(curl -s ipv4.icanhazip.com)
 echo -e "\nPlease Input Panel IP/Domain That Has License."
 read panelip
