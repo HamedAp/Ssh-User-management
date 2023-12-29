@@ -6,6 +6,7 @@ po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 ipv6=$(curl --connect-timeout 5 -s ipv6.icanhazip.com)
 panelversion=$(cat /var/www/html/p/version.txt)
+panelport=$(sudo lsof -i -P -n | grep -i LISTEN | grep apache2 | awk '{if(!seen[$9]++)print $9;exit}')
 RED="\e[31m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
@@ -33,6 +34,7 @@ echo -e "DropBear port : $dropport"
 echo -e "Cisco port : $Ciscoport"
 echo -e "TUIC port : $tuicport"
 echo -e "Panel Version : $panelversion"
+echo -e "Panel Port : $panelport"
 echo -e "${RED}-----------------------------------\n"
 
 if [[ $apacheipv == *"IPv4"* ]]; then
