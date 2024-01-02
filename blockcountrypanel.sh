@@ -71,7 +71,7 @@ cat > "/usr/share/ipban/ipban-update.sh" << EOF
 	/usr/lib/xtables-addons/xt_geoip_build -D /usr/share/xt_geoip/
 	cd && rm /usr/share/xt_geoip/dbip-country-lite.csv
 	printf "\n\n" | sysctl -p && systemctl restart systemd-networkd.service iptables.service ip6tables.service
- 	sleep 1 && clear && echo "Updated IPBAN!" 
+ 	
 EOF
 chmod +x "/usr/share/ipban/ipban-update.sh"
 
@@ -83,3 +83,12 @@ iptables -A INPUT -p tcp --dport 443 -m geoip --src-cc "IR" -j "ACCEPT"
 iptables -A INPUT -p tcp --dport 443  -j "DROP"
 iptables -A INPUT -p icmp -j DROP
 
+url="https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/i.txt"
+allcount=$(curl -s "$url" | wc -l)
+curl -s "$url"  | while IFS= read -r line; do
+((++line_number))
+iptables -A OUTPUT -p tcp  --dport 80 -d $line -j DROP
+iptables -A OUTPUT -p tcp  --dport 443 -d $line -j DROP
+clear
+echo "Iran IP Blocking ( List 1 ) : $line_number / $allcount "
+done
