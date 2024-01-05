@@ -3,7 +3,7 @@
 [![Telegram Group](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fshahanpanel_gp)](https://t.me/shahanpanel_gp)
 
   
-# ShaHaN SSH Panel
+# ShaHaN VPN Panel ( Multi Protocol )
 
 پنل مدیریت و فروش پروتکل SSH - DropBear - TUIC - Cisco
 
