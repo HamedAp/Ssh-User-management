@@ -387,6 +387,11 @@ sudo chmod 646 /etc/default/dropbear
 
 touch /etc/ocserv/ocpasswd
 
+echo "
+Include "/var/www/banner.conf"
+" >> /etc/ssh/sshd_config
+sed -i '/Match User/d' /etc/sshd/sshd_config
+sed -i '/Banner /d' /etc/sshd/sshd_config
 
 JAILPATH='/jailed'
 mkdir -p $JAILPATH
