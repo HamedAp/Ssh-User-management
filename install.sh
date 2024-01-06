@@ -17,6 +17,7 @@ if ! isRoot; then
 	echo "Sorry, you need to run this as root"
 	exit 1
 fi
+export PATH=$PATH:/usr/local/bin
 panelporttmp=$(sudo lsof -i -P -n | grep -i LISTEN | grep apache2 | awk '{if(!seen[$9]++)print $9;exit}')
 panelportt=$(echo $panelporttmp | sed 's/[^0-9]*//g' )
 sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
