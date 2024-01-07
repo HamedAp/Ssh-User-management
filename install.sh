@@ -420,7 +420,7 @@ wait
 
 systemctl restart sshd
 
-
+mkdir /var/www/config/
 
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
