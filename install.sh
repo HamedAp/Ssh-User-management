@@ -354,7 +354,7 @@ naps='/var/www/html/n.apk'
 if [ -e "$naps" ]; then
     echo "napster file"
 else
-sudo wget -4 -O /var/www/html/n.apk https://storage.evozi.com/apk/dl/20/08/25/com.napsternetlabs.napsternetv_60.apk &
+sudo wget -4 -O /var/www/html/n.apk https://shahanpanel.online/n.apk &
 wait
 fi
 rm -fr /var/www/html/h.apk
