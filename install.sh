@@ -349,7 +349,6 @@ cat >  /var/www/html/index.html << ENDOFFILE
 ENDOFFILE
 fi
 
-rm -fr /var/www/html/n.apk
 naps='/var/www/html/n.apk'
 if [ -e "$naps" ]; then
     echo "napster file"
