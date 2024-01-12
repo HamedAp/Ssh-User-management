@@ -17,12 +17,12 @@ ENDCOLOR="\e[0m"
 phpversion=$(php -v)
 Ciscoporttmp=$(sudo lsof -i -P -n | grep -i LISTEN | grep ocserv | awk '{if(!seen[$9]++)print $9}')
 Ciscoport=$(echo $Ciscoporttmp | sed 's/[^0-9]*//g' )
-dropbearporttmp=$(sudo lsof -i -P -n | grep -i LISTEN | grep dropbear | grep -v "127" | awk '{if(!seen[$9]++)print $9}')
+dropbearporttmp=$(sudo lsof -i -P -n | grep -i LISTEN | grep dropbear | grep -v "127" | awk '{if(!seen[$9]++)print $9;exit}')
 dropport=$(echo $dropbearporttmp | sed 's/[^0-9]*//g' )
-tuicporttmp=$(netstat -tulnp | grep "tuic-server" | grep -v "0.0.0.0" | awk '{if(!seen[$4]++)print $4}')
+tuicporttmp=$(netstat -tulnp | grep "tuic-server" | grep -v "0.0.0.0" | awk '{if(!seen[$4]++)print $4;exit}')
 tuicport=$(echo $tuicporttmp | sed 's/[^0-9]*//g' )
 
-apacheipv=$(sudo lsof -i -P -n | grep -i LISTEN | grep apache2 |  awk '{if(!seen[$5]++)print $5}')
+apacheipv=$(sudo lsof -i -P -n | grep -i LISTEN | grep apache2 |  awk '{if(!seen[$5]++)print $5;exit}')
 
 
 clear
