@@ -18,5 +18,5 @@ iptables -A INPUT -m set --match-set whitelist src -j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -I INPUT 1 -i lo -j ACCEPT
 iptables -A INPUT -j DROP
-
+clear 
 echo "Blocked All Country Incomming Except Iran :) "
