@@ -1,33 +1,21 @@
 #!/bin/bash
 clear 
-# Edited Opiran Version . Special Thanks To OPIran 
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
-pport=$(echo "$po" | sed "s/Port //g")
-if [ -z "$port" ]
-then
-sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
-po=$(cat /etc/ssh/sshd_config | grep "^Port")
-pport=$(echo "$po" | sed "s/Port //g")
-fi
+port=$(echo "$po" | sed "s/Port //g")
 
-block_country_ips() {
-  country_code="$1"
-  echo -e "\e[33mBlocking IPs from $country_code\e[0m"
-  curl -sSL "https://www.ipdeny.com/ipblocks/data/countries/$country_code.zone" | awk '{print "sudo ufw deny out from any to " $1}' | bash
-}
+sudo apt install iptables ipset -y
 
-# Install required packages
-apt update
-apt install ufw libapache2-mod-geoip geoip-database -y
-a2enmod geoip
-apt install geoip-bin -y
+sudo wget -4 -O /root/iranip.txt https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/iranip.txt &
+wait
 
-# Open desired ports
-ufw allow ssh
-ufw allow http
-ufw allow https
-ufw allow $pport
- block_country_ips "ir"
+iptables -F
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --dport $port -j ACCEPT
+ipset create whitelist hash:net
+while read line; do ipset add whitelist $line; done < /root/iranip.txt
+iptables -A INPUT -m set --match-set whitelist src -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -I INPUT 1 -i lo -j ACCEPT
+iptables -A INPUT -j DROP
 
-ufw enable
-
+echo "Blocked All Country Incomming Except Iran :) "
