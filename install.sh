@@ -112,7 +112,8 @@ if command -v apt-get >/dev/null; then
 apt update -y
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
-sudo apt -y install software-properties-common php8.1-mbstring
+sudo apt -y install software-properties-common
+
 sudo add-apt-repository ppa:ondrej/php -y
 apt install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
 
@@ -129,8 +130,9 @@ apt remove php* -y
 apt remove php -y
 apt autoremove -y
 apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y
-fi
 
+fi
+sudo apt install  php8.1-mbstring -y
 
 if [ $# == 0 ]; then
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
