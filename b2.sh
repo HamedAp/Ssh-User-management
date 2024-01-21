@@ -21,5 +21,5 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -I INPUT 1 -i lo -j ACCEPT
 iptables -A INPUT -j DROP
 clear 
-echo "Blocked Iran Ip :)\n"
+echo "Blocked Iran Ip :)"
 echo "Blocked Panel From Outside :)"
