@@ -351,14 +351,13 @@ cat >  /var/www/html/index.html << ENDOFFILE
 ENDOFFILE
 fi
 
-naps='/var/www/html/n.apk'
-if [ -e "$naps" ]; then
+
+if [ -e "/var/www/html/n.apk" ]; then
     echo "napster file"
 else
-sudo wget -4 -O /var/www/html/n.apk https://shahanpanel.online/n.apk &
-wait
+#sudo wget -4 -O /var/www/html/n.apk https://shahanpanel.online/n.apk &
+#wait
 fi
-rm -fr /var/www/html/h.apk
 inje='/var/www/html/h.apk'
 if [ -e "$inje" ]; then
     echo "inje file"
