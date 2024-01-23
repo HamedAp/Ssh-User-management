@@ -355,6 +355,7 @@ fi
 if [ -e "/var/www/html/n.apk" ]; then
     echo "napster file"
 else
+echo "1"
 #sudo wget -4 -O /var/www/html/n.apk https://shahanpanel.online/n.apk &
 #wait
 fi
