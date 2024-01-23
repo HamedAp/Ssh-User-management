@@ -308,7 +308,7 @@ cat >>  /var/www/html/p/config.php << ENDOFFILE
 \$panelport = "$panelportt";
 ENDOFFILE
 
-mysql -e "use ShaHaN;update users set userport='';"
+mysql -e "use ShaHaN;update users set userport='' where userport like '39%';"
 
 php /var/www/html/p/restoretarikh.php
 rm -fr /var/www/html/update.zip
