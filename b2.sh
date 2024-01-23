@@ -20,6 +20,7 @@ iptables -A OUTPUT -m set --match-set whitelist src -j DROP
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -I INPUT 1 -i lo -j ACCEPT
 iptables -A INPUT -j DROP
+sudo iptables-save
 clear 
 echo "Blocked Iran Ip :)"
 echo "Blocked Panel From Outside :)"
