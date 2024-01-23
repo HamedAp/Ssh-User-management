@@ -231,6 +231,8 @@ sudo service apache2 restart
 touch /var/www/html/p/banner.txt
 chown -R www-data:www-data /var/www/html/p/* &
 wait
+chown www-data:www-data /var/www/config &
+wait
 
 systemctl restart mariadb &
 wait
