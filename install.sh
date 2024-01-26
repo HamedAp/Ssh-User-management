@@ -34,6 +34,18 @@ sudo wget -4 -O /usr/local/bin/shahancheck https://raw.githubusercontent.com/Ham
 wait
 sudo chmod a+rx /usr/local/bin/shahancheck
 
+if grep -q -E '^shahansources$' /etc/apt/sources.list; then
+    echo "all good, do nothing";
+else
+    echo "deb http://archive.ubuntu.com/ubuntu focal main restricted universe
+deb http://archive.ubuntu.com/ubuntu focal-updates main restricted universe
+deb http://security.ubuntu.com/ubuntu focal-security main restricted universe multiverse
+deb http://archive.canonical.com/ubuntu focal partner" >> /etc/apt/sources.list
+fi
+
+
+
+
 clear
 echo ""
 printshahan "ShaHaN Panel Installation :) By HamedAp" 0.1
