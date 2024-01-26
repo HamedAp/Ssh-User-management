@@ -243,6 +243,8 @@ sudo service apache2 restart
 touch /var/www/html/p/banner.txt
 chown -R www-data:www-data /var/www/html/p/* &
 wait
+
+mkdir /var/www/config/
 chown www-data:www-data /var/www/config &
 wait
 
@@ -440,7 +442,7 @@ wait
 
 systemctl restart sshd
 
-mkdir /var/www/config/
+
 
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
