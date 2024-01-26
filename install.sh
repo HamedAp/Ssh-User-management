@@ -288,7 +288,8 @@ useradd -m videocall
 systemctl enable videocall
 systemctl start videocall
 fi
-
+mysql -e "drop USER '${adminusername}'@'localhost'" &
+wait
 
 mysql -e "create database ShaHaN;" &
 wait
@@ -308,7 +309,8 @@ cat >>  /var/www/html/p/config.php << ENDOFFILE
 \$panelport = "$panelportt";
 ENDOFFILE
 
-mysql -e "use ShaHaN;update users set userport='' where userport like '39%';"
+mysql -e "use ShaHaN;update users set userport='' where userport like '39%';" &
+wait
 
 php /var/www/html/p/restoretarikh.php
 rm -fr /var/www/html/update.zip
