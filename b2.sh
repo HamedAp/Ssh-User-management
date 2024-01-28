@@ -3,7 +3,7 @@ clear
 po=$(cat /etc/ssh/sshd_config | grep "^Port")
 port=$(echo "$po" | sed "s/Port //g")
 
-sudo apt install curl unzip perl xtables-addons-common libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl iptables-persistent ipset -y 
+sudo apt install libtext-csv-xs-perl libmoosex-types-netaddr-ip-perl iptables-persistent ipset -y 
 
 sudo wget -4 -O /root/iranip.txt https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/iranip.txt &
 wait
