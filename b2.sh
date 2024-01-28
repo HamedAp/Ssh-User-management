@@ -11,6 +11,7 @@ wait
 iptables -F
 
 ipset create shahaniran hash:net
+ipset flush shahaniran
 while read line; do ipset add shahaniran $line; done < /root/iranip.txt
 iptables -A INPUT -p tcp --dport 22 -m set --match-set shahaniran src -j ACCEPT
 iptables -A INPUT -p tcp --dport $port -m set --match-set shahaniran src -j ACCEPT
