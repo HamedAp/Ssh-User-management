@@ -21,7 +21,7 @@ iptables -A OUTPUT -m set --match-set shahaniran src -j DROP
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -I INPUT 1 -i lo -j ACCEPT
 iptables -A INPUT -j DROP
-sudo iptables-save
+sudo iptables-save | sudo tee /etc/iptables/rules.v4
 
 echo "Blocked Iran Ip :)"
 echo "Blocked Panel From Outside :)"
