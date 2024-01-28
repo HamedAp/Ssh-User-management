@@ -17,7 +17,9 @@ iptables -A INPUT -p tcp --dport 22 -m set --match-set shahaniran src -j ACCEPT
 iptables -A INPUT -p tcp --dport $port -m set --match-set shahaniran src -j ACCEPT
 iptables -A INPUT -p tcp -m set --match-set shahaniran src -j ACCEPT
 iptables -A INPUT -m set --match-set shahaniran src -j ACCEPT
-iptables -A OUTPUT -m set --match-set shahaniran src -j DROP
+#iptables -A OUTPUT -m set --match-set shahaniran src -j DROP
+iptables -A OUTPUT -p tcp --dport 443 -m set --match-set shahaniran dst -j DROP
+iptables -A OUTPUT -p tcp --dport 80 -m set --match-set shahaniran dst -j DROP
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -I INPUT 1 -i lo -j ACCEPT
 iptables -A INPUT -j DROP
