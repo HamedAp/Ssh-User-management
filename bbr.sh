@@ -1,7 +1,7 @@
 if grep -q -E '^shahanbbr$' /etc/sysctl.conf; then
     echo "all good, do nothing";
 else
-    echo "shahanbbr
+    echo "#shahanbbr
 net.ipv4.tcp_window_scaling = 1
 net.core.rmem_max = 16777216
 net.core.wmem_max = 16777216
