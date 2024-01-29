@@ -2,7 +2,7 @@
 # By HamedAp 
 # Dozdi Nakon Lanati :) Adam Bash .
 
-sudo adduser $1  --shell /usr/sbin/nologin &
+sudo adduser $1  --shell /usr/sbin/nologin --force-badname&
 wait
 
 sudo passwd $1 <<!
