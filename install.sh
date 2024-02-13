@@ -61,26 +61,6 @@ printshahan "Please Wait . . ." 0.1
 echo ""
 echo ""
 
-if [[ -e /etc/debian_version ]]; then
-		OS="debian"
-		source /etc/os-release
-		if [[ $ID == "ubuntu" ]]; then
-			OS="ubuntu"
-			MAJOR_UBUNTU_VERSION=$(echo "$VERSION_ID" | cut -d '.' -f1)
-			if [[ $MAJOR_UBUNTU_VERSION -lt 18 ]]; then
-				echo "⚠️ Your version of Ubuntu is not supported. Please Install On Ubuntu 20"
-				echo ""
-				exit
-			fi
-		else
-			echo "⚠️ Your OS not supported. Please Install On Ubuntu 20"
-			echo ""
-			read -rp "Please enter 'Y' to exit, or press the any key to continue installation ：" back2menuInput
-   			 case "$back2menuInput" in
-       			 y) exit 1 ;;
-   			 esac
-		fi
-fi
 
 
 if [ "$adminuser" != "" ]; then
