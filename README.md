@@ -5,7 +5,7 @@
   
 # ShaHaN VPN Panel ( Multi Protocol )
 
-پنل مدیریت و فروش پروتکل SSH - DropBear - TUIC - Cisco
+پنل مدیریت و فروش پروتکل SSH - DropBear - TUIC - Cisco - Openvpn
 
 به زودی بقیه پروتکل ها اضافه می شود .
 
