@@ -8,6 +8,16 @@ printshahan() {
     done
     echo
 }
+
+CPU=$(uname -i)
+
+if [ "$CPU" = "aarch64" ]; then
+echo "Your Cpu Type Not Supported !! Please Wait For Update :) "
+exit
+fi
+
+
+
 clear
 echo ""
 printshahan "Openvpn Installation :) By HamedAp" 0.1
