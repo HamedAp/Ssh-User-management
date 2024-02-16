@@ -68,6 +68,7 @@ echo -e "  20 ${RED}Remove CisCo Anyconnect${ENDCOLOR}"
 echo -e "  21 ${RED}Remove SSL${ENDCOLOR}"
 echo -e "  22 ${RED}Remove Apache And PHP${ENDCOLOR}"
 echo -e "  23 ${RED}Disable IPV6${ENDCOLOR}"
+echo -e "  24 ${RED}Remove SSL${ENDCOLOR}"
 echo -e " "
 echo -e "  30 ${CYAN}CPU Cooler${ENDCOLOR}"
 echo -e "  31 ${CYAN}Enable AutoUpdate Panel${ENDCOLOR}"
@@ -98,6 +99,7 @@ case $n in
   21) rm -fr /etc/apache2/conf-available/ssl-params.conf && rm -fr /etc/apache2/sites-available/default-ssl.conf && systemctl restart apache2 ;;
   22) apt purge php* php8* php7* apache2 -y && apt autoremove -y ;;
   23) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/disableipv6.sh --ipv4) ;;
+  24) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/removessl.sh --ipv4) ;;
   30) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/cpu.sh --ipv4) ;;
   31) (crontab -l ; echo '4 4 * * * /bin/bash -c "sudo bash /root/updateshahan.sh"' ) | crontab -  ;;
   32) crontab -l | grep -v '/root/updateshahan.sh'  | crontab  - ;;
