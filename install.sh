@@ -354,7 +354,7 @@ sudo wget -4 -O /root/updateshahan.sh https://github.com/HamedAp/Ssh-User-manage
 
 if  grep -q "Apache2 Ubuntu Default Page" "/var/www/html/index.html" ; then
 cat >  /var/www/html/index.html << ENDOFFILE
-<meta http-equiv="refresh" content="0;url=http://google.com" />
+<meta http-equiv="refresh" content="0;url=http://p30download.ir" />
 ENDOFFILE
 fi
 
