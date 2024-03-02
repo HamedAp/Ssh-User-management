@@ -431,6 +431,8 @@ wait
 
 systemctl restart sshd
 
+rm -fr /var/www/html/p/favicon.ico
+rm -fr /var/www/html/p/favicon.svg
 
 
 clear
