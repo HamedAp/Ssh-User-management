@@ -20,7 +20,7 @@ activeuser=$(mysql -s -N -e  "use ShaHaN;select COUNT(*) from users where enable
 deactiveuser=$(mysql -s -N -e  "use ShaHaN;select COUNT(*) from users where enable not like 'true';")
 online=$(sudo lsof -i  -n | grep " 4u" | grep -v root | grep ESTABLISHED | grep -v "videocall" | wc -l)
 
-
+cpuarch=$(uname -i)
 
 
 
@@ -33,6 +33,7 @@ clear
 echo -e "${YELLOW}********** ShaHaN SSH PANEL **********"
 echo -e "${RED}-----------------------------------"
 echo -e "${YELLOW}-------- Server Details -----------"
+echo -e "${GREEN}CPU Arch : $cpuarch"
 echo -e "${GREEN}IPv4 : $ipv4"
 echo -e "Ipv6 : $ipv6"
 echo -e "SSH port : $port"
@@ -71,6 +72,7 @@ echo -e "  30 ${CYAN}CPU Cooler${ENDCOLOR}"
 echo -e "  31 ${CYAN}Enable AutoUpdate Panel${ENDCOLOR}"
 echo -e "  32 ${CYAN}Disable AutoUpdate Panel${ENDCOLOR}"
 echo -e "  33 ${CYAN}Check Shahan Panel${ENDCOLOR}"
+echo -e "  34 ${GREEN}Enable Ipv6${ENDCOLOR}"
 echo -e " "
 echo -e "  0)Exit"
 
@@ -96,12 +98,13 @@ case $n in
   20) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4) ;;
   21) rm -fr /etc/apache2/conf-available/ssl-params.conf && rm -fr /etc/apache2/sites-available/default-ssl.conf && systemctl restart apache2 ;;
   22) apt purge php* php8* php7* apache2 -y && apt autoremove -y ;;
-  23) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/disableipv6.sh --ipv4) ;;
-  24) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/removessl.sh --ipv4) ;;
-  30) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/cpu.sh --ipv4) ;;
+  23) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/disableipv6.sh --ipv4) ;;
+  24) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removessl.sh --ipv4) ;;
+  30) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/cpu.sh --ipv4) ;;
   31) (crontab -l ; echo '4 4 * * * /bin/bash -c "sudo bash /root/updateshahan.sh"' ) | crontab -  ;;
   32) crontab -l | grep -v '/root/updateshahan.sh'  | crontab  - ;;
   33) shahancheck ;;
+  34) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/enableipv6.sh) ;;
   0) clear;exit;;
   *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}" ; read && shahan ;;
 esac
