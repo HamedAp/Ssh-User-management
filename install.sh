@@ -111,6 +111,8 @@ sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
 
 
 if command -v apt-get >/dev/null; then
+echo "#shahanDNS
+nameserver 8.8.8.8" > /etc/resolv.conf
 apt update -y
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
