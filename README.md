@@ -2,6 +2,15 @@
 [![Telegram Channel](https://img.shields.io/endpoint?label=Channel&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2FShaHaNPanel&color=blue)](https://t.me/ShaHaNPanel)
 [![Telegram Group](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fshahanpanel_gp)](https://t.me/shahanpanel_gp)
 [![GitHub all releases](https://img.shields.io/github/downloads/HamedAp/Ssh-User-management/total?label=total%20downloads)](https://github.com/HamedAp/Ssh-User-management/releases/latest)
+
+Protocol | Add | Delete | OnlineUsers | LimitUsers | Traffic | MultiServer | Backup/Restore | API | Qrcode 
+--- | --- | --- | --- |--- |--- |--- |--- |--- |--- 
+SSh | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
+DropBear | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
+TUIC | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ 
+Cisco | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ 
+Openvpn | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌
+Soon | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ 
   
 # ShaHaN VPN Panel ( Multi Protocol )
 
