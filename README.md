@@ -4,7 +4,7 @@
 [![GitHub all releases](https://img.shields.io/github/downloads/HamedAp/Ssh-User-management/total?label=total%20downloads)](https://github.com/HamedAp/Ssh-User-management/releases/latest)
 
 # This Table Will Update :)
-Protocol | Add | Delete | OnlineUsers | LimitUsers | Traffic | MultiServer | Backup/Restore | API | Qrcode 
+Protocol | Add | Delete | Online | LimitUsers | Traffic | MultiServer | Backup | API | Qrcode 
 --- | --- | --- | --- |--- |--- |--- |--- |--- |--- 
 SSh | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
 DropBear | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
