@@ -37,6 +37,9 @@ sudo chmod a+rx /usr/local/bin/shahancheck
 sudo wget -4 -O /root/tls.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/tls.sh.x &
 wait
 sudo chmod a+rx /root/tls.sh.x
+sudo wget -4 -O /root/shadow.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/shadow.sh.x &
+wait
+sudo chmod a+rx /root/shadow.sh.x
 
 if grep -q -E '^shahansources$' /etc/apt/sources.list; then
     echo "all good, do nothing";
