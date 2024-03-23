@@ -59,7 +59,7 @@ echo -e "  12 ${GREEN}Install TUIC ${ENDCOLOR}"
 echo -e "  13 ${GREEN}Install Openvpn ${ENDCOLOR}"
 echo -e "  14 ${GREEN}Install Fake Website ${ENDCOLOR}"
 echo -e "  15 ${GREEN}Install BBR ${ENDCOLOR}"
-echo -e " "
+echo -e "  16 ${GREEN}Install ShadowSocks ${ENDCOLOR}"
 echo -e "  19 ${YELLOW}Install SSH-TLS ${ENDCOLOR}"
 echo -e " "
 echo -e "  20 ${RED}Remove CisCo Anyconnect${ENDCOLOR}"
@@ -95,6 +95,7 @@ case $n in
   13) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/open.sh --ipv4) ;;
   14) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/fakewebsite.sh --ipv4) ;;
   15) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/bbr.sh --ipv4) ;;
+  16) /root/shadow.sh.x ;;
   19) /root/tls.sh.x ;;
   20) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4) ;;
   21) rm -fr /etc/apache2/conf-available/ssl-params.conf && rm -fr /etc/apache2/sites-available/default-ssl.conf && systemctl restart apache2 ;;
