@@ -11,7 +11,7 @@ DropBear | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅
 TUIC | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ 
 Cisco | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ 
 Openvpn | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌
-Soon | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ 
+Shadowsocks | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ 
   
 # ShaHaN VPN Panel ( Multi Protocol )
 
