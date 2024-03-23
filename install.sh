@@ -160,7 +160,8 @@ wait
     fi
 
 
-
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/etc/init.d/shadowsocks' | sudo EDITOR='tee -a' visudo &
+wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/sshd' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/adduser' | sudo EDITOR='tee -a' visudo &
