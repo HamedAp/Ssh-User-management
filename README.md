@@ -96,16 +96,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 
 
 
-# دریافت SSL برای پنل و ربات تلگرام ( نیازمند دامنه میباشد ) 
-
-در صورتی که دامنه دارید بعد از دستور نصب ( دقت کنید بعد از دستور نصب )  این دستور را بزنید .
-
-
-````
-bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4)
-````
-
-
 # اسکرین شات
 ![](screenshot/login.png)
 ![](screenshot/index.png)
