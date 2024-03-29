@@ -476,7 +476,7 @@ fi
 
 
 
-printf "\n\n\nPanel Link : http://${ipv4}/p/index.php"
+printf "\n\n\nPanel Link : http://${ipv4}/p"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
