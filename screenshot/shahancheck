@@ -106,6 +106,22 @@ else
     echo -e "${RED}CISCO = NOT Running${ENDCOLOR}"
 fi
 
+SERVICE="ovpm"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}OpenVpn = OK${ENDCOLOR}"
+else
+    echo -e "${RED}OpenVpn = NOT Running${ENDCOLOR}"
+fi
+
+SERVICE="sslh"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}SSH-TLS = OK${ENDCOLOR}"
+else
+    echo -e "${RED}SSH-TLS = NOT Running${ENDCOLOR}"
+fi
+
 SERVICE="nethogs"
 if pgrep -x "$SERVICE" >/dev/null
 then
