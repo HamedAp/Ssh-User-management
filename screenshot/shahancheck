@@ -121,6 +121,13 @@ then
 else
     echo -e "${RED}SSH-TLS = NOT Running${ENDCOLOR}"
 fi
+SERVICE="ssserver"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    echo -e "${GREEN}ShadowSocks = OK${ENDCOLOR}"
+else
+    echo -e "${RED}ShadowSocks = NOT Running${ENDCOLOR}"
+fi
 
 SERVICE="nethogs"
 if pgrep -x "$SERVICE" >/dev/null
