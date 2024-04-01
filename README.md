@@ -7,7 +7,7 @@
 Protocol | Add | Delete | Online | LimitUsers | Traffic | MultiServer | Backup | API | Qrcode 
 --- | --- | --- | --- |--- |--- |--- |--- |--- |--- 
 SSh | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
-DropBear | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
+DropBear | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ 
 TUIC | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ 
 Cisco | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ 
 Openvpn | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌
