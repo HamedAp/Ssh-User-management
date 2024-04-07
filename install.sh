@@ -238,6 +238,7 @@ wait
 sudo sed -i '/%sudo/s/^/#/' /etc/sudoers &
 wait
 
+echo "application/json      json" >> /etc/mime.types
 
 sudo service apache2 restart
 touch /var/www/html/p/banner.txt
