@@ -446,8 +446,6 @@ systemctl restart sshd
 rm -fr /var/www/html/p/favicon.ico
 rm -fr /var/www/html/p/favicon.svg
 
-apt install php-cgi -y
-
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
 
