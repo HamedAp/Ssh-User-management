@@ -1,7 +1,4 @@
 #!/bin/bash
-echo "#shahanDNS
-nameserver 8.8.8.8" > /etc/resolv.conf
-
 printshahan() {
     text="$1"
     delay="$2"
@@ -117,7 +114,8 @@ sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
 
 
 if command -v apt-get >/dev/null; then
-
+echo "#shahanDNS
+nameserver 8.8.8.8" > /etc/resolv.conf
 apt update -y
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
@@ -127,8 +125,7 @@ apt install shc gcc -y
 sudo add-apt-repository ppa:ondrej/php -y
 apt install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
 
-apt install php8.1-sqlite3 php8.1-mbstring php8.1-cgi -y
-apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y
+apt install php8.1-sqlite3 -y
 
 string=$(php -v)
 if [[ $string == *"8.1"* ]]; then
@@ -144,6 +141,7 @@ apt autoremove -y
 apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y
 
 fi
+sudo apt install  php8.1-mbstring -y
 
 if [ $# == 0 ]; then
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
