@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "#shahanDNS
+nameserver 8.8.8.8" > /etc/resolv.conf
 printshahan() {
     text="$1"
     delay="$2"
@@ -114,8 +116,7 @@ sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
 
 
 if command -v apt-get >/dev/null; then
-echo "#shahanDNS
-nameserver 8.8.8.8" > /etc/resolv.conf
+
 apt update -y
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
@@ -159,7 +160,8 @@ sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
     fi
 
-
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/php-cgi' | sudo EDITOR='tee -a' visudo &
+wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/etc/init.d/shadowsocks' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/sshd' | sudo EDITOR='tee -a' visudo &
@@ -446,6 +448,7 @@ systemctl restart sshd
 rm -fr /var/www/html/p/favicon.ico
 rm -fr /var/www/html/p/favicon.svg
 
+apt install php8.1-cgi -y
 
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
