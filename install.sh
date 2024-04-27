@@ -449,6 +449,7 @@ rm -fr /var/www/html/p/favicon.ico
 rm -fr /var/www/html/p/favicon.svg
 
 apt install php8.1-cgi -y
+apt install php8.1-sqlite3 -y
 
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
