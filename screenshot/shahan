@@ -63,7 +63,7 @@ echo -e "  16 ${GREEN}Install ShadowSocks ${ENDCOLOR}"
 echo -e "  19 ${YELLOW}Install SSH-TLS ${ENDCOLOR}"
 echo -e " "
 echo -e "  20 ${RED}Remove CisCo Anyconnect${ENDCOLOR}"
-echo -e "  21 ${RED}Remove SSL${ENDCOLOR}"
+
 echo -e "  22 ${RED}Remove Apache And PHP${ENDCOLOR}"
 echo -e "  23 ${RED}Disable IPV6${ENDCOLOR}"
 echo -e "  24 ${RED}Remove SSL${ENDCOLOR}"
@@ -98,7 +98,6 @@ case $n in
   16) /root/shadow.sh.x ;;
   19) /root/tls.sh.x ;;
   20) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4) ;;
-  21) rm -fr /etc/apache2/conf-available/ssl-params.conf && rm -fr /etc/apache2/sites-available/default-ssl.conf && systemctl restart apache2 ;;
   22) apt purge php* php8* php7* apache2 -y && apt autoremove -y ;;
   23) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/disableipv6.sh --ipv4) ;;
   24) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removessl.sh --ipv4) ;;
