@@ -106,7 +106,7 @@ else
     echo -e "${RED}CISCO = NOT Running${ENDCOLOR}"
 fi
 
-SERVICE="ovpm"
+SERVICE="ovpmd"
 if pgrep -x "$SERVICE" >/dev/null
 then
     echo -e "${GREEN}OpenVpn = OK${ENDCOLOR}"
