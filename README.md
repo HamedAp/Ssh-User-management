@@ -10,8 +10,8 @@ SSh | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅
 DropBear | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ 
 TUIC | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ 
 Cisco | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ 
-Openvpn | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌
-Shadowsocks | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ 
+Openvpn | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌
+Shadowsocks | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ 
   
 # ShaHaN VPN Panel ( Multi Protocol )
 
