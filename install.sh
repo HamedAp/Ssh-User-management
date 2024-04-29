@@ -120,13 +120,18 @@ if command -v apt-get >/dev/null; then
 apt update -y
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
-sudo apt -y install software-properties-common
-apt install shc gcc -y
 
 sudo add-apt-repository ppa:ondrej/php -y
-apt install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
 
-apt install php8.1-sqlite3 -y
+local dependencies=("software-properties-common" "shc" "gcc" "apache2" "zip" "unzip" "net-tools" "curl" "mariadb-server" "curl" "iptables-persistent" "vnstat" "git" "cmake" "cron")
+    for dep in "${dependencies[@]}"; do
+        if ! command -v "${dep}" &> /dev/null; then
+            echo "${dep} is not installed. Installing..."
+            sudo apt install "${dep}" -y
+        fi
+    done
+
+
 
 string=$(php -v)
 if [[ $string == *"8.1"* ]]; then
@@ -139,10 +144,12 @@ wait
 apt remove php* -y
 apt remove php -y
 apt autoremove -y
-apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y
-
+apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl -y
 fi
-sudo apt install  php8.1-mbstring -y
+sudo apt install  php8.1-mbstring php8.1-sqlite3 -y
+sudo apt install php8.1-cgi -y
+sudo apt install php8.1-sqlite3 -y
+
 
 if [ $# == 0 ]; then
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
@@ -280,7 +287,6 @@ if [ -e "$file" ]; then
     echo "SSH-CALLS exists"
 else
 
-apt install git cmake -y
 git clone https://github.com/ambrop72/badvpn.git /root/badvpn
 mkdir /root/badvpn/badvpn-build
 cd  /root/badvpn/badvpn-build
@@ -448,8 +454,6 @@ systemctl restart sshd
 rm -fr /var/www/html/p/favicon.ico
 rm -fr /var/www/html/p/favicon.svg
 
-apt install php8.1-cgi -y
-apt install php8.1-sqlite3 -y
 
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
