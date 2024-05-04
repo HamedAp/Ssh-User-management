@@ -160,6 +160,9 @@ sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
     fi
 
+
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/bin/systemctl restart s-box.service' | sudo EDITOR='tee -a' visudo &
+wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/php-cgi' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/etc/init.d/shadowsocks' | sudo EDITOR='tee -a' visudo &
