@@ -75,6 +75,7 @@ echo -e "  32 ${CYAN}Disable AutoUpdate Panel${ENDCOLOR}"
 echo -e "  33 ${CYAN}Check Shahan Panel${ENDCOLOR}"
 echo -e "  34 ${GREEN}Enable Ipv6${ENDCOLOR}"
 echo -e " "
+echo -e "  99 ${GREEN}Update Signbox Configs${ENDCOLOR}"
 echo -e "  0)Exit"
 
 echo -ne "${GREEN}\nSelect Operation : ${ENDCOLOR}" ;read n
@@ -108,6 +109,8 @@ case $n in
   32) crontab -l | grep -v '/root/updateshahan.sh'  | crontab  - ;;
   33) shahancheck ;;
   34) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/enableipv6.sh) ;;
+
+  99) /root/updatesignbox.sh.x ;;
   0) clear;exit;;
   *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}" ; read && shahan ;;
 esac
