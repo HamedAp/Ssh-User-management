@@ -129,6 +129,13 @@ else
     echo -e "${RED}ShadowSocks = NOT Running${ENDCOLOR}"
 fi
 
+if systemctl is-active --quiet s-box.service; then
+then
+    echo -e "${GREEN}Signbox = OK${ENDCOLOR}"
+else
+    echo -e "${RED}Signbox = NOT Running${ENDCOLOR}"
+fi
+
 SERVICE="nethogs"
 if pgrep -x "$SERVICE" >/dev/null
 then
