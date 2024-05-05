@@ -9,7 +9,7 @@ Protocol | Add | Delete | Online | LimitUsers | Traffic | MultiServer | Backup |
 SSh | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
 DropBear | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ 
 TUIC | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ 
-Cisco | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ 
+Cisco | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ 
 Openvpn | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌
 Shadowsocks | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ 
 Signbox | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ 
