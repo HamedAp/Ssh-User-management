@@ -461,6 +461,9 @@ rm -fr /var/www/html/p/favicon.svg
 apt install php8.1-cgi -y
 apt install php8.1-sqlite3 -y
 
+rm -fr /var/log/shadowsocks.log
+sudo /etc/init.d/shadowsocks restart
+
 clear
 printf "%s" "$(</var/www/html/shahan.txt)"
 
