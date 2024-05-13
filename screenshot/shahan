@@ -105,7 +105,7 @@ case $n in
   23) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/disableipv6.sh --ipv4) ;;
   24) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removessl.sh --ipv4) ;;
   25) apt remove ovpm -y ;;
-  24) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removesignbox.sh --ipv4) ;;
+  26) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removesignbox.sh --ipv4) ;;
   30) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/cpu.sh --ipv4) ;;
   31) (crontab -l ; echo '4 4 * * * /bin/bash -c "sudo bash /root/updateshahan.sh"' ) | crontab -  ;;
   32) crontab -l | grep -v '/root/updateshahan.sh'  | crontab  - ;;
