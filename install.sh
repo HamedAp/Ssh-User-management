@@ -368,7 +368,8 @@ crontab -l | grep -v '/p/log/clear.sh'  | crontab  -
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/plugins/check.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1
-* * * * * bash /var/www/html/p/log/log.sh >/dev/null 2>&1" ) | crontab - &
+* * * * * bash /var/www/html/p/log/log.sh >/dev/null 2>&1
+*/5 * * * * bash /var/www/html/p/log/clear.sh >/dev/null 2>&1" ) | crontab - &
 wait
 sudo timedatectl set-timezone Asia/Tehran
 chmod 0646 /var/log/auth.log
