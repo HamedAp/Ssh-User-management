@@ -367,7 +367,6 @@ crontab -l | grep -v '/p/log/clear.sh'  | crontab  -
 * * * * * php /var/www/html/p/expire.php >/dev/null 2>&1
 0 0 * * * php /var/www/html/p/tgexpire.php >/dev/null 2>&1
 * * * * * php /var/www/html/p/posttraffic.php >/dev/null 2>&1
-* * * * * php /var/www/html/p/plugins/check.php >/dev/null 2>&1
 * * * * * bash /var/www/html/p/killusers.sh >/dev/null 2>&1
 * * * * * bash /var/www/html/p/log/log.sh >/dev/null 2>&1
 */5 * * * * bash /var/www/html/p/log/clear.sh >/dev/null 2>&1" ) | crontab - &
