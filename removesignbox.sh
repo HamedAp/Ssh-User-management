@@ -8,7 +8,7 @@ if [ ! -f "/etc/systemd/system/s-box.service" ]; then
     # Stop and disable the service
     sudo systemctl stop s-box.service
     sudo systemctl disable s-box.service >/dev/null 2>&1
-
+mysql -e "use ShaHaN;update users set signbox=''; "
     # Remove service file
     sudo rm /etc/systemd/system/s-box.service >/dev/null 2>&1
     sudo rm -rf /etc/s-box
