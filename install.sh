@@ -247,6 +247,8 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/vnstat' | sudo EDITOR='tee -a' vi
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/ovpm' | sudo EDITOR='tee -a' visudo &
 wait
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/bin/ovpm' | sudo EDITOR='tee -a' visudo &
+wait
 
 sudo sed -i '/%sudo/s/^/#/' /etc/sudoers &
 wait
