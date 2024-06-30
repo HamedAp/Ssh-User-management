@@ -27,6 +27,8 @@ systemctl stop tuic
 rm -fr /var/www/config.json
 rm -fr /etc/systemd/system/tuic.service
 rm -fr /root/tuic
+clear
+echo "Shadowsocks TUIC success!"
 }
 uninstall_shadowsocks(){
     printf "Are you sure uninstall Shadowsocks? (y/n) "
