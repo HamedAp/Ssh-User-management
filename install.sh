@@ -1,5 +1,5 @@
 #!/bin/bash
-hostname ShahanPanel.link
+# hostname ShahanPanel.link
 echo "#shahanDNS
 nameserver 8.8.8.8" > /etc/resolv.conf
 printshahan() {
