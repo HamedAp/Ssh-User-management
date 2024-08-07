@@ -275,7 +275,7 @@ ENDOFFILE
 
 
 
-
+ufw allow 443/tcp
 sudo apachectl configtest
 systemctl restart httpd
 fi
