@@ -4,3 +4,4 @@
 
 sudo killall -u $1
 sudo userdel -r $1
+sudo groupdel "$1"
