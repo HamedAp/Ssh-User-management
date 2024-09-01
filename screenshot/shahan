@@ -21,6 +21,7 @@ deactiveuser=$(mysql -s -N -e  "use ShaHaN;select COUNT(*) from users where enab
 online=$(sudo lsof -i  -n | grep " 4u" | grep -v root | grep ESTABLISHED | grep -v "videocall" | wc -l)
 
 cpuarch=$(uname -i)
+linuxversion=$(lsb_release -a)
 
 uninstall_tuic(){
 systemctl stop tuic
@@ -67,7 +68,7 @@ clear
 echo -e "${YELLOW}********** ShaHaN SSH PANEL **********"
 echo -e "${RED}-----------------------------------"
 echo -e "${YELLOW}-------- Server Details -----------"
-echo -e "${GREEN}CPU Arch : $cpuarch"
+echo -e "${GREEN}Linux Version : $linuxversion ( $cpuarch )"
 echo -e "${GREEN}IPv4 : $ipv4"
 echo -e "Ipv6 : $ipv6"
 echo -e "SSH port : $port"
