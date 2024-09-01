@@ -21,7 +21,7 @@ deactiveuser=$(mysql -s -N -e  "use ShaHaN;select COUNT(*) from users where enab
 online=$(sudo lsof -i  -n | grep " 4u" | grep -v root | grep ESTABLISHED | grep -v "videocall" | wc -l)
 
 cpuarch=$(uname -i)
-linuxversion=$(lsb_release -a)
+linuxversion=$(lsb_release -sd)
 
 uninstall_tuic(){
 systemctl stop tuic
