@@ -23,12 +23,30 @@ online=$(sudo lsof -i  -n | grep " 4u" | grep -v root | grep ESTABLISHED | grep 
 cpuarch=$(uname -i)
 linuxversion=$(lsb_release -sd)
 
+uninstall_shahan(){
+    printf "Are you sure uninstall Shahan? (y/n) "
+    printf "\n"
+    read -p "(Default: n):" answer
+    [ -z ${answer} ] && answer="n"
+    if [ "${answer}" == "y" ] || [ "${answer}" == "Y" ]; then
+        rm -fr /var/www/html/*
+        mysql -e "drop database ShaHaN;"
+        clear
+        echo "Shahan uninstall successfully!"
+    else
+        clear
+        echo
+        echo "uninstall cancelled, nothing to do..."
+        echo
+    fi
+}
+
 uninstall_openvpn(){
 systemctl stop ovpmd
 apt remove ovpm -y 
 rm -fr /var/db/ovpm
 clear
-echo "Shadowsocks TUIC success!"
+echo "OpenVpn uninstall successfully!"
 }
 
 uninstall_tuic(){
@@ -37,7 +55,7 @@ rm -fr /var/www/config.json
 rm -fr /etc/systemd/system/tuic.service
 rm -fr /root/tuic
 clear
-echo "Shadowsocks TUIC success!"
+echo "TUIC uninstall successfully!"
 }
 uninstall_shadowsocks(){
     printf "Are you sure uninstall Shadowsocks? (y/n) "
@@ -135,7 +153,7 @@ case $n in
   6) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/screenshot/chp.sh --ipv4) ;;
   7) mysql -e "use ShaHaN;update setting set adminuser='' , adminpassword='' where id=1" ;;  
   8) mysqldump -u root ShaHaN > /root/bckup-new.sql || echo "New Backup Created : /root/bckup-new.sql" ;;
-  9) rm -fr /var/www/html/*;;
+  9) uninstall_shahan;;
   10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/c.sh --ipv4) ;;
   11) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/drop.sh --ipv4) ;;
   12) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/t.sh --ipv4) ;;
