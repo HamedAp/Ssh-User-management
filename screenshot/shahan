@@ -23,6 +23,14 @@ online=$(sudo lsof -i  -n | grep " 4u" | grep -v root | grep ESTABLISHED | grep 
 cpuarch=$(uname -i)
 linuxversion=$(lsb_release -sd)
 
+uninstall_openvpn(){
+systemctl stop ovpmd
+apt remove ovpm -y 
+rm -fr /var/db/ovpm
+clear
+echo "Shadowsocks TUIC success!"
+}
+
 uninstall_tuic(){
 systemctl stop tuic
 rm -fr /var/www/config.json
@@ -141,7 +149,7 @@ case $n in
   22) apt purge php* php8* php7* apache2 -y && apt autoremove -y ;;
   23) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/disableipv6.sh --ipv4) ;;
   24) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removessl.sh --ipv4) ;;
-  25) apt remove ovpm -y ;;
+  25) uninstall_openvpn ;;
   26) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removesignbox.sh --ipv4) ;;
   27) uninstall_shadowsocks ;;
   28) uninstall_tuic ;;
