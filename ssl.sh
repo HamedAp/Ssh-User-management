@@ -246,7 +246,7 @@ mkdir /etc/ssl/
 bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/${domain}.key --fullchain-file /etc/ssl/${domain}.crt --ecc 
 
 cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
-<VirtualHost *:443>
+<VirtualHost 0.0.0.0:443>
    ServerName ${domain}
    DocumentRoot /var/www/html/
    SSLEngine on
