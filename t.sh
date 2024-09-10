@@ -26,16 +26,16 @@ detect_arch() {
     local arch=$(uname -m)
     case $arch in
         x86_64)
-            echo "x86_64-unknown-linux-gnu"
+            echo "x86_64-linux"
             ;;
         i686)
-            echo "i686-unknown-linux-gnu"
+            echo "i686-linux"
             ;;
         armv7l)
-            echo "armv7-unknown-linux-gnueabi"
+            echo "armv7-linux"
             ;;
         aarch64)
-            echo "aarch64-unknown-linux-gnu"
+            echo "aarch64-linux"
             ;;
         *)
             echo "Unsupported architecture: $arch"
@@ -45,7 +45,7 @@ detect_arch() {
 }
 
 server_arch=$(detect_arch)
-download_url="https://github.com/HamedAp/tuic/releases/download/1.0.0/tuic-server-1.0.0-$server_arch"
+download_url="https://github.com/HamedAp/tuic/releases/download/1.1.2/tuic-server-$server_arch"
 mkdir -p /root/tuic
 cd /root/tuic
 rm -fr /root/tuic/tuic-server
