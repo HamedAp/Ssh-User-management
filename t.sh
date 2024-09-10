@@ -87,7 +87,7 @@ cat > /var/www/config.json <<EOL
   "max_external_packet_size": 1500,
   "gc_interval": "3s",
   "gc_lifetime": "15s",
-  "log_level": "warn"
+  "log_level": "info"
 }
 EOL
 
