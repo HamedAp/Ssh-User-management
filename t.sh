@@ -87,7 +87,7 @@ cat > /var/www/config.json <<EOL
   "max_external_packet_size": 1500,
   "gc_interval": "3s",
   "gc_lifetime": "15s",
-  "log_level": "info"
+  "restful_server":"127.0.0.1:6190"
 }
 EOL
 
@@ -120,4 +120,4 @@ systemctl restart tuic
 chmod 646 /var/www/config.json
 chown www-data:www-data /var/www/config.json
 clear
-echo "TUIC Installed :)"
+echo "TUIC 1.1.3 With OnlineList Installed :)"
