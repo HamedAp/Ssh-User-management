@@ -8,10 +8,10 @@ Protocol | Add | Delete | Online | LimitUsers | Traffic | MultiServer | Backup |
 --- | --- | --- | --- |--- |--- |--- |--- |--- |--- 
 SSh | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
 DropBear | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ 
-TUIC⭐️ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ 
-Cisco⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ 
-Openvpn⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌
-Shadowsocks⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ 
+TUIC⭐️ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ 
+Cisco⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | 
+Openvpn⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | 
+Shadowsocks⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ 
 Signbox⭐️ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ 
 
 # ShaHaN VPN Panel ( Multi Protocol )
