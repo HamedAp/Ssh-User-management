@@ -66,6 +66,7 @@ deb http://security.ubuntu.com/ubuntu focal-security main restricted universe mu
 deb http://archive.canonical.com/ubuntu focal partner" >> /etc/apt/sources.list
 fi
 
+sudo sed -i 's/^session.gc_maxlifetime = .*/session.gc_maxlifetime = 86400/' /etc/php/8.1/apache2/php.ini
 
 
 
