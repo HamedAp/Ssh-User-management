@@ -110,7 +110,6 @@ echo -e "  3 ${CYAN}Install SSL For Domain ${ENDCOLOR}"
 echo -e "  4 ${CYAN}Change SSH Port ${ENDCOLOR}"
 echo -e "  5 ${CYAN}Block Iran IP ( Outgoing ) ${ENDCOLOR}"
 echo -e "  6 ${CYAN}Change Panel Port ${ENDCOLOR}"
-echo -e "  7 ${CYAN}Forgot Password ${ENDCOLOR}"
 echo -e "  8 ${CYAN}Backup Users ${ENDCOLOR}"
 echo -e "  9 ${CYAN}Remove ShaHaN ${ENDCOLOR}"
 echo -e " "
@@ -151,7 +150,6 @@ case $n in
   4) echo  -ne "${YELLOW}Please enter new port: ";read new_port;sudo sed -i "s@Port $port@Port $new_port@g" /etc/ssh/sshd_config;systemctl restart sshd;echo "Port Changed Successfully${ENDCOLOR}";;
   5) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/b.sh --ipv4) ;;
   6) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/screenshot/chp.sh --ipv4) ;;
-  7) mysql -e "use ShaHaN;update setting set adminuser='' , adminpassword='' where id=1" ;;  
   8) mysqldump -u root ShaHaN > /root/bckup-new.sql || echo "New Backup Created : /root/bckup-new.sql" ;;
   9) uninstall_shahan;;
   10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/c.sh --ipv4) ;;
