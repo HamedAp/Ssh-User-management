@@ -1,5 +1,18 @@
 1.1.3
+Added Dark Mode 
+Added Menu ( Will Update And Add Admin Links Next Update )
+Added Change Language
+Added Online Users To Profile
+Added Sort Servers By Ping
+Added App Version To Menu
 
+Fixed Online/Offline Bug On Panel
+Fixed Connect/Disconnect Bug
+Fixed No Internet Bug
+Fixed Android 14 Disconnect
+
+Improved Ping Time 
+Changed Some UI 
 
 1.1.1
 
