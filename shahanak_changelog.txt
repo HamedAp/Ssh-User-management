@@ -1,3 +1,9 @@
+1.1.6
+Added Country Sort
+Added Android Notification 
+Fixed Some Bugs 
+Improved Servers Ping Check
+
 1.1.5
 Fixed Android Bug ( Server Not Found on Panel With Port )
 Fixed Android Admin Message In Profile 
