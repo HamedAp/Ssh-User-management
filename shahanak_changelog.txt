@@ -3,10 +3,11 @@ Save Selected Country
 Fixed Disconnect Config Bug
 Changed Update Method  ( Added to menu )
 Fixed Config Name Bug After Reopen App
+Fixed Online/Offline Bug After Reopen App
 Added AutoSelect Best Ping
 Added Auto Sort By Ping
 Added Download Speed To Notification
-Added Quickbar Icon
+
 
 1.1.6
 Added Country Sort
