@@ -1,7 +1,6 @@
 1.1.7
 Save Selected Country
 Fixed Disconnect Config Bug
-Changed Update Method  ( Added to menu )
 Fixed Config Name Bug After Reopen App
 Fixed Online/Offline Bug After Reopen App
 Fixed Dark Mode Colors 
@@ -9,6 +8,8 @@ Added AutoSelect Best Ping
 Added Auto Sort By Ping
 Added Download Speed To Notification
 Added Traffic Usage In Panel
+Added QuickBar Setting
+Added Bypass Iran Servers
 
 1.1.6
 Added Country Sort
