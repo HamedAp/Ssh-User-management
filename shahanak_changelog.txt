@@ -1,3 +1,8 @@
+1.1.8
+Fixed Disconnect Bug
+Fixed Responsive On Small Screen
+
+
 1.1.7
 Save Selected Country
 Fixed Disconnect Config Bug
