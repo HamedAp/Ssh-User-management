@@ -102,6 +102,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/ma
 ![](screenshot/index.png)
 ![](screenshot/status.png)
 ![](screenshot/filter.png)
-![](screenshot/userlog.png)
+![](screenshot/setting.png)
 
 
