@@ -130,6 +130,7 @@ apt update -y
 apt upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
 sudo apt -y install software-properties-common
+sudo apt install ca-certificates apt-transport-https -y
 apt install shc gcc -y
 
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
