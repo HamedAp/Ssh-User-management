@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: ssh-user-management
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: ssh-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ssh_management
+      MYSQL_USER: sshuser
+      MYSQL_PASSWORD: sshpass
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
