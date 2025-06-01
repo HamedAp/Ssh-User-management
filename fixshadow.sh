@@ -14,6 +14,19 @@ else
     fi
 fi
 
+if systemctl is-active --quiet s-box; then
+    echo "s-box is already running"
+else
+    if sudo systemctl start s-box; then
+        echo "s-box started successfully"
+    else
+        echo "Failed to start s-box"
+        exit 1
+    fi
+fi
+
+
+
 ENDOFFILE
 sudo chmod a+rx /root/fixshadowsocks.sh
 
