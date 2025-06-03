@@ -1,7 +1,35 @@
 #!/bin/bash
-# hostname ShahanPanel.link
+rm "/tmp/last_text.txt"
+update_install_info() {
+    local newtext="$1"
+    touch "/tmp/last_text.txt"
+    if [ -f "/tmp/last_text.txt" ]; then
+        lasttext=$(cat /tmp/last_text.txt)
+    else
+        lasttext=""
+    fi
+    clear
+    if [ -n "$lasttext" ]; then
+        echo -e "$lasttext"
+        echo "----------------"
+    fi
+    echo "$newtext" >> /tmp/last_text.txt
+    tmpfile=$(mktemp)
+    awk '!seen[$0]++' /tmp/last_text.txt > "$tmpfile" && mv "$tmpfile" /tmp/last_text.txt
+}
+
+red='\033[0;31m'
+green='\033[0;32m'
+blue='\033[0;34m'
+yellow='\033[0;33m'
+plain='\033[0m'
+
+###############################################
 echo "#shahanDNS
 nameserver 8.8.8.8" > /etc/resolv.conf
+update_install_info "Load Startup Items"
+update_install_info "ShaHaN Panel Installation :) By HamedAp"
+update_install_info "Please Wait . . ."
 printshahan() {
     text="$1"
     delay="$2"
@@ -29,27 +57,30 @@ port=$(echo "$po" | sed "s/Port //g")
 adminuser=$(mysql -N -e "use ShaHaN; select adminuser from setting where id='1';")
 adminpass=$(mysql -N -e "use ShaHaN; select adminpassword from setting where id='1';")
 
-sudo wget -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
+sudo wget -q -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahan &
 wait
 sudo chmod a+rx /usr/local/bin/shahan
-
-sudo wget -4 -O /usr/local/bin/shahancheck https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahancheck &
+clear
+sudo wget -q -4 -O /usr/local/bin/shahancheck https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahancheck &
 wait
 sudo chmod a+rx /usr/local/bin/shahancheck
-
-sudo wget -4 -O /root/tls.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/tls.sh.x &
+clear
+sudo wget -q -4 -O /root/tls.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/tls.sh.x &
 wait
 sudo chmod a+rx /root/tls.sh.x
-sudo wget -4 -O /root/shadow.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/shadow.sh.x &
+clear
+sudo wget -q -4 -O /root/shadow.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/shadow.sh.x &
 wait
 sudo chmod a+rx /root/shadow.sh.x
-sudo wget -4 -O /root/signbox.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/signbox.sh.x &
+clear
+sudo wget -q -4 -O /root/signbox.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/signbox.sh.x &
 wait
 sudo chmod a+rx /root/signbox.sh.x
-sudo wget -4 -O /root/updatesignbox.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/updatesignbox.sh.x &
+clear
+sudo wget -q -4 -O /root/updatesignbox.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/updatesignbox.sh.x &
 wait
 sudo chmod a+rx /root/updatesignbox.sh.x
-
+clear
 
 if grep -q -E '^shahansources$' /etc/apt/sources.list; then
     echo "all good, do nothing";
@@ -125,21 +156,21 @@ sed -i 's@#PrintMotd no@PrintMotd yes@' /etc/ssh/sshd_config
 
 
 if command -v apt-get >/dev/null; then
-
-apt update -y
-apt upgrade -y
+update_install_info "${green}Update And Upgrade Finished $plain"
+apt -qq update -y
+apt -qq upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
-sudo apt -y install software-properties-common
-sudo apt install ca-certificates apt-transport-https -y
-apt install shc gcc -y
+sudo apt -qq  -y install software-properties-common
+sudo apt -qq install ca-certificates apt-transport-https -y
+apt -qq install shc gcc -y
 
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
 
 sudo add-apt-repository ppa:ondrej/php -y
-apt install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
-
-apt install php8.1-sqlite3 -y
+apt -qq install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
+update_install_info "${green}Apache And Database Installed $plain"
+apt -qq install php8.1-sqlite3 -y
 
 string=$(php -v)
 if [[ $string == *"8.1"* ]]; then
@@ -152,11 +183,11 @@ wait
 apt remove php* -y
 apt remove php -y
 apt autoremove -y
-apt install php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y
+apt -qq install php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y
 
 fi
-sudo apt install  php8.1-mbstring -y
-
+sudo apt -qq install  php8.1-mbstring -y
+update_install_info "${green}PHP8.1 Installed $plain"
 if [ $# == 0 ]; then
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
@@ -169,10 +200,11 @@ lastzip=$(echo $last_version | sed -e 's/\.//g')
 link="https://github.com/HamedAp/Ssh-User-management/releases/download/$last_version/$lastzip.zip"
 
 sudo wget -O /var/www/html/update.zip $link
+update_install_info "${green}Panel Source Downloaded $plain"
 sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
 wait
     fi
-
+update_install_info "${green}Unzip Finished $plain"
 
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/bin/systemctl restart s-box.service' | sudo EDITOR='tee -a' visudo &
 wait
@@ -254,11 +286,11 @@ echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/ovpm' | sudo EDITOR='tee -a' visu
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/bin/ovpm' | sudo EDITOR='tee -a' visudo &
 wait
-
 sudo sed -i '/%sudo/s/^/#/' /etc/sudoers &
 wait
-
 echo "application/json      json" >> /etc/mime.types
+
+update_install_info "${green}Permission Granted To Apache $plain"
 
 sudo service apache2 restart
 touch /var/www/html/p/banner.txt
@@ -286,6 +318,8 @@ sed -i 's@zend_extension = /usr/local/ioncube/ioncube_loader_lin_8.1.so@@' /etc/
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/ioncube-loader/main/install.sh --ipv4)
 fi
 
+update_install_info "${green}Php Ioncube Installed $plain"
+
 Nethogs=$(nethogs -V)
 if [[ $Nethogs == *"version 0.8.7"* ]]; then
   echo "Nethogs Is Installed :)"
@@ -293,12 +327,14 @@ else
 bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Nethogs-Json/main/install.sh --ipv4)
 fi
 
+update_install_info "${green}Nethogs Installed $plain"
+
 file=/etc/systemd/system/videocall.service
 if [ -e "$file" ]; then
     echo "SSH-CALLS exists"
 else
 
-apt install git cmake -y
+apt -qq install git cmake -y
 git clone https://github.com/ambrop72/badvpn.git /root/badvpn
 mkdir /root/badvpn/badvpn-build
 cd  /root/badvpn/badvpn-build
@@ -322,6 +358,9 @@ ENDOFFILE
 useradd -m videocall
 systemctl enable videocall
 systemctl start videocall
+
+update_install_info "${green}SSH Calls Installed $plain"
+
 fi
 mysql -e "drop USER '${adminusername}'@'localhost'" &
 wait
@@ -352,8 +391,12 @@ wait
 php /var/www/html/p/restoretarikh.php
 rm -fr /var/www/html/update.zip
 
+update_install_info "${green}Database Created $plain"
+
 nowdate=$(date +"%Y-%m-%d-%H-%M-%S")
 mysqldump -u root ShaHaN > /var/www/html/p/backup/${nowdate}-update.sql
+
+update_install_info "${green}Create Database Backup $plain"
 
 rnd=$(shuf -i 1-59 -n 1)
 
@@ -383,7 +426,7 @@ wait
 sudo timedatectl set-timezone Asia/Tehran
 chmod 0646 /var/log/auth.log
 
-sudo wget -4 -O /root/updateshahan.sh https://github.com/HamedAp/Ssh-User-management/raw/main/install.sh
+update_install_info "${green}Cronjob Set $plain"
 
 if  grep -q "Apache2 Ubuntu Default Page" "/var/www/html/index.html" ; then
 cat >  /var/www/html/index.html << ENDOFFILE
@@ -453,7 +496,7 @@ ForceCommand /bin/false
 " >> /etc/ssh/sshd_config
 fi
 
-
+update_install_info "${green}Security Patched $plain"
 
 sudo sed -i '/AllowTCPForwarding no/d' /etc/ssh/sshd_config &
 wait
@@ -464,11 +507,9 @@ wait
 
 systemctl restart sshd
 
-rm -fr /var/www/html/p/favicon.ico
-rm -fr /var/www/html/p/favicon.svg
 
-apt install php8.1-cgi -y
-apt install php8.1-sqlite3 -y
+apt -qq install php8.1-cgi -y
+apt -qq install php8.1-sqlite3 -y
 
 rm -fr /var/log/shadowsocks.log
 sudo /etc/init.d/shadowsocks restart
@@ -507,4 +548,4 @@ printf "\n\n\nPanel Link : http://${ipv4}/p"
 printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
-printf "\nNOW You Can Use ${Green_font_prefix}shahan${Font_color_suffix} and ${Green_font_prefix}shahancheck${Font_color_suffix} Command To See Menu Of Shahan Panel \n"
+printf "\nNOW You Can Use ${Green_font_prefix}shahan${Font_color_suffix} and ${Green_font_prefix}shahancheck${Font_color_suffix} and ${Green_font_prefix}listen${Font_color_suffix} Command To See Menu Of Shahan Panel \n"
