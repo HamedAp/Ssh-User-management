@@ -61,6 +61,10 @@ sudo wget -q -4 -O /usr/local/bin/shahan https://raw.githubusercontent.com/Hamed
 wait
 sudo chmod a+rx /usr/local/bin/shahan
 clear
+sudo wget -q -4 -O /root/wg.sh.x https://github.com/HamedAp/Ssh-User-management/raw/main/wg.sh.x &
+wait
+sudo chmod a+rx /root/wg.sh.x
+clear
 sudo wget -q -4 -O /usr/local/bin/shahancheck https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/screenshot/shahancheck &
 wait
 sudo chmod a+rx /usr/local/bin/shahancheck
