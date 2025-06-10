@@ -160,17 +160,17 @@ update_install_info "${green}Update And Upgrade Finished $plain"
 apt -qq update -y
 apt -qq upgrade -y
 rm -fr /etc/php/7.4/apache2/conf.d/00-ioncube.ini
-sudo apt -qq  -y install software-properties-common
-sudo apt -qq install ca-certificates apt-transport-https -y
-apt -qq install shc gcc -y
+sudo apt   -y install software-properties-common
+sudo apt  install ca-certificates apt-transport-https -y
+apt  install shc gcc -y
 
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
 
 sudo add-apt-repository ppa:ondrej/php -y
-apt -qq install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
+apt  install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
 update_install_info "${green}Apache And Database Installed $plain"
-apt -qq install php8.1-sqlite3 -y
+apt  install php8.1-sqlite3 -y
 
 string=$(php -v)
 if [[ $string == *"8.1"* ]]; then
@@ -183,7 +183,7 @@ wait
 apt remove php* -y
 apt remove php -y
 apt autoremove -y
-apt -qq install php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y
+apt  install php8.1 php8.1-mysql php8.1-xml php8.1-curl cron -y
 
 fi
 sudo apt -qq install  php8.1-mbstring -y
