@@ -31,8 +31,8 @@ fi
 ufw allow $panelPortt/tcp
 systemctl restart apache2 
 
-sudo sed -i "s/80/$panelPortt/g" /var/www/html/p/config.php &
-wait 
+sed -i '/\$panelport/d' /var/www/html/p/config.php
+echo "\$panelport = '$panelPortt';" >> /var/www/html/p/config.php
 
 
 clear 
