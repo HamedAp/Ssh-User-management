@@ -13,7 +13,7 @@ Cisco⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ |
 Openvpn⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | 
 Shadowsocks⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ 
 Signbox⭐️ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ 
-
+WireGuard⭐️ |  |  |  |  |  |  |  |  |  
 # ShaHaN VPN Panel ( Multi Protocol )
 
 پنل مدیریت و فروش پروتکل SSH - DropBear - TUIC - Cisco - Openvpn
