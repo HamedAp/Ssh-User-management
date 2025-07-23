@@ -120,7 +120,8 @@ echo -e "  13 ${GREEN}Install Openvpn ${ENDCOLOR}"
 echo -e "  14 ${GREEN}Install Fake Website ${ENDCOLOR}"
 echo -e "  15 ${GREEN}Install BBR ${ENDCOLOR}"
 echo -e "  16 ${GREEN}Install ShadowSocks ${ENDCOLOR}"
-echo -e "  18 ${YELLOW}Install Signbox ${ENDCOLOR}"
+echo -e "  17 ${YELLOW}Install WireGuard ${ENDCOLOR}"
+echo -e "  18 ${GREEN}Install Signbox ${ENDCOLOR}"
 echo -e "  19 ${GREEN}Install SSH-TLS ${ENDCOLOR}"
 echo -e " "
 echo -e "  20 ${RED}Remove CisCo Anyconnect${ENDCOLOR}"
@@ -159,6 +160,7 @@ case $n in
   14) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/fakewebsite.sh --ipv4) ;;
   15) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/bbr.sh --ipv4) ;;
   16) /root/shadow.sh.x ;;
+  17) /root/wg.sh.x ;;
   18) /root/signbox.sh.x ;;
   19) /root/tls.sh.x ;;
   20) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4) ;;
