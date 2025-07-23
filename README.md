@@ -4,7 +4,7 @@
 [![GitHub all releases](https://img.shields.io/github/downloads/HamedAp/Ssh-User-management/total?label=Last%20Version%20Downloads)](https://github.com/HamedAp/Ssh-User-management/releases/latest)
 
 # This Table Will Update :)
-Protocol | Add | Delete | Online | LimitUsers | Traffic | MultiServer | Backup | API | Qrcode 
+Protocol | Add | Delete | Online | Limit | Traffic | MultiSe... | Backup | API | Qrcode 
 --- | --- | --- | --- |--- |--- |--- |--- |--- |--- 
 SSh | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
 DropBear | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ 
@@ -14,6 +14,7 @@ Openvpn⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
 Shadowsocks⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ 
 Signbox⭐️ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ 
 WireGuard⭐️ |  |  |  |  |  |  |  |  |  
+Xray |  |  |  |  |  |  |  |  |  
 # ShaHaN VPN Panel ( Multi Protocol )
 
 پنل مدیریت و فروش پروتکل SSH - DropBear - TUIC - Cisco - Openvpn
