@@ -300,7 +300,7 @@ update_install_info "${green}Permission Granted To Apache $plain"
 
 sudo service apache2 restart
 touch /var/www/html/p/banner.txt
-chown -R www-data:www-data /var/www/html/p/* &
+chown -R www-data:www-data /var/www/html/* &
 wait
 
 mkdir /var/www/config/
