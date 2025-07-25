@@ -132,6 +132,7 @@ echo -e "  25 ${RED}Remove OpenVpn${ENDCOLOR}"
 echo -e "  26 ${RED}Remove Signbox${ENDCOLOR}"
 echo -e "  27 ${RED}Remove Shadowsocks${ENDCOLOR}"
 echo -e "  28 ${RED}Remove TUIC${ENDCOLOR}"
+echo -e "  29 ${RED}Remove WireGuard${ENDCOLOR}"
 echo -e " "
 echo -e "  30 ${CYAN}CPU Cooler${ENDCOLOR}"
 echo -e "  31 ${CYAN}Enable AutoUpdate Panel${ENDCOLOR}"
@@ -171,6 +172,7 @@ case $n in
   26) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removesignbox.sh --ipv4) ;;
   27) uninstall_shadowsocks ;;
   28) uninstall_tuic ;;
+  29) /root/wg.sh.x remove ;;
   30) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/cpu.sh --ipv4) ;;
   31) (crontab -l ; echo '4 4 * * * /bin/bash -c "sudo bash /root/updateshahan.sh"' ) | crontab -  ;;
   32) crontab -l | grep -v '/root/updateshahan.sh'  | crontab  - ;;
