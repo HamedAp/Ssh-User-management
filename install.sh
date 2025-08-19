@@ -119,7 +119,7 @@ echo ""
 
 
 
-if [ "$adminuser" != "" ]; then
+if [ -n "$adminuser"  ]; then
 adminusername=$adminuser
 adminpassword=$adminpass
 else
