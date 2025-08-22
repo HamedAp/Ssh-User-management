@@ -8,12 +8,12 @@ Protocol | Add | Delete | Online | Limit | Traffic | MultiSe... | Backup | API |
 --- | --- | --- | --- |--- |--- |--- |--- |--- |--- 
 SSh | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 
 DropBear | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ 
-TUIC⭐️ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ 
+TUIC⭐️ | ✅ | ✅ | ⏳ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ 
 Cisco⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | 
 Openvpn⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | 
 Shadowsocks⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ 
 Signbox⭐️ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ 
-WireGuard⭐️ | ✅ | ✅ | ✅ |  |  |  |  |  |  
+WireGuard⭐️ | ✅ | ✅ | ✅ | ⏳ | ✅ | ⏳ | ✅ | ⏳ |  ✅
 Xray |  |  |  |  |  |  |  |  |  
 # ShaHaN VPN Panel ( Multi Protocol )
 
