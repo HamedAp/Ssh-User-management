@@ -13,7 +13,7 @@ Cisco⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ |
 Openvpn⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | 
 Shadowsocks⭐️ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ 
 Signbox⭐️ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ 
-WireGuard⭐️ |  |  |  |  |  |  |  |  |  
+WireGuard⭐️ | ✅ | ✅ | ✅ |  |  |  |  |  |  
 Xray |  |  |  |  |  |  |  |  |  
 # ShaHaN VPN Panel ( Multi Protocol )
 
