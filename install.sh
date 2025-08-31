@@ -175,6 +175,7 @@ echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo deb
 
 sudo add-apt-repository ppa:ondrej/php -y
 apt install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
+apt install jq -y
 update_install_info "${green}Apache And Database Installed $plain"
 apt  install php8.1-sqlite3 -y
 
