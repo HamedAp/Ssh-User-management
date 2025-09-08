@@ -10,7 +10,7 @@ if [[ -n "${dropporttmp}" ]]; then
 fi
 
 sudo apt update -y
-sudo apt install dropbear -y
+sudo apt install rsyslog dropbear -y
 cat >  /etc/default/dropbear << ENDOFFILE
 NO_START=0
 DROPBEAR_PORT=$dropport
