@@ -88,7 +88,7 @@ Xray |  |  |  |  |  |  |  |  |
 *** به هیچ وجه برای نام کاربری پنل از یوزر Root استفاده نکنین .
 
 ````
-bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4)
+bash <(curl -Ls https://raw.githubusercontent.com/smorad3363/Ssh-User-management/master/install.sh --ipv4)
 ````
 
 بعد از نصب پنل میتوانید از دستور shahan در ترمینال خود استفاده کنید و گزینه های پنل رو انتخاب کنین . 
