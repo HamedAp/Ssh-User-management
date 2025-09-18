@@ -455,13 +455,8 @@ echo "1"
 #sudo wget -4 -O /var/www/html/n.apk https://my.uupload.ir/dl/4e5nRE6G &
 #wait
 fi
-inje='/var/www/html/h.apk'
-if [ -e "$inje" ]; then
-    echo "inje file"
-else
-sudo wget -4 -O /var/www/html/h.apk https://github.com/HamedAp/Ssh-User-management/raw/main/h.apk &
-wait
-fi
+rm -fr /var/www/html/h.apk
+
 
 
 elif command -v yum >/dev/null; then
