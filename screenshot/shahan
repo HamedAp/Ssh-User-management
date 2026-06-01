@@ -1,28 +1,25 @@
 #!/bin/bash
-ipv4=$(curl --connect-timeout 5 -s ipv4.icanhazip.com)
-sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
-po=$(cat /etc/ssh/sshd_config | grep "^Port")
-port=$(echo "$po" | sed "s/Port //g")
-ipv6=$(curl --connect-timeout 5 -s ipv6.icanhazip.com)
-panelversion=$(cat /var/www/html/p/versionp.txt)
-panelporttmp=$(sudo lsof -i -P -n | grep -i LISTEN | grep apache2 | awk '{if(!seen[$9]++)print $9;exit}')
-panelport=$(echo $panelporttmp | sed 's/[^0-9]*//g' )
+# ====================== Colors ======================
 RED="\e[31m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 BLUE="\e[34m"
 CYAN="\e[36m"
+MAGENTA="\e[35m"
+BOLD="\e[1m"
 ENDCOLOR="\e[0m"
-adminuser=$(mysql -s -N -e  "use ShaHaN;select adminuser from setting where id='1';")
-adminpass=$(mysql -s -N -e  "use ShaHaN;select adminpassword from setting where id='1';")
-usercount=$(mysql -s -N -e  "use ShaHaN;select COUNT(*) from users;")
-activeuser=$(mysql -s -N -e  "use ShaHaN;select COUNT(*) from users where enable='true';")
-deactiveuser=$(mysql -s -N -e  "use ShaHaN;select COUNT(*) from users where enable not like 'true';")
-online=$(sudo lsof -i  -n | grep " 4u" | grep -v root | grep ESTABLISHED | grep -v "videocall" | wc -l)
-
+# ====================== System Info ======================
+ipv4=$(curl --connect-timeout 5 -s ipv4.icanhazip.com)
+ipv6=$(curl --connect-timeout 5 -s ipv6.icanhazip.com 2>/dev/null || echo "Not Available")
+po=$(grep "^Port" /etc/ssh/sshd_config)
+port=${po#Port }
+panelversion=$(cat /var/www/html/p/versionp.txt 2>/dev/null || echo "Unknown")
+panelport=$(sudo lsof -i -P -n | grep apache2 | awk '{print $9}' | head -n1 | sed 's/[^0-9]*//g')
+adminuser=$(mysql -s -N -e "use ShaHaN; SELECT adminuser FROM setting WHERE id='1';")
+adminpass=$(mysql -s -N -e "use ShaHaN; SELECT adminpassword FROM setting WHERE id='1';")
+usercount=$(mysql -s -N -e "use ShaHaN; SELECT COUNT(*) FROM users;")
 cpuarch=$(uname -i)
-linuxversion=$(lsb_release -sd)
-
+linuxversion=$(lsb_release -sd 2>/dev/null || echo "Unknown")
 uninstall_shahan(){
     printf "Are you sure uninstall Shahan? (y/n) "
     printf "\n"
@@ -40,7 +37,6 @@ uninstall_shahan(){
         echo
     fi
 }
-
 uninstall_openvpn(){
 systemctl stop ovpmd
 apt remove ovpm -y 
@@ -48,7 +44,6 @@ rm -fr /var/db/ovpm
 clear
 echo "OpenVpn uninstall successfully!"
 }
-
 uninstall_tuic(){
 systemctl stop tuic
 rm -fr /var/www/config.json
@@ -84,104 +79,87 @@ uninstall_shadowsocks(){
         echo
     fi
 }
-
 if ! [ $(id -u) = 0 ]; then
    echo -e "${RED}Plese run the command with root privilages!${ENDCOLOR}"
    exit 1
 fi
-
+# ====================== Pretty Tables ======================
 clear
-echo -e "${YELLOW}********** ShaHaN SSH PANEL **********"
-echo -e "${RED}-----------------------------------"
-echo -e "${YELLOW}-------- Server Details -----------"
-echo -e "${GREEN}Linux Version : $linuxversion ( $cpuarch )"
-echo -e "${GREEN}IPv4 : $ipv4"
-echo -e "Ipv6 : $ipv6"
-echo -e "SSH port : $port"
-echo -e "Panel Version : $panelversion"
-echo -e "Panel Link : http://$ipv4:$panelport/p"
-echo -e "Panel User : $adminuser"
-echo -e "Panel Password : $adminpass"
-echo -e " "
-echo -e "${RED}-----------------------------------\n ${ENDCOLOR}"
-echo -e "  1 ${CYAN}Instal & Update Panel ${ENDCOLOR}"
-echo -e "  2 ${CYAN}Install SSH-Calls ${ENDCOLOR}"
-echo -e "  3 ${CYAN}Install SSL For Domain ${ENDCOLOR}"
-echo -e "  4 ${CYAN}Change SSH Port ${ENDCOLOR}"
-echo -e "  5 ${CYAN}Block Iran IP ( Outgoing ) ${ENDCOLOR}"
-echo -e "  6 ${CYAN}Change Panel Port ${ENDCOLOR}"
-echo -e "  8 ${CYAN}Backup Users ${ENDCOLOR}"
-echo -e "  9 ${CYAN}Remove ShaHaN ${ENDCOLOR}"
-echo -e " "
-echo -e "  10 ${GREEN}Install Cisco Anyconnect ${ENDCOLOR}"
-echo -e "  11 ${GREEN}Install DropBear ${ENDCOLOR}"
-echo -e "  12 ${GREEN}Install TUIC ${ENDCOLOR}"
-echo -e "  13 ${GREEN}Install Openvpn ${ENDCOLOR}"
-echo -e "  14 ${GREEN}Install Fake Website ${ENDCOLOR}"
-echo -e "  15 ${GREEN}Install BBR ${ENDCOLOR}"
-echo -e "  16 ${GREEN}Install ShadowSocks ${ENDCOLOR}"
-echo -e "  17 ${YELLOW}Install WireGuard ${ENDCOLOR}"
-echo -e "  18 ${GREEN}Install Singbox ${ENDCOLOR}"
-echo -e "  19 ${GREEN}Install SSH-TLS ${ENDCOLOR}"
-echo -e " "
-echo -e "  20 ${RED}Remove CisCo Anyconnect${ENDCOLOR}"
-echo -e "  21 ${RED}Remove SSH TLS${ENDCOLOR}"
-echo -e "  22 ${RED}Remove Apache And PHP${ENDCOLOR}"
-echo -e "  23 ${RED}Disable IPV6${ENDCOLOR}"
-echo -e "  24 ${RED}Remove SSL${ENDCOLOR}"
-echo -e "  25 ${RED}Remove OpenVpn${ENDCOLOR}"
-echo -e "  26 ${RED}Remove Singbox${ENDCOLOR}"
-echo -e "  27 ${RED}Remove Shadowsocks${ENDCOLOR}"
-echo -e "  28 ${RED}Remove TUIC${ENDCOLOR}"
-echo -e "  29 ${RED}Remove WireGuard${ENDCOLOR}"
-echo -e " "
-echo -e "  30 ${CYAN}CPU Cooler${ENDCOLOR}"
-echo -e "  31 ${CYAN}Enable AutoUpdate Panel${ENDCOLOR}"
-echo -e "  32 ${CYAN}Disable AutoUpdate Panel${ENDCOLOR}"
-echo -e "  33 ${CYAN}Check Shahan Panel${ENDCOLOR}"
-echo -e "  34 ${GREEN}Enable Ipv6${ENDCOLOR}"
-echo -e " "
-echo -e "  99 ${GREEN}Update Singbox Configs${ENDCOLOR}"
-echo -e "  0)Exit"
-
-echo -ne "${GREEN}\nSelect Operation : ${ENDCOLOR}" ;read n
-
+echo -e "${BOLD}${CYAN}╔═══════════════════════════════════════════════════════╗${ENDCOLOR}"
+echo -e "${BOLD}${CYAN}║               ${MAGENTA}ShaHaN SSH Panel${CYAN}                        ║${ENDCOLOR}"
+echo -e "${BOLD}${CYAN}╚═══════════════════════════════════════════════════════╝${ENDCOLOR}"
+echo -e "\n${YELLOW}┌─ Server Information ────────────────────────────────┐${ENDCOLOR}"
+echo -e "  ${GREEN}OS          :${ENDCOLOR} $linuxversion ($cpuarch)"
+echo -e "  ${GREEN}IPv4        :${ENDCOLOR} $ipv4"
+echo -e "  ${GREEN}IPv6        :${ENDCOLOR} $ipv6"
+echo -e "  ${GREEN}Panel Link  :${ENDCOLOR} http://$ipv4:$panelport/p"
+echo -e "  ${GREEN}Admin User      :${ENDCOLOR} $adminuser"
+echo -e "  ${GREEN}Admin Pass      :${ENDCOLOR} $adminpass"
+echo -e "  ${GREEN}Panel Version   :${ENDCOLOR} $panelversion"
+echo -e "${YELLOW}└─────────────────────────────────────────────────────┘${ENDCOLOR}"
+# ====================== Menu ======================
+echo -e "  ${GREEN}1${ENDCOLOR}) Install & Update Panel     ${RED}2) Remove ShaHaN ${ENDCOLOR}"
+echo -e "  ${GREEN}3${ENDCOLOR}) Install SSL For Domain     ${GREEN}4${ENDCOLOR}) Change SSH Port"
+echo -e "  ${GREEN}5${ENDCOLOR}) Block Iran IP              ${GREEN}6${ENDCOLOR}) Change Panel Port"
+echo -e "  ${GREEN}7${ENDCOLOR}) Backup Users               ${GREEN}8${ENDCOLOR}) Check Status"
+echo -e "\n${YELLOW}─── Install Options ─────────────────────────────${ENDCOLOR}"
+echo -e "  ${GREEN}10${ENDCOLOR}) Install Cisco Anyconnect   ${GREEN}11${ENDCOLOR}) Install DropBear"
+echo -e "  ${GREEN}12${ENDCOLOR}) Install TUIC               ${GREEN}13${ENDCOLOR}) Install OpenVPN"
+echo -e "  ${GREEN}14${ENDCOLOR}) Install Fake Website       ${GREEN}15${ENDCOLOR}) Install BBR"
+echo -e "  ${GREEN}16${ENDCOLOR}) Install Shadowsocks        ${GREEN}17${ENDCOLOR}) Install WireGuard"
+echo -e "  ${GREEN}18${ENDCOLOR}) Install Singbox            ${GREEN}19${ENDCOLOR}) Install SSH-TLS"
+echo -e "\n${RED}─── Remove Options ────────────────────────────────${ENDCOLOR}"
+echo -e "  ${RED}20${ENDCOLOR}) Remove Cisco Anyconnect    ${RED}21${ENDCOLOR}) Remove SSH-TLS"
+echo -e "  ${RED}22${ENDCOLOR}) Remove Apache & PHP        ${RED}23${ENDCOLOR}) Remove Nethogs"
+echo -e "  ${RED}24${ENDCOLOR}) Remove SSL                 ${RED}25${ENDCOLOR}) Remove OpenVPN"
+echo -e "  ${RED}26${ENDCOLOR}) Remove Singbox             ${RED}27${ENDCOLOR}) Remove Shadowsocks"
+echo -e "  ${RED}28${ENDCOLOR}) Remove TUIC                ${RED}29${ENDCOLOR}) Remove WireGuard"
+echo -e "\n${CYAN}─── Utilities ─────────────────────────────────────${ENDCOLOR}"
+echo -e "  ${GREEN}30${ENDCOLOR}) Enable AutoUpdate       ${RED}31${ENDCOLOR}) Disable AutoUpdate"
+echo -e "  ${GREEN}32${ENDCOLOR}) Enable IPv6             ${RED}33${ENDCOLOR}) Disable IPv6"
+echo -e "  ${GREEN}34${ENDCOLOR}) CPU Cooler"
+echo -e "\n  ${RED}0${ENDCOLOR}) Exit"
+echo -ne "\n${BOLD}${GREEN}Select Operation : ${ENDCOLOR}"
+read -r n
+# ====================== Case Menu ======================
 case $n in
-  1) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh --ipv4) ;;
-  2) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssh-calls.sh --ipv4) ;;
-  3) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh --ipv4) ;;
-  4) echo  -ne "${YELLOW}Please enter new port: ";read new_port;sudo sed -i "s@Port $port@Port $new_port@g" /etc/ssh/sshd_config;systemctl restart sshd;echo "Port Changed Successfully${ENDCOLOR}";;
-  5) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/b.sh --ipv4) ;;
-  6) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/screenshot/chp.sh --ipv4) ;;
-  8) mysqldump -u root ShaHaN > /root/bckup-new.sql || echo "New Backup Created : /root/bckup-new.sql" ;;
-  9) uninstall_shahan;;
-  10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/c.sh --ipv4) ;;
-  11) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/drop.sh --ipv4) ;;
-  12) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/t.sh --ipv4) ;;
-  13) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/open.sh --ipv4) ;;
-  14) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/fakewebsite.sh --ipv4) ;;
-  15) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/bbr.sh --ipv4) ;;
+  1) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh) ;;
+  2) uninstall_shahan ;;
+  3) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/ssl.sh) ;;
+  4) echo -ne "${YELLOW}Enter new SSH port: ${ENDCOLOR}"; read new_port
+     sudo sed -i "s/^Port .*/Port $new_port/" /etc/ssh/sshd_config
+     systemctl restart sshd
+     echo -e "${GREEN}SSH Port changed to $new_port successfully!${ENDCOLOR}" ;;
+  5) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/b.sh) ;;
+  6) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/screenshot/chp.sh) ;;
+  7) mysqldump -u root ShaHaN > "/root/ShaHaN_Backup_$(date +%F).sql" && clear && echo -e "${GREEN}Backup created successfully!${ENDCOLOR}" && echo -e "/root/ShaHaN_Backup_$(date +%F).sql";;
+  8) shahancheck ;;
+  10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/c.sh) ;;
+  11) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/drop.sh) ;;
+  12) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/t.sh) ;;
+  13) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/open.sh) ;;
+  14) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/fakewebsite.sh) ;;
+  15) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/bbr.sh) ;;
   16) /root/shadow.sh.x ;;
   17) /root/wg.sh.x ;;
   18) /root/signbox.sh.x ;;
-  19) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/tls.sh --ipv4) ;;
-  20) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh --ipv4) ;;
-  21) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/ssh-tls-remove.sh --ipv4) ;;
-  22) apt purge php* php8* php7* apache2 -y && apt autoremove -y ;;
-  23) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/disableipv6.sh --ipv4) ;;
-  24) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removessl.sh --ipv4) ;;
+  19) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/tls.sh) ;;
+  20) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/rc.sh) ;;
+  21) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/ssh-tls-remove.sh) ;;
+  22) apt purge apache2 php* -y && apt autoremove -y ;;
+  23) crontab -l | grep -v 'posttraffic.php' | crontab - && killall -9 nethogs &&  echo -e "Nethogs Removed From Panel";;
+  24) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removessl.sh) ;;
   25) uninstall_openvpn ;;
-  26) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removesignbox.sh --ipv4) ;;
+  26) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/removesignbox.sh) ;;
   27) uninstall_shadowsocks ;;
   28) uninstall_tuic ;;
   29) /root/wg.sh.x remove ;;
-  30) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/cpu.sh --ipv4) ;;
-  31) (crontab -l ; echo '4 4 * * * /bin/bash -c "sudo bash /root/updateshahan.sh"' ) | crontab -  ;;
-  32) crontab -l | grep -v '/root/updateshahan.sh'  | crontab  - ;;
-  33) shahancheck ;;
-  34) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/enableipv6.sh) ;;
-
+  30) (crontab -l ; echo '4 4 * * * /bin/bash -c "sudo bash /root/updateshahan.sh"') | crontab - ;;
+  31) crontab -l | grep -v 'updateshahan.sh' | crontab - ;;
+  32) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/enableipv6.sh) ;;
+  33) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/disableipv6.sh) ;;
+  34) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/cpu.sh) ;;
   99) /root/updatesignbox.sh.x ;;
-  0) clear;exit;;
-  *) echo -e "${RED}\nInvalid Option. Press Enter to return back to the menu${ENDCOLOR}" ; read && shahan ;;
+  0) clear; exit ;;
+  *) echo -e "${RED}Invalid option!${ENDCOLOR}"; read -p "Press Enter to continue..."; shahan ;;
 esac
