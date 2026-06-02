@@ -92,7 +92,7 @@ sleep 2
 # ---------- Initialize VPN ----------
 print_step "8" "Initializing VPN"
 
-sudo ovpm vpn init --hostname "$ipv4" &>/dev/null
+echo "y" | sudo ovpm vpn init --hostname "$ipv4" &>/dev/null
 
 echo "VPN initialized."
 sleep 2
