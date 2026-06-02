@@ -1,77 +1,114 @@
 #!/bin/bash
-printshahan() {
-    text="$1"
-    delay="$2"
-    for ((i=0; i<${#text}; i++)); do
-        echo -n "${text:$i:1}"
-        sleep $delay
-    done
-    echo
+
+# ============================================
+# OpenVPN Installer (Steps Only)
+# ============================================
+
+# ---------- Function ----------
+print_step() {
+    echo ""
+    echo "===================================="
+    echo "STEP $1: $2"
+    echo "===================================="
 }
 
+# ---------- CPU Check ----------
 CPU=$(uname -i)
 
-if [ "$CPU" = "aarch64" ]; then
-echo "Your Cpu Type Not Supported !! Please Wait For Update :) "
-exit
+if [[ "$CPU" == "aarch64" ]]; then
+    echo "Your CPU type is not supported yet."
+    exit 1
 fi
-
-
 
 clear
-echo ""
-printshahan "Openvpn Installation :) By HamedAp" 0.1
-echo ""
-echo ""
-printshahan "Please Wait . . ." 0.1
-echo ""
-echo ""
 
-if [[ ! -e /dev/net/tun ]] || ! ( exec 7<>/dev/net/tun ) 2>/dev/null; then
-	echo "The system does not have the TUN device available.
-TUN needs to be enabled before running this installer."
-	exit
+echo "OpenVPN Installation Script"
+echo "By HamedAp"
+
+# ---------- TUN Check ----------
+print_step "1" "Checking TUN Device"
+
+if [[ ! -e /dev/net/tun ]] || ! (exec 7<>/dev/net/tun) 2>/dev/null; then
+    echo "TUN device is not enabled."
+    echo "Enable TUN before running this installer."
+    exit 1
 fi
+
+echo "TUN device is available."
+
+# ---------- Get Server Address ----------
+print_step "2" "Getting Server Address"
 
 ipv4=$(curl -s ipv4.icanhazip.com)
-echo -e "\nPlease input Domain Name To This Server"
-printf "Default IP is \e[33m${ipv4}\e[0m, let it blank to use IP: "
-read serveraddress
-if [[ -n "${serveraddress}" ]]; then
-    ipv4=${serveraddress}
+
+echo "Enter your domain or IP address."
+read -p "Default IP is ${ipv4}. Press ENTER to use it: " serveraddress
+
+if [[ -n "$serveraddress" ]]; then
+    ipv4="$serveraddress"
 fi
 
-sudo sed -i '/ovpm/d' /etc/apt/sources.list &
-wait
+echo "Using address: $ipv4"
 
-sudo sh -c 'echo "deb [trusted=yes] https://cad.github.io/ovpm/deb/ ovpm main" >> /etc/apt/sources.list'
+# ---------- Add OVPM Repository ----------
+print_step "3" "Adding OVPM Repository"
+
+sudo sed -i '/ovpm/d' /etc/apt/sources.list
+
+echo "deb [trusted=yes] https://cad.github.io/ovpm/deb/ ovpm main" | \
+sudo tee -a /etc/apt/sources.list > /dev/null
+
+# ---------- Update Packages ----------
+print_step "4" "Updating Packages"
+
 sudo apt update -y
+
+# ---------- Install OpenVPN ----------
+print_step "5" "Installing OpenVPN"
+
 sudo apt install openvpn -y
+
+# ---------- Install OVPM ----------
+print_step "6" "Installing OVPM"
+
 sudo apt install ovpm -y
-systemctl start ovpmd
-systemctl enable ovpmd  
-ovpm vpn init --hostname $ipv4
 
+# ---------- Enable OVPM Service ----------
+print_step "7" "Starting OVPM Service"
 
-sudo sed -i '/ovpm/d' /etc/sudoers &
-wait
+sudo systemctl start ovpmd
+sudo systemctl enable ovpmd
 
-echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/ovpm' | sudo EDITOR='tee -a' visudo &
-wait
+# ---------- Initialize VPN ----------
+print_step "8" "Initializing VPN"
 
+sudo ovpm vpn init --hostname "$ipv4"
 
-mkdir /var/www/html/p/open/
-touch /var/www/html/p/open/index.php
-chown www-data:www-data /var/www/html/p/open -R
+# ---------- Configure Sudoers ----------
+print_step "9" "Configuring Sudo Permissions"
 
+sudo sed -i '/ovpm/d' /etc/sudoers
 
-echo "application/x-openvpn-profile      ovpn" >> /etc/mime.types
-systemctl restart apache2
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/bin/ovpm' | \
+sudo EDITOR='tee -a' visudo
 
+# ---------- Web Directory Setup ----------
+print_step "10" "Creating Web Directory"
 
+sudo mkdir -p /var/www/html/p/open/
+sudo touch /var/www/html/p/open/index.php
+sudo chown -R www-data:www-data /var/www/html/p/open
 
+# ---------- MIME Configuration ----------
+print_step "11" "Configuring MIME Type"
 
+echo "application/x-openvpn-profile ovpn" | \
+sudo tee -a /etc/mime.types > /dev/null
 
-clear 
-echo "OpenVpn Installed Succesfully :) "
-echo "Have Fun Shahan Group "
+sudo systemctl restart apache2
+
+# ---------- Finished ----------
+print_step "12" "Installation Complete"
+
+echo "OpenVPN installed successfully."
+echo "Have fun :)"
