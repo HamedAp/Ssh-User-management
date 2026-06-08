@@ -1,283 +1,212 @@
 #!/bin/bash
+
+# =============================================
+# ShaHaN Panel SSL Installation Script
+# By HamedAp - Clean & Improved Version
+# =============================================
+
 printshahan() {
-    text="$1"
-    delay="$2"
-    for ((i=0; i<${#text}; i++)); do
+    local text="$1"
+    local delay="${2:-0.08}"
+    for ((i = 0; i < ${#text}; i++)); do
         echo -n "${text:$i:1}"
-        sleep $delay
+        sleep "$delay"
     done
     echo
 }
-function isRoot() {
-	if [ "$EUID" -ne 0 ]; then
-		return 1
-	fi
+
+isRoot() {
+    [ "$EUID" -eq 0 ]
 }
+
 if ! isRoot; then
-	echo "Sorry, you need to run this as root"
-	exit 1
+    echo "Sorry, you need to run this script as root."
+    exit 1
 fi
 
 clear
 echo ""
 printshahan "ShaHaN Panel SSL Installation :) By HamedAp" 0.1
 echo ""
-echo ""
 
-
+# ====================== Input ======================
 read -rp "Please enter the pointed domain / sub-domain name: " domain
-systemctl stop apache2
 
+if [[ -z "$domain" ]]; then
+    echo "Error: Domain name cannot be empty."
+    exit 1
+fi
+
+# Stop Apache temporarily
+systemctl stop apache2 2>/dev/null || true
+
+# ====================== Colors ======================
 RED="\033[31m"
 GREEN="\033[32m"
 YELLOW="\033[33m"
 PLAIN='\033[0m'
 
-red(){
-    echo -e "\033[31m\033[01m$1\033[0m"
-}
+red()    { echo -e "${RED}$1${PLAIN}"; }
+green()  { echo -e "${GREEN}$1${PLAIN}"; }
+yellow() { echo -e "${YELLOW}$1${PLAIN}"; }
 
-green(){
-    echo -e "\033[32m\033[01m$1\033[0m"
-}
-
-yellow(){
-    echo -e "\033[33m\033[01m$1\033[0m"
-}
-
-REGEX=("debian" "ubuntu" "centos|red hat|kernel|oracle linux|alma|rocky" "'amazon linux'" "fedora")
+# ====================== OS Detection ======================
+REGEX=("debian" "ubuntu" "centos|red hat|kernel|oracle linux|alma|rocky" "amazon linux" "fedora")
 RELEASE=("Debian" "Ubuntu" "CentOS" "CentOS" "Fedora")
-PACKAGE_UPDATE=("apt-get update" "apt-get update" "yum -y update" "yum -y update" "yum -y update")
-PACKAGE_INSTALL=("apt -y install" "apt -y install" "yum -y install" "yum -y install" "yum -y install")
-PACKAGE_REMOVE=("apt -y remove" "apt -y remove" "yum -y remove" "yum -y remove" "yum -y remove")
-PACKAGE_UNINSTALL=("apt -y autoremove" "apt -y autoremove" "yum -y autoremove" "yum -y autoremove" "yum -y autoremove")
 
-[[ $EUID -ne 0 ]] && red "Note: Please run the script as the root user" && exit 1
-
-CMD=("$(grep -i pretty_name /etc/os-release 2>/dev/null | cut -d \" -f2)" "$(hostnamectl 2>/dev/null | grep -i system | cut -d : -f2)" "$(lsb_release -sd 2>/dev/null)" "$(grep -i description /etc/lsb-release 2>/dev/null | cut -d \" -f2)" "$(grep . /etc/redhat-release 2>/dev/null)" "$(grep . /etc/issue 2>/dev/null | cut -d \\ -f1 | sed '/^[ ]*$/d')")
+CMD=(
+    "$(grep -i pretty_name /etc/os-release 2>/dev/null | cut -d'"' -f2)"
+    "$(hostnamectl 2>/dev/null | grep -i system | cut -d: -f2)"
+    "$(lsb_release -sd 2>/dev/null)"
+    "$(grep -i description /etc/lsb-release 2>/dev/null | cut -d'"' -f2)"
+    "$(grep . /etc/redhat-release 2>/dev/null)"
+)
 
 for i in "${CMD[@]}"; do
     SYS="$i"
-    if [[ -n $SYS ]]; then
-        break
-    fi
+    [[ -n $SYS ]] && break
 done
 
 for ((int = 0; int < ${#REGEX[@]}; int++)); do
     if [[ $(echo "$SYS" | tr '[:upper:]' '[:lower:]') =~ ${REGEX[int]} ]]; then
         SYSTEM="${RELEASE[int]}"
-        if [[ -n $SYSTEM ]]; then
-            break
-        fi
+        break
     fi
 done
 
-[[ -z $SYSTEM ]] && red "Does not support the current OS, please use a supported one" && exit 1
+[[ -z $SYSTEM ]] && { red "Unsupported OS!"; exit 1; }
 
-
-
-    if [[ ! $SYSTEM == "CentOS" ]]; then
-        ${PACKAGE_UPDATE[int]}
-    fi
-    ${PACKAGE_INSTALL[int]} curl wget sudo socat
-    if [[ $SYSTEM == "CentOS" ]]; then
-        ${PACKAGE_INSTALL[int]} cronie
-        systemctl start crond
-        systemctl enable crond
-    else
-        ${PACKAGE_INSTALL[int]} cron
-        systemctl start cron
-        systemctl enable cron
-    fi
-
-    
-        autoEmail=$(date +%s%N | md5sum | cut -c 1-16)
-        acmeEmail=$autoEmail@gmail.com
-        yellow "Skipped entering email, using a fake email address: $acmeEmail"
-    
-    curl https://get.acme.sh | sh -s email=$acmeEmail
-    source ~/.bashrc
-    bash ~/.acme.sh/acme.sh --upgrade --auto-upgrade
-    bash ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
-    if [[ -n $(~/.acme.sh/acme.sh -v 2>/dev/null) ]]; then
-        green "ACME.SH certificate application script installed successfully!"
-    else
-        red "Sorry, the ACME.SH certificate application script installation failed"
-        green "Suggestions:"
-        yellow "Check the server network connection"
-        
-    fi
-   
-
-        if [[ -z $(type -P lsof) ]]; then
-        if [[ ! $SYSTEM == "CentOS" ]]; then
-            ${PACKAGE_UPDATE[int]}
-        fi
-        ${PACKAGE_INSTALL[int]} lsof
-    fi
-    
-    yellow "Checking if the port 80 is in use..."
-    sleep 1
-    
-    if [[  $(lsof -i:"80" | grep -i -c "listen") -eq 0 ]]; then
-        green "Good! Port 80 is not in use"
-        sleep 1
-    else
-        red "Port 80 is currently in use, please close the service this service, which is using port 80:"
-        lsof -i:"80"
-            lsof -i:"80" | awk '{print $2}' | grep -v "PID" | xargs kill -9
-            sleep 1
-        
-    fi
-
-
-    [[ -z $(~/.acme.sh/acme.sh -v 2>/dev/null) ]] && red "Unpacking ACME.SH, Getting ready..." && exit 1
-  
-    WARPv4Status=$(curl -s4m8 https://www.cloudflare.com/cdn-cgi/trace -k | grep warp | cut -d= -f2)
-    WARPv6Status=$(curl -s6m8 https://www.cloudflare.com/cdn-cgi/trace -k | grep warp | cut -d= -f2)
-    if [[ $WARPv4Status =~ on|plus ]] || [[ $WARPv6Status =~ on|plus ]]; then
-        wg-quick down wgcf >/dev/null 2>&1
-    fi
-    
-    ipv4=$(curl -s ipv4.icanhazip.com)
-    ipv6=""
-    
-    echo ""
-    yellow "When using port 80 application mode, first point your domain name to your server's public IP address. Otherwise the certificate application will be failed!"
-    echo ""
-    if [[ -n $ipv4 && -n $ipv6 ]]; then
-        echo -e "The public IPv4 address of server is: ${GREEN} $ipv4 ${PLAIN}"
-        echo -e "The public IPv6 address of server is: ${GREEN} $ipv6 ${PLAIN}"
-    elif [[ -n $ipv4 && -z $ipv6 ]]; then
-        echo -e "The public IPv4 address of server is: ${GREEN} $ipv4 ${PLAIN}"
-    elif [[ -z $ipv4 && -n $ipv6 ]]; then
-        echo -e "The public IPv6 address of server is: ${GREEN} $ipv6 ${PLAIN}"
-    fi
-    echo ""
-    
-    [[ -z $domain ]] && red "Given domain is invalid. Please use example.com / sub.example.com" && exit 1
-    green "The given domain name：$domain" && sleep 1
-    
-    domainIP=$(getent hosts  ${domain} | awk '{ print $1 }')
-    if [[ $domainIP == $ipv6 ]]; then
-        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --listen-v6 --insecure
-    fi
-    if [[ $domainIP == $ipv4 ]]; then
-        bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --insecure
-    fi
-    
-    if [[ -n $(echo $domainIP | grep nginx) ]]; then
-        yellow "The domain name analysis failed, please check whether the domain name is correctly entered, and whether the domain name has been pointed to the server's public IP address"
-        exit 1
-    elif [[ -n $(echo $domainIP | grep ":") || -n $(echo $domainIP | grep ".") ]]; then
-        if [[ $domainIP != $ipv4 ]] && [[ $domainIP != $ipv6 ]]; then
-            if [[ -n $(type -P wg-quick) && -n $(type -P wgcf) ]]; then
-                wg-quick up wgcf >/dev/null 2>&1
-            fi
-            green "Domain name ${domain} Currently pointed IP: ($domainIP)"
-            red "The current domain name's resolved IP does not match the public IP used of the server"
-            green "Suggestions:"
-            yellow "1. Please check whether domain is correctly pointed to the server's current public IP"
-            yellow "2. Please make sure that Cloudflare Proxy is closed (only DNS)"
-            exit 1
-        fi
-    fi
-    
-
-
+# ====================== Package Manager ======================
+if [[ $SYSTEM != "CentOS" ]]; then
+    apt-get update -qq
+fi
 
 if command -v apt-get >/dev/null; then
-mkdir /etc/apache2/ssl/
-bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/apache2/ssl/${domain}.key --fullchain-file /etc/apache2/ssl/${domain}.crt --ecc 
+    PKG_UPDATE="apt-get update -qq"
+    PKG_INSTALL="apt-get install -y"
+elif command -v yum >/dev/null; then
+    PKG_INSTALL="yum -y install"
+else
+    red "Unsupported package manager."
+    exit 1
+fi
 
-cat > /etc/apache2/conf-available/ssl-params.conf << ENDOFFILE
+$PKG_INSTALL curl wget sudo socat lsof cron 2>/dev/null || true
+
+if [[ $SYSTEM == "CentOS" ]]; then
+    systemctl start crond 2>/dev/null && systemctl enable crond 2>/dev/null
+else
+    systemctl start cron 2>/dev/null && systemctl enable cron 2>/dev/null
+fi
+
+# ====================== ACME.sh Installation ======================
+yellow "Installing acme.sh..."
+curl -s https://get.acme.sh | sh -s email="$(date +%s%N | md5sum | cut -c1-16)@gmail.com" >/dev/null 2>&1
+
+source ~/.bashrc
+~/.acme.sh/acme.sh --upgrade --auto-upgrade >/dev/null 2>&1
+~/.acme.sh/acme.sh --set-default-ca --server letsencrypt >/dev/null 2>&1
+
+green "ACME.sh installed successfully."
+
+# ====================== Port 80 Check ======================
+yellow "Checking port 80..."
+if lsof -i:80 | grep -q LISTEN; then
+    yellow "Port 80 is in use. Killing conflicting processes..."
+    lsof -i:80 | awk 'NR>1 {print $2}' | xargs kill -9 2>/dev/null
+    sleep 1
+else
+    green "Port 80 is free."
+fi
+
+# ====================== Certificate Issuance ======================
+yellow "Requesting SSL certificate for: $domain"
+
+ipv4=$(curl -s4m8 ipv4.icanhazip.com)
+ipv6=$(curl -s6m8 ipv6.icanhazip.com 2>/dev/null || echo "")
+
+domainIP=$(getent hosts "$domain" | awk '{print $1}' | head -n1)
+
+if [[ $domainIP == "$ipv4" ]] || [[ $domainIP == "$ipv6" ]]; then
+    if ~/.acme.sh/acme.sh --issue -d "$domain" --standalone -k ec-256 --insecure >/dev/null 2>&1; then
+        green "Certificate successfully issued!"
+        CERT_ISSUED=true
+    else
+        red "Failed to issue certificate."
+        CERT_ISSUED=false
+    fi
+else
+    red "Domain does not point to this server."
+    CERT_ISSUED=false
+fi
+
+# ====================== Apache2 Configuration (Only if cert issued) ======================
+if [[ "$CERT_ISSUED" == true ]] && command -v apache2 >/dev/null; then
+    yellow "Configuring Apache2 with SSL..."
+
+    mkdir -p /etc/apache2/ssl
+
+    ~/.acme.sh/acme.sh --install-cert -d "$domain" \
+        --key-file /etc/apache2/ssl/"${domain}".key \
+        --fullchain-file /etc/apache2/ssl/"${domain}".crt \
+        --ecc >/dev/null 2>&1
+
+    # SSL params
+    cat > /etc/apache2/conf-available/ssl-params.conf << 'EOF'
 SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
-# Requires Apache 2.4.36 & OpenSSL 1.1.1
 SSLProtocol -all +TLSv1.3 +TLSv1.2
 SSLOpenSSLConfCmd Curves X25519:secp521r1:secp384r1:prime256v1
-# Older versions
-# SSLProtocol All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
 SSLHonorCipherOrder On
-# Disable preloading HSTS for now.  You can use the commented out header line that includes 
-# the "preload" directive if you understand the implications.
-# Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 Header always set X-Frame-Options DENY
 Header always set X-Content-Type-Options nosniff
-# Requires Apache >= 2.4
 SSLCompression off
 SSLUseStapling on
 SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
-# Requires Apache >= 2.4.11
 SSLSessionTickets Off
-ENDOFFILE
+EOF
 
+    # Backup and configure default-ssl site
+    cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak 2>/dev/null || true
 
+    cat > /etc/apache2/sites-available/default-ssl.conf << EOF
+<IfModule mod_ssl.c>
+    <VirtualHost _default_:443>
+        ServerAdmin webmaster@${domain}
+        ServerName ${domain}
+        DocumentRoot /var/www/html
 
-sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
 
-echo "<IfModule mod_ssl.c>
-        <VirtualHost _default_:443>
-                ServerAdmin ShaHaN@${domain}
-                ServerName ${domain}
-                DocumentRoot /var/www/html
-                ErrorLog ${APACHE_LOG_DIR}/error.log
-                CustomLog ${APACHE_LOG_DIR}/access.log combined
-                SSLEngine on
-                SSLCertificateFile      /etc/apache2/ssl/${domain}.crt
-                SSLCertificateKeyFile /etc/apache2/ssl/${domain}.key
-                <FilesMatch '\.(cgi|shtml|phtml|php)$'>
-                                SSLOptions +StdEnvVars
-                </FilesMatch>
-                <Directory /usr/lib/cgi-bin>
-                                SSLOptions +StdEnvVars
-                </Directory>
-        </VirtualHost>
-</IfModule>" > /etc/apache2/sites-available/default-ssl.conf
+        SSLEngine on
+        SSLCertificateFile /etc/apache2/ssl/${domain}.crt
+        SSLCertificateKeyFile /etc/apache2/ssl/${domain}.key
 
-sudo a2enmod ssl
-sudo a2enmod headers
-sudo a2ensite default-ssl
-sudo a2enconf ssl-params
-sudo apache2ctl configtest
-sudo systemctl restart apache2
+        <FilesMatch '\.(cgi|shtml|phtml|php)$'>
+            SSLOptions +StdEnvVars
+        </FilesMatch>
+        <Directory /usr/lib/cgi-bin>
+            SSLOptions +StdEnvVars
+        </Directory>
+    </VirtualHost>
+</IfModule>
+EOF
 
-elif command -v yum >/dev/null; then
-mkdir /etc/ssl/
-bash ~/.acme.sh/acme.sh --install-cert -d ${domain} --key-file /etc/ssl/${domain}.key --fullchain-file /etc/ssl/${domain}.crt --ecc 
+    a2enmod ssl headers 2>/dev/null
+    a2ensite default-ssl 2>/dev/null
+    a2enconf ssl-params 2>/dev/null
 
-cat > /etc/httpd/conf.d/${domain}.conf << ENDOFFILE
-<VirtualHost 0.0.0.0:443>
-   ServerName ${domain}
-   DocumentRoot /var/www/html/
-   SSLEngine on
-   SSLCertificateFile /etc/ssl/${domain}.crt
-   SSLCertificateKeyFile /etc/ssl/${domain}.key
-</VirtualHost>
-
-SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
-# Requires Apache 2.4.36 & OpenSSL 1.1.1
-SSLProtocol -all +TLSv1.2
-# SSLOpenSSLConfCmd Curves X25519:secp521r1:secp384r1:prime256v1
-# Older versions
-# SSLProtocol All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
-SSLHonorCipherOrder On
-# Disable preloading HSTS for now.  You can use the commented out header line that includes
-# the "preload" directive if you understand the implications.
-#Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
-Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains"
-# Requires Apache >= 2.4
-SSLCompression off
-SSLUseStapling on
-SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
-# Requires Apache >= 2.4.11
-# SSLSessionTickets Off
-ENDOFFILE
-
-
-
-ufw allow 443/tcp
-sudo apachectl configtest
-systemctl restart httpd
+    if apache2ctl configtest >/dev/null 2>&1; then
+        systemctl restart apache2
+        green "Apache2 SSL configuration completed successfully!"
+    else
+        red "Apache2 configuration test failed."
+    fi
+elif [[ "$CERT_ISSUED" == true ]]; then
+    yellow "Apache2 not detected. Skipping web server configuration."
 fi
-clear
-printf "\nHTTPS Address : https://${domain} \n"
+
+echo ""
+green "======================================"
+green "HTTPS Address : https://${domain}"
+green "======================================"
