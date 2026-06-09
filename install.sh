@@ -449,7 +449,7 @@ fi
 
 
 cat >  /usr/local/bin/listen << ENDOFFILE
-sudo lsof -i -P -n | grep LISTEN
+sudo lsof -i -P -n | grep -E '(LISTEN|UDP.*:)'
 ENDOFFILE
 sudo chmod a+rx /usr/local/bin/listen
 
