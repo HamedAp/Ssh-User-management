@@ -449,9 +449,7 @@ fi
 
 
 cat >  /usr/local/bin/listen << ENDOFFILE
-sudo lsof -iTCP -iUDP -P -n 2>/dev/null | grep LISTEN | \
-awk '{split($9,a,":"); printf "%-18s %-22s %s\n", $1, a[1], a[length(a)]}' | \
-sort -u | (echo -e "PROCESS\t\tADDRESS\t\t\tPORT" && cat)
+sudo lsof -i -P -n | grep LISTEN
 ENDOFFILE
 sudo chmod a+rx /usr/local/bin/listen
 
