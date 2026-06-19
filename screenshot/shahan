@@ -41,6 +41,7 @@ uninstall_openvpn(){
 systemctl stop ovpmd
 apt remove ovpm -y 
 rm -fr /var/db/ovpm
+rm -fr /var/www/html/p/open
 clear
 echo "OpenVpn uninstall successfully!"
 }
