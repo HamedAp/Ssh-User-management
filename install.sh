@@ -166,7 +166,7 @@ echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo deb
 
 sudo add-apt-repository ppa:ondrej/php -y
 apt install apache2 zip unzip net-tools curl mariadb-server iptables-persistent vnstat -y
-apt install jq -y
+apt install jq nftables -y
 update_install_info "${green}Apache And Database Installed $plain"
 apt  install php8.1-sqlite3 -y
 
@@ -269,6 +269,8 @@ wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/local/bin/occtl' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables' | sudo EDITOR='tee -a' visudo &
+wait
+echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/nft' | sudo EDITOR='tee -a' visudo &
 wait
 echo 'www-data ALL=(ALL:ALL) NOPASSWD:/usr/sbin/iptables-save' | sudo EDITOR='tee -a' visudo &
 wait
