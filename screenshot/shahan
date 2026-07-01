@@ -119,6 +119,8 @@ echo -e "\n${CYAN}─── Utilities ──────────────
 echo -e "  ${GREEN}30${ENDCOLOR}) Enable AutoUpdate       ${RED}31${ENDCOLOR}) Disable AutoUpdate"
 echo -e "  ${GREEN}32${ENDCOLOR}) Enable IPv6             ${RED}33${ENDCOLOR}) Disable IPv6"
 echo -e "  ${GREEN}34${ENDCOLOR}) CPU Cooler              ${GREEN}35${ENDCOLOR}) Free Domain"
+echo -e "\n${CYAN}─── Xray ─────────────────────────────────────${ENDCOLOR}"
+echo -e "  ${GREEN}40${ENDCOLOR}) Install Xray"
 echo -e "\n  ${RED}0${ENDCOLOR}) Exit"
 echo -ne "\n${BOLD}${GREEN}Select Operation : ${ENDCOLOR}"
 read -r n
@@ -161,6 +163,7 @@ case $n in
   33) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/disableipv6.sh) ;;
   34) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/cpu.sh) ;;
   35) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/free-domain.sh) ;;
+  40) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/xray-install.sh) ;;
   99) /root/updatesignbox.sh.x ;;
   0) clear; exit ;;
   *) echo -e "${RED}Invalid option!${ENDCOLOR}"; read -p "Press Enter to continue..."; shahan ;;
