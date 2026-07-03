@@ -85,3 +85,6 @@ if [ -d /etc/sudoers.d ]; then
         echo "www-data ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart xray-shahan.service, /usr/bin/uuidgen, /usr/local/bin/xray" >> /etc/sudoers
     fi
 fi
+
+clear
+echo "Xray-Shahan installed successfully."
