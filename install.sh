@@ -3,12 +3,17 @@
 # Fast path check:
 # If /var/www/html/p/index.php exists, and install.sh was not modified from last install,
 # we just download the zip file, unzip it, and exit.
-# We determine if install.sh has modified by hashing the currently running script ($0)
-# and comparing it to a stored hash (e.g., in /var/www/html/p/install_hash.txt).
-if [ -f "/var/www/html/p/index.php" ] && [ -f "$0" ] && [ -f "/var/www/html/p/install_hash.txt" ]; then
-    CURRENT_HASH=$(sha256sum "$0" | awk '{print $1}')
+# We determine if install.sh is modified by hashing the currently running script.
+# If $0 is a file, we hash it. If it is run directly from GitHub via curl (e.g. bash <(curl ...)),
+# we fetch the latest raw install.sh from GitHub and hash it.
+if [ -f "/var/www/html/p/index.php" ] && [ -f "/var/www/html/p/install_hash.txt" ]; then
+    if [ -f "$0" ]; then
+        CURRENT_HASH=$(sha256sum "$0" | awk '{print $1}')
+    else
+        CURRENT_HASH=$(curl -sL https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/install.sh | sha256sum | awk '{print $1}')
+    fi
     LAST_HASH=$(cat /var/www/html/p/install_hash.txt)
-    if [ "$CURRENT_HASH" = "$LAST_HASH" ]; then
+    if [ -n "$CURRENT_HASH" ] && [ "$CURRENT_HASH" = "$LAST_HASH" ]; then
         echo "Fast Update: /var/www/html/p/index.php exists and install.sh is unchanged."
         echo "Downloading zip file and unzipping it..."
         if [ $# == 0 ]; then
@@ -594,6 +599,10 @@ printf "\nPort : \e[31m${port}\e[0m \n"
 printf "\nNOW You Can Use ${Green_font_prefix}shahan${Font_color_suffix} and ${Green_font_prefix}shahancheck${Font_color_suffix} and ${Green_font_prefix}listen${Font_color_suffix} Command To See Menu Of Shahan Panel \n"
 
 # Save the current script hash to compare on subsequent installs
-if [ -d "/var/www/html/p" ] && [ -f "$0" ]; then
-    sha256sum "$0" | awk '{print $1}' > /var/www/html/p/install_hash.txt
+if [ -d "/var/www/html/p" ]; then
+    if [ -f "$0" ]; then
+        sha256sum "$0" | awk '{print $1}' > /var/www/html/p/install_hash.txt
+    else
+        curl -sL https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/install.sh | sha256sum | awk '{print $1}' > /var/www/html/p/install_hash.txt
+    fi
 fi
