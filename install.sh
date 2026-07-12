@@ -19,14 +19,14 @@ if [ -f "/var/www/html/p/index.php" ] && [ -f "/var/www/html/p/install_hash.txt"
         if [ $# == 0 ]; then
             link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
             sudo wget -O /var/www/html/update.zip $link
-            sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
+            sudo unzip -o /var/www/html/update.zip -x "p/config.php" -d /var/www/html/ &
             wait
         else
             last_version=$1
             lastzip=$(echo $last_version | sed -e 's/\.//g')
             link="https://github.com/HamedAp/Ssh-User-management/releases/download/$last_version/$lastzip.zip"
             sudo wget -O /var/www/html/update.zip $link
-            sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
+            sudo unzip -o /var/www/html/update.zip -x "p/config.php" -d /var/www/html/ &
             wait
         fi
         rm -fr /var/www/html/update.zip
@@ -229,7 +229,7 @@ update_install_info "${green}PHP8.1 Installed $plain"
 if [ $# == 0 ]; then
 link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
 sudo wget -O /var/www/html/update.zip $link
-sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
+sudo unzip -o /var/www/html/update.zip -x "p/config.php" -d /var/www/html/ &
 wait
     else
 last_version=$1
@@ -239,7 +239,7 @@ link="https://github.com/HamedAp/Ssh-User-management/releases/download/$last_ver
 
 sudo wget -O /var/www/html/update.zip $link
 update_install_info "${green}Panel Source Downloaded $plain"
-sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
+sudo unzip -o /var/www/html/update.zip -x "p/config.php" -d /var/www/html/ &
 wait
     fi
 update_install_info "${green}Unzip Finished $plain"
