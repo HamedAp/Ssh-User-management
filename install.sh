@@ -27,6 +27,7 @@ if [ -f "/var/www/html/p/index.php" ] && [ -f "/root/shahan_hash.txt" ]; then
         chown -R www-data:www-data /var/www/html/* &
         wait
         sudo service apache2 restart
+		clear
         echo "Fast Update Complete."
         exit 0
     fi
