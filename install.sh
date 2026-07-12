@@ -1,4 +1,39 @@
 #!/bin/bash
+
+# Fast path check:
+# If /var/www/html/p/index.php exists, and install.sh was not modified from last install,
+# we just download the zip file, unzip it, and exit.
+# We determine if install.sh has modified by hashing the currently running script ($0)
+# and comparing it to a stored hash (e.g., in /var/www/html/p/install_hash.txt).
+if [ -f "/var/www/html/p/index.php" ] && [ -f "$0" ] && [ -f "/var/www/html/p/install_hash.txt" ]; then
+    CURRENT_HASH=$(sha256sum "$0" | awk '{print $1}')
+    LAST_HASH=$(cat /var/www/html/p/install_hash.txt)
+    if [ "$CURRENT_HASH" = "$LAST_HASH" ]; then
+        echo "Fast Update: /var/www/html/p/index.php exists and install.sh is unchanged."
+        echo "Downloading zip file and unzipping it..."
+        if [ $# == 0 ]; then
+            link=$(sudo curl -Ls "https://api.github.com/repos/HamedAp/Ssh-User-management/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/')
+            sudo wget -O /var/www/html/update.zip $link
+            sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
+            wait
+        else
+            last_version=$1
+            lastzip=$(echo $last_version | sed -e 's/\.//g')
+            link="https://github.com/HamedAp/Ssh-User-management/releases/download/$last_version/$lastzip.zip"
+            sudo wget -O /var/www/html/update.zip $link
+            sudo unzip -o /var/www/html/update.zip -d /var/www/html/ &
+            wait
+        fi
+        rm -fr /var/www/html/update.zip
+        # Change ownership of /var/www/html/* after unzip
+        chown -R www-data:www-data /var/www/html/* &
+        wait
+        sudo service apache2 restart
+        echo "Fast Update Complete."
+        exit 0
+    fi
+fi
+
 rm "/tmp/last_text.txt"
 update_install_info() {
     local newtext="$1"
@@ -557,3 +592,8 @@ printf "\nUserName : \e[31m${adminusername}\e[0m "
 printf "\nPassword : \e[31m${adminpassword}\e[0m "
 printf "\nPort : \e[31m${port}\e[0m \n"
 printf "\nNOW You Can Use ${Green_font_prefix}shahan${Font_color_suffix} and ${Green_font_prefix}shahancheck${Font_color_suffix} and ${Green_font_prefix}listen${Font_color_suffix} Command To See Menu Of Shahan Panel \n"
+
+# Save the current script hash to compare on subsequent installs
+if [ -d "/var/www/html/p" ] && [ -f "$0" ]; then
+    sha256sum "$0" | awk '{print $1}' > /var/www/html/p/install_hash.txt
+fi
