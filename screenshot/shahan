@@ -37,6 +37,51 @@ uninstall_shahan(){
         echo
     fi
 }
+reset_admin_credentials(){
+    local installer
+    clear
+    echo -e "${BOLD}${RED}WARNING: Admin credential reset${ENDCOLOR}"
+    echo -e "${YELLOW}This will permanently delete the admin settings and reseller settings.${ENDCOLOR}"
+    echo -e "${YELLOW}Panel users and their accounts will not be deleted.${ENDCOLOR}"
+    echo
+    echo -e "Type ${BOLD}RESET${ENDCOLOR} to confirm, or press Enter to cancel."
+    read -r confirmation
+
+    if [ "$confirmation" != "RESET" ]; then
+        clear
+        echo -e "${YELLOW}Admin credential reset cancelled. Nothing was changed.${ENDCOLOR}"
+        return
+    fi
+
+    if ! mysql -s -N -e "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='ShaHaN';" | grep -qx "ShaHaN"; then
+        echo -e "${RED}ShaHaN database was not found. Install the panel first.${ENDCOLOR}"
+        return 1
+    fi
+
+    installer=$(mktemp) || {
+        echo -e "${RED}Could not create a temporary installer file.${ENDCOLOR}"
+        return 1
+    }
+    if ! curl -fLs https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/install.sh -o "$installer"; then
+        rm -f "$installer"
+        echo -e "${RED}Could not download the panel installer. Nothing was changed.${ENDCOLOR}"
+        return 1
+    fi
+
+    echo -e "${YELLOW}Deleting admin and reseller settings...${ENDCOLOR}"
+    if ! mysql -e "USE ShaHaN; DROP TABLE IF EXISTS setting, reseller;"; then
+        rm -f "$installer"
+        echo -e "${RED}Could not delete the settings. The panel installer was not started.${ENDCOLOR}"
+        return 1
+    fi
+
+    echo -e "${GREEN}Settings deleted. Starting panel installation...${ENDCOLOR}"
+    echo -e "${CYAN}You will now be asked for a new admin username and password.${ENDCOLOR}"
+    bash "$installer"
+    local install_status=$?
+    rm -f "$installer"
+    return $install_status
+}
 uninstall_openvpn(){
 systemctl stop ovpmd
 apt remove ovpm -y 
@@ -103,6 +148,7 @@ echo -e "  ${GREEN}1${ENDCOLOR}) Install & Update Panel     ${RED}2) Remove ShaH
 echo -e "  ${GREEN}3${ENDCOLOR}) Install SSL For Domain     ${GREEN}4${ENDCOLOR}) Change SSH Port"
 echo -e "  ${GREEN}5${ENDCOLOR}) Block Iran IP              ${GREEN}6${ENDCOLOR}) Change Panel Port"
 echo -e "  ${GREEN}7${ENDCOLOR}) Backup Users               ${GREEN}8${ENDCOLOR}) Check Status"
+echo -e "  ${RED}9${ENDCOLOR}) Reset Admin User & Password"
 echo -e "\n${YELLOW}─── Install Options ─────────────────────────────${ENDCOLOR}"
 echo -e "  ${GREEN}10${ENDCOLOR}) Install Cisco Anyconnect   ${GREEN}11${ENDCOLOR}) Install DropBear"
 echo -e "  ${GREEN}12${ENDCOLOR}) Install TUIC               ${GREEN}13${ENDCOLOR}) Install OpenVPN"
@@ -137,6 +183,7 @@ case $n in
   6) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/master/screenshot/chp.sh) ;;
   7) mysqldump -u root ShaHaN > "/root/ShaHaN_Backup_$(date +%F).sql" && clear && echo -e "${GREEN}Backup created successfully!${ENDCOLOR}" && echo -e "/root/ShaHaN_Backup_$(date +%F).sql";;
   8) shahancheck ;;
+  9) reset_admin_credentials ;;
   10) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ocserv-Ubuntu/main/c.sh) ;;
   11) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/drop.sh) ;;
   12) bash <(curl -Ls https://raw.githubusercontent.com/HamedAp/Ssh-User-management/main/t.sh) ;;
