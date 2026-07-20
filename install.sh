@@ -22,6 +22,7 @@ if [ -f "/var/www/html/p/index.php" ] && [ -f "/root/shahan_hash.txt" ]; then
             sudo unzip -o /var/www/html/update.zip -x "p/config.php" -d /var/www/html/ &
             wait
         fi
+		php /var/www/html/p/restoretarikh.php
         rm -fr /var/www/html/update.zip
         # Change ownership of /var/www/html/* after unzip
         chown -R www-data:www-data /var/www/html/* &
