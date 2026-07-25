@@ -301,6 +301,8 @@ sudo sed -i '/%sudo/s/^/#/' /etc/sudoers &
 wait
 echo "application/json      json" >> /etc/mime.types
 update_install_info "${green}Permission Granted To Apache $plain"
+sed -i 's/^memory_limit = .*/memory_limit = 512M/' /etc/php/8.1/apache2/php.ini
+grep '^memory_limit' /etc/php/8.1/apache2/php.ini
 sudo service apache2 restart
 touch /var/www/html/p/banner.txt
 chown -R www-data:www-data /var/www/html/* &
